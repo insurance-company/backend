@@ -1,3 +1,4 @@
+using InsuranceCompany.Api.Profiles;
 using InsuranceCompany.Library.Settings;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,6 +11,7 @@ builder.Services.AddDbContext<InsuranceCompanyDbContext>(o => o.UseNpgsql(builde
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 
 var app = builder.Build();
 
