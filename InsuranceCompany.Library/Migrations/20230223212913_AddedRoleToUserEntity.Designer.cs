@@ -3,6 +3,7 @@ using System;
 using InsuranceCompany.Library.Settings;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace InsuranceCompany.Library.Migrations
 {
     [DbContext(typeof(InsuranceCompanyDbContext))]
-    partial class InsuranceCompanyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230223212913_AddedRoleToUserEntity")]
+    partial class AddedRoleToUserEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -99,6 +102,32 @@ namespace InsuranceCompany.Library.Migrations
                     b.ToTable("Auti");
                 });
 
+            modelBuilder.Entity("InsuranceCompany.Library.Core.Model.Drzava", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Naziv")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Drzave");
+                });
+
             modelBuilder.Entity("InsuranceCompany.Library.Core.Model.Filijala", b =>
                 {
                     b.Property<int>("Id")
@@ -123,9 +152,14 @@ namespace InsuranceCompany.Library.Migrations
                     b.Property<bool>("Deleted")
                         .HasColumnType("boolean");
 
+                    b.Property<int>("DrzavaId")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AgencijaId");
+
+                    b.HasIndex("DrzavaId");
 
                     b.ToTable("Filijale");
                 });
@@ -466,7 +500,15 @@ namespace InsuranceCompany.Library.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("InsuranceCompany.Library.Core.Model.Drzava", "Drzava")
+                        .WithMany()
+                        .HasForeignKey("DrzavaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Agencija");
+
+                    b.Navigation("Drzava");
                 });
 
             modelBuilder.Entity("InsuranceCompany.Library.Core.Model.Nesreca", b =>
