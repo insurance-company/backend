@@ -35,5 +35,10 @@ namespace InsuranceCompany.Library.Core.Service
             user.Role = "User";
             return _unitOfWork.UserRepository.Create(user);
         }
+
+        public User FindById(int id)
+        {
+            return _unitOfWork.UserRepository.FindById(id);
+        }
     }
 }

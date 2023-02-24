@@ -3,15 +3,9 @@ using InsuranceCompany.Api.DTO;
 using InsuranceCompany.Library.Core.Model;
 using InsuranceCompany.Library.Core.Service.Core;
 using InsuranceCompany.Library.Helpers;
-using InsuranceCompany.Library.Settings;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
+
 
 namespace InsuranceCompany.Api.Controllers
 {
@@ -61,6 +55,12 @@ namespace InsuranceCompany.Api.Controllers
         public ActionResult<List<User>> GetAllBuyers()
         {
            return _userService.GetAllBuyers();
+        }
+
+        [HttpGet("getById/{id}")]
+        public ActionResult<User> FindById(int id)
+        {
+            return _userService.FindById(id);
         }
     }
 }

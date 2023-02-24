@@ -19,8 +19,9 @@ namespace InsuranceCompany.Library.Helpers
             var identity = new ClaimsIdentity(new Claim[]
             {
                 new Claim(ClaimTypes.Role, user.Role),
-                new Claim(ClaimTypes.Name, $"{user.Ime} {user.Prezime}")
-            });
+                new Claim(ClaimTypes.Name, $"{user.Ime} {user.Prezime}"),
+                new Claim("id", user.Id.ToString())
+            }); ;
 
             var credentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256);
 

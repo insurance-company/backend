@@ -32,5 +32,10 @@ namespace InsuranceCompany.Library.Core.Repository
             _context.SaveChanges();
             return user;
         }
+
+        public User FindById(int id)
+        {
+            return _context.Users.FirstOrDefault(x => x.Id == id);
+        }
     }
 }
