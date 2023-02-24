@@ -5,21 +5,22 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace InsuranceCompany.Api.Controllers
 {
+
     [ApiController]
     [Route("api/[controller]")]
-    public class FilijalaController : ControllerBase
+    public class PaketPomociController : ControllerBase
     {
         private readonly IMapper _mapper;
-        private readonly IFilijalaService _filijalaService;
-        public FilijalaController(IMapper mapper, IFilijalaService filijalaService)
+        private readonly IPaketPomociService _paketPomociService;
+        public PaketPomociController(IMapper mapper, IPaketPomociService paketPomociService)
         {
             _mapper = mapper;
-            _filijalaService = filijalaService;
+            _paketPomociService = paketPomociService;
         }
         [HttpGet]
-        public ActionResult<List<Filijala>> GetAll()
+        public ActionResult<List<PaketPomoci>> GetAll()
         {
-            return _filijalaService.GetAll();
+            return _paketPomociService.GetAll();
         }
     }
 }

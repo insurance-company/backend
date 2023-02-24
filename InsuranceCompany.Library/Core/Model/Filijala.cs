@@ -10,7 +10,6 @@ namespace InsuranceCompany.Library.Core.Model
     {
         public Agencija Agencija { get; set; }
         public string Adresa { get; set; }
-        public Drzava Drzava { get; set; }
 
     }
 }

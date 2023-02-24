@@ -7,11 +7,8 @@ using System.Threading.Tasks;
 
 namespace InsuranceCompany.Library.Core.Repository.Core
 {
-    public interface IUserRepository
+    public interface IFilijalaRepository
     {
-        List<User> GetAllBuyers();
-        User FindByEmail(string email);
-        User Create(User user);
-
+        List<Filijala> GetAll();
     }
 }

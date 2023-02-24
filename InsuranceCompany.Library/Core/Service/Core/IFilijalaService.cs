@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace InsuranceCompany.Library.Core.Service.Core
 {
-    public interface IUserService
+    public interface IFilijalaService
     {
-        List<User> GetAllBuyers();
-        User FindByEmail(string email);
-        User Register(User user);
+        List<Filijala> GetAll();
     }
 }

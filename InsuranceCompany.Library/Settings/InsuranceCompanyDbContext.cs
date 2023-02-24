@@ -23,7 +23,6 @@ namespace InsuranceCompany.Library.Settings
         public DbSet<Agencija> Agencija { get; set; }
         public DbSet<Agent> Agenti { get; set; }
         public DbSet<Auto> Auti { get; set; }
-        public DbSet<Drzava> Drzave { get; set; }
         public DbSet<Filijala> Filijale { get; set; }
         public DbSet<Kupac> Kupci { get; set; }
         public DbSet<Menadzer> Menadzeri { get; set; }

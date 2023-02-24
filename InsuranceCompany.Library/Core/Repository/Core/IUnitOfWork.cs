@@ -12,5 +12,8 @@ namespace InsuranceCompany.Library.Core.Repository.Core
         new void Dispose();
 
         public IUserRepository UserRepository { get; }
+        public IPaketPomociRepository PaketPomociRepository { get; }
+        public IFilijalaRepository FilijalaRepository { get; }
+
     }
 }
