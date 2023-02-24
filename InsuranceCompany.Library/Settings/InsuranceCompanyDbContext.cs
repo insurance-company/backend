@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace InsuranceCompany.Library.Settings
@@ -14,7 +15,10 @@ namespace InsuranceCompany.Library.Settings
     public class InsuranceCompanyDbContext : DbContext
     {
 
-        public InsuranceCompanyDbContext(DbContextOptions<InsuranceCompanyDbContext> options) : base(options) { }
+        public InsuranceCompanyDbContext(DbContextOptions<InsuranceCompanyDbContext> options) : base(options)
+        {
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+        }
 
         public DbSet<Agencija> Agencija { get; set; }
         public DbSet<Agent> Agenti { get; set; }
@@ -64,6 +68,5 @@ namespace InsuranceCompany.Library.Settings
 
             return base.SaveChanges();
         }
-
     }
 }
