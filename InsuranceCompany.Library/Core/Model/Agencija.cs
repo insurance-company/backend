@@ -10,7 +10,6 @@ namespace InsuranceCompany.Library.Core.Model
     {
         public string PIB { get; set; }
         public string Naziv { get; set; }
-        public Agencija NadredjenaAgencija { get; set; }
 
     }
 }

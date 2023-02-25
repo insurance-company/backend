@@ -24,7 +24,6 @@ namespace InsuranceCompany.Library.Settings
         public DbSet<Agent> Agenti { get; set; }
         public DbSet<Auto> Auti { get; set; }
         public DbSet<Filijala> Filijale { get; set; }
-        public DbSet<Kupac> Kupci { get; set; }
         public DbSet<Menadzer> Menadzeri { get; set; }
         public DbSet<Nesreca> Nesrece { get; set; }
         public DbSet<Polisa> Polise { get; set; }
@@ -39,7 +38,6 @@ namespace InsuranceCompany.Library.Settings
         {
             modelBuilder.UseSerialColumns();
             modelBuilder.Entity<User>().ToTable("Users");
-            modelBuilder.Entity<Kupac>().ToTable("Kupci");
             modelBuilder.Entity<Radnik>().ToTable("Radnici");
             modelBuilder.Entity<Agent>().ToTable("Agenti");
             modelBuilder.Entity<Menadzer>().ToTable("Menadzeri");

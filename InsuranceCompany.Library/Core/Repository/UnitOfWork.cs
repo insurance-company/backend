@@ -21,12 +21,14 @@ namespace InsuranceCompany.Library.Core.Repository
             UserRepository = new UserRepository(_context);
             PaketPomociRepository = new PaketPomociRepository(_context);
             FilijalaRepository = new FilijalaRepository(_context);
+            NesrecaRepository = new NesrecaRepository(_context);
 
         }
 
         public IUserRepository UserRepository { get; set; }
         public IPaketPomociRepository PaketPomociRepository { get; set; }
         public IFilijalaRepository FilijalaRepository { get; set; }
+        public INesrecaRepository NesrecaRepository { get; set; }
 
         public void Dispose()
         {

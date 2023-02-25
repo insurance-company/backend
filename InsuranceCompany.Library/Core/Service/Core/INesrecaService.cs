@@ -7,11 +7,9 @@ using System.Threading.Tasks;
 
 namespace InsuranceCompany.Library.Core.Service.Core
 {
-    public interface IUserService
+    public interface INesrecaService
     {
-        Page<User> GetAllBuyers(int pageNumber, int pageSize);
-        User FindByEmail(string email);
-        User Register(User user);
-        User FindById(int id);
+        List<Nesreca> GetAllByUserId(int userId);
+        List<Nesreca> GetAllUnvalidated();
     }
 }

@@ -14,6 +14,7 @@ namespace InsuranceCompany.Library.Core.Repository.Core
         public IUserRepository UserRepository { get; }
         public IPaketPomociRepository PaketPomociRepository { get; }
         public IFilijalaRepository FilijalaRepository { get; }
+        public INesrecaRepository NesrecaRepository { get; }
 
     }
 }

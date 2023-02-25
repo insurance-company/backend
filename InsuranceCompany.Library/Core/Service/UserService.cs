@@ -19,9 +19,13 @@ namespace InsuranceCompany.Library.Core.Service
         {
             _unitOfWork = unitOfWork;
         }
-        public List<User> GetAllBuyers()
+        public Page<User> GetAllBuyers(int pageNumber, int pageSize)
         {
-            return _unitOfWork.UserRepository.GetAllBuyers();
+            List<User> users =  _unitOfWork.UserRepository.GetAllBuyers();
+            Page<User> page = new Page<User>();
+            page.TotalCount = users.Count;
+            page.Data = users.Skip(pageNumber * pageSize).Take(pageSize).ToList();
+            return page;
         }
 
         public User FindByEmail(string email)

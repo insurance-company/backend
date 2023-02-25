@@ -12,7 +12,7 @@ namespace InsuranceCompany.Library.Core.Model
         public int Godiste { get; set; }
         public string Model { get; set; }
         public string Marka { get; set; }
-        public Kupac Kupac {get; set; }
+        public User Vlasnik {get; set; }
 
     }
 }
