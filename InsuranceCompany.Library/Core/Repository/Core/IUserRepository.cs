@@ -12,6 +12,7 @@ namespace InsuranceCompany.Library.Core.Repository.Core
         List<User> GetAllBuyers();
         User FindByEmail(string email);
         User Create(User user);
+        User FindById(int id);
 
     }
 }

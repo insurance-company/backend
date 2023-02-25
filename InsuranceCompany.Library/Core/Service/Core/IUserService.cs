@@ -12,5 +12,6 @@ namespace InsuranceCompany.Library.Core.Service.Core
         List<User> GetAllBuyers();
         User FindByEmail(string email);
         User Register(User user);
+        User FindById(int id);
     }
 }
