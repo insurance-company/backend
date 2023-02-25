@@ -9,8 +9,11 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IUserService, UserService>();
@@ -19,8 +22,6 @@ builder.Services.AddScoped<IFilijalaService, FilijalaService>();
 builder.Services.AddScoped<INesrecaService, NesrecaService>();
 
 builder.Services.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme).AddCertificate();
-
-// Add services to the container.
 
 builder.Services.AddControllers();
 builder.Services.AddDbContext<InsuranceCompanyDbContext>(o => o.UseNpgsql(builder.Configuration.GetConnectionString("InsuranceCompanyDb")));

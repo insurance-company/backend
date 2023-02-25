@@ -50,11 +50,11 @@ namespace InsuranceCompany.Api.Controllers
         }
 
 
-        [Authorize]
-        [HttpGet]
-        public ActionResult<List<User>> GetAllBuyers()
+        //[Authorize]
+        [HttpGet("getAllBuyers/{pageNumber}/{pageSize}")]
+        public ActionResult<Page<User>> GetAllBuyers(int pageNumber, int pageSize)
         {
-           return _userService.GetAllBuyers();
+           return _userService.GetAllBuyers(pageNumber, pageSize);
         }
 
         [HttpGet("getById/{id}")]

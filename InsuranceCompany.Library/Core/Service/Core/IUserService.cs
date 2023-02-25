@@ -9,7 +9,7 @@ namespace InsuranceCompany.Library.Core.Service.Core
 {
     public interface IUserService
     {
-        List<User> GetAllBuyers();
+        Page<User> GetAllBuyers(int pageNumber, int pageSize);
         User FindByEmail(string email);
         User Register(User user);
         User FindById(int id);

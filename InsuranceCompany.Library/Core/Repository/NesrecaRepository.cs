@@ -25,7 +25,8 @@ namespace InsuranceCompany.Library.Core.Repository
 
         public List<Nesreca> GetAllUnvalidated()
         {
-            return _context.Nesrece.Where(x => !x.Deleted && x.Status == Model.Enum.StatusNesrece.CEKANAVALIDACIJU).ToList();
+            return _context.Nesrece.Include(x => x.Auto).Include(x => x.Auto.Vlasnik)
+                    .Where(x => !x.Deleted && x.Status == Model.Enum.StatusNesrece.CEKANAVALIDACIJU).ToList();
         }
     }
 }
