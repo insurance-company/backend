@@ -9,6 +9,7 @@ namespace InsuranceCompany.Api.Profiles
         public AutoMapperProfile()
         {
             CreateMap<User, UserDTO>().ReverseMap();
+            CreateMap<Nesreca, NesrecaDTO>().ReverseMap();
         }
 
     }

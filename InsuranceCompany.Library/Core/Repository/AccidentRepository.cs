@@ -28,5 +28,12 @@ namespace InsuranceCompany.Library.Core.Repository
             return _context.Nesrece.Include(x => x.Auto).Include(x => x.Auto.Vlasnik)
                     .Where(x => !x.Deleted && x.Status == Model.Enum.StatusNesrece.CEKANAVALIDACIJU).ToList();
         }
+
+        public Nesreca Create(Nesreca accident)
+        {
+            _context.Nesrece.Add(accident);
+            _context.SaveChanges();
+            return accident;
+        }
     }
 }

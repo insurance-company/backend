@@ -16,6 +16,7 @@ namespace InsuranceCompany.Library.Core.Repository.Core
         public IBranchOfficeRepository FilijalaRepository { get; }
         public IAccidentRepository NesrecaRepository { get; }
         public ISignedPolicyRepository SignedPolicyRepository { get; }
+        public ICarRepository CarRepository { get; }
 
     }
 }

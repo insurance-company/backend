@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace InsuranceCompany.Library.Core.Service.Core
 {
-    public interface IAccidentService
+    public interface ICarService
     {
-        Page<Nesreca> GetAllByUserId(int userId, int pageNumber, int pageSize);
-        Page<Nesreca> GetAllUnvalidated(int pageNumber, int pageSize);
-        Nesreca Create(Nesreca accident);
+        Auto FindById(int id);
+        List<Auto> FindAllByOwnerId(int id);
     }
 }

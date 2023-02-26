@@ -23,6 +23,7 @@ namespace InsuranceCompany.Library.Core.Repository
             FilijalaRepository = new BranchOfficeRepository(_context);
             NesrecaRepository = new AccidentRepository(_context);
             SignedPolicyRepository = new SignedPolicyRepository(_context);
+            CarRepository = new CarRepository(_context);
         }
 
         public IUserRepository UserRepository { get; set; }
@@ -30,6 +31,7 @@ namespace InsuranceCompany.Library.Core.Repository
         public IBranchOfficeRepository FilijalaRepository { get; set; }
         public IAccidentRepository NesrecaRepository { get; set; }
         public ISignedPolicyRepository SignedPolicyRepository { get; set; }
+        public ICarRepository CarRepository { get; set; }
 
         public void Dispose()
         {

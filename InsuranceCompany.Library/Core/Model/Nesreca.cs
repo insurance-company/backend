@@ -13,8 +13,7 @@ namespace InsuranceCompany.Library.Core.Model
         public string Opis { get; set; }
         public DateTime Datum { get; set; }
         public Auto Auto { get; set; }
-        [AllowNull]
-        public Sleper Sleper { get; set; }
+        public Sleper? Sleper { get; set; }
         public StatusNesrece Status { get; set; }
     }
 }

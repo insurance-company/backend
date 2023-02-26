@@ -34,5 +34,10 @@ namespace InsuranceCompany.Library.Core.Service
             return page;
         }
 
+        public Nesreca Create(Nesreca accident)
+        {
+            return _unitOfWork.NesrecaRepository.Create(accident);
+        }
+
     }
 }

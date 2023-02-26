@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace InsuranceCompany.Library.Core.Repository.Core
 {
-    public interface IAccidentRepository
+    public interface ICarRepository
     {
-        List<Nesreca> GetAllByUserId(int userId);
-        List<Nesreca> GetAllUnvalidated();
-        Nesreca Create(Nesreca accident);
+        Auto FindById(int id);
+        List<Auto> FindAllByOwnerId(int id);
     }
 }
