@@ -8,11 +8,11 @@ namespace InsuranceCompany.Api.Controllers
 
     [ApiController]
     [Route("api/[controller]")]
-    public class PaketPomociController : ControllerBase
+    public class AidPackageController : ControllerBase
     {
         private readonly IMapper _mapper;
-        private readonly IPaketPomociService _paketPomociService;
-        public PaketPomociController(IMapper mapper, IPaketPomociService paketPomociService)
+        private readonly IAidPackageService _paketPomociService;
+        public AidPackageController(IMapper mapper, IAidPackageService paketPomociService)
         {
             _mapper = mapper;
             _paketPomociService = paketPomociService;

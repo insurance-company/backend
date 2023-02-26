@@ -19,16 +19,17 @@ namespace InsuranceCompany.Library.Core.Repository
             _context = context;
 
             UserRepository = new UserRepository(_context);
-            PaketPomociRepository = new PaketPomociRepository(_context);
-            FilijalaRepository = new FilijalaRepository(_context);
-            NesrecaRepository = new NesrecaRepository(_context);
-
+            PaketPomociRepository = new AidPackageRepository(_context);
+            FilijalaRepository = new BranchOfficeRepository(_context);
+            NesrecaRepository = new AccidentRepository(_context);
+            SignedPolicyRepository = new SignedPolicyRepository(_context);
         }
 
         public IUserRepository UserRepository { get; set; }
-        public IPaketPomociRepository PaketPomociRepository { get; set; }
-        public IFilijalaRepository FilijalaRepository { get; set; }
-        public INesrecaRepository NesrecaRepository { get; set; }
+        public IAidPackageRepository PaketPomociRepository { get; set; }
+        public IBranchOfficeRepository FilijalaRepository { get; set; }
+        public IAccidentRepository NesrecaRepository { get; set; }
+        public ISignedPolicyRepository SignedPolicyRepository { get; set; }
 
         public void Dispose()
         {

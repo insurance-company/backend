@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace InsuranceCompany.Library.Core.Repository
 {
-    public class NesrecaRepository : INesrecaRepository
+    public class AccidentRepository : IAccidentRepository
     {
         private readonly InsuranceCompanyDbContext _context;
-        public NesrecaRepository(InsuranceCompanyDbContext context)
+        public AccidentRepository(InsuranceCompanyDbContext context)
         {
             _context = context;
         }

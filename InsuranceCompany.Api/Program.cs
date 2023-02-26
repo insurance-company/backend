@@ -17,9 +17,10 @@ builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.Re
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<IPaketPomociService, PaketPomociService>();
-builder.Services.AddScoped<IFilijalaService, FilijalaService>();
-builder.Services.AddScoped<INesrecaService, NesrecaService>();
+builder.Services.AddScoped<IAidPackageService, AidPackageService>();
+builder.Services.AddScoped<IBranchOfficeService, BranchOfficeService>();
+builder.Services.AddScoped<IAccidentService, AccidentService>();
+builder.Services.AddScoped<ISignedPolicyService, SignedPolicyService>();
 
 builder.Services.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme).AddCertificate();
 

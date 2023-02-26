@@ -7,19 +7,19 @@ namespace InsuranceCompany.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class FilijalaController : ControllerBase
+    public class BranchOfficeController : ControllerBase
     {
         private readonly IMapper _mapper;
-        private readonly IFilijalaService _filijalaService;
-        public FilijalaController(IMapper mapper, IFilijalaService filijalaService)
+        private readonly IBranchOfficeService _filijalaService;
+        public BranchOfficeController(IMapper mapper, IBranchOfficeService filijalaService)
         {
             _mapper = mapper;
             _filijalaService = filijalaService;
         }
-        [HttpGet]
-        public ActionResult<List<Filijala>> GetAll()
+        [HttpGet("getAll/{pageNumber}/{pageSize}")]
+        public ActionResult<Page<Filijala>> GetAll(int pageNumber, int pageSize)
         {
-            return _filijalaService.GetAll();
+            return _filijalaService.GetAll(pageNumber, pageSize);
         }
     }
 }

@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace InsuranceCompany.Library.Core.Repository
 {
-    public class FilijalaRepository : IFilijalaRepository
+    public class BranchOfficeRepository : IBranchOfficeRepository
     {
         private readonly InsuranceCompanyDbContext _context;
-        public FilijalaRepository(InsuranceCompanyDbContext context)
+        public BranchOfficeRepository(InsuranceCompanyDbContext context)
         {
             _context = context;
         }

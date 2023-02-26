@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InsuranceCompany.Library.Core.Service.Core
+namespace InsuranceCompany.Library.Core.Repository.Core
 {
-    public interface IPaketPomociService
+    public interface IAidPackageRepository
     {
         List<PaketPomoci> GetAll();
     }

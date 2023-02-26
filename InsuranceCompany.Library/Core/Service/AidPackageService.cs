@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace InsuranceCompany.Library.Core.Service
 {
-    public class PaketPomociService : IPaketPomociService
+    public class AidPackageService : IAidPackageService
     {
         protected readonly IUnitOfWork _unitOfWork;
-        public PaketPomociService(IUnitOfWork unitOfWork)
+        public AidPackageService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

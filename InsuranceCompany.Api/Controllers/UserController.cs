@@ -50,7 +50,7 @@ namespace InsuranceCompany.Api.Controllers
         }
 
 
-        //[Authorize]
+        [Authorize(Roles = "Menadzer, Agent")]
         [HttpGet("getAllBuyers/{pageNumber}/{pageSize}")]
         public ActionResult<Page<User>> GetAllBuyers(int pageNumber, int pageSize)
         {

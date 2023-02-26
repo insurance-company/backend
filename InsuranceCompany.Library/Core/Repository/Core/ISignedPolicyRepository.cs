@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace InsuranceCompany.Library.Core.Repository.Core
 {
-    public interface INesrecaRepository
+    public interface ISignedPolicyRepository
     {
-        List<Nesreca> GetAllByUserId(int userId);
-        List<Nesreca> GetAllUnvalidated();
+        List<PotpisanaPolisa> GetAllByAgentId(int agentId);
+        List<PotpisanaPolisa> GetAllByBuyerId(int buyerId);
     }
 }

@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace InsuranceCompany.Library.Core.Repository
 {
-    public class PaketPomociRepository : IPaketPomociRepository
+    public class AidPackageRepository : IAidPackageRepository
     {
         private readonly InsuranceCompanyDbContext _context;
-        public PaketPomociRepository(InsuranceCompanyDbContext context)
+        public AidPackageRepository(InsuranceCompanyDbContext context)
         {
             _context = context;
         }

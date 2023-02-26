@@ -8,6 +8,7 @@ namespace InsuranceCompany.Library.Core.Model
 {
     public class PotpisanaPolisa : Entity
     {
+        public DateTime Datum { get; set; }
         public Polisa Polisa { get; set; }
         public Agent Agent { get; set; }
         public Auto Auto { get; set; }

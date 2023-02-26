@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InsuranceCompany.Library.Core.Service.Core
+namespace InsuranceCompany.Library.Core.Repository.Core
 {
-    public interface IFilijalaService
+    public interface IBranchOfficeRepository
     {
         List<Filijala> GetAll();
     }

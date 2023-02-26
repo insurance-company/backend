@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InsuranceCompany.Library.Core.Repository.Core
+namespace InsuranceCompany.Library.Core.Service.Core
 {
-    public interface IFilijalaRepository
+    public interface IBranchOfficeService
     {
-        List<Filijala> GetAll();
+        Page<Filijala> GetAll(int pageNumber, int pageSize);
     }
 }
