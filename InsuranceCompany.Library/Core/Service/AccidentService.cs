@@ -36,6 +36,7 @@ namespace InsuranceCompany.Library.Core.Service
 
         public Nesreca Create(Nesreca accident)
         {
+            accident.Status = Model.Enum.StatusNesrece.CEKANAVALIDACIJU;
             return _unitOfWork.NesrecaRepository.Create(accident);
         }
 
