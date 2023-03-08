@@ -9,7 +9,8 @@ namespace InsuranceCompany.Library.Core.Service.Core
 {
     public interface ISignedPolicyService
     {
-        Page<PotpisanaPolisa> GetAllByAgentId(int agentId, int pageNumber, int pageSize);
-        Page<PotpisanaPolisa> GetAllByBuyerId(int buyerId, int pageNumber, int pageSize);
+        Page<SignedPolicy> GetAllByAgentId(int agentId, int pageNumber, int pageSize);
+        Page<SignedPolicy> GetAllByBuyerId(int buyerId, int pageNumber, int pageSize);
+        SignedPolicy BuyPolicy(SignedPolicy policy);
     }
 }

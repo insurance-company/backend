@@ -18,7 +18,7 @@ namespace InsuranceCompany.Api.Controllers
             _paketPomociService = paketPomociService;
         }
         [HttpGet]
-        public ActionResult<List<PaketPomoci>> GetAll()
+        public ActionResult<List<AidPackage>> GetAll()
         {
             return _paketPomociService.GetAll();
         }

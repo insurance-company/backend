@@ -9,8 +9,8 @@ namespace InsuranceCompany.Library.Core.Repository.Core
 {
     public interface IAccidentRepository
     {
-        List<Nesreca> GetAllByUserId(int userId);
-        List<Nesreca> GetAllUnvalidated();
-        Nesreca Create(Nesreca accident);
+        List<Accident> GetAllByUserId(int userId);
+        List<Accident> GetAllUnvalidated();
+        Accident Create(Accident accident);
     }
 }

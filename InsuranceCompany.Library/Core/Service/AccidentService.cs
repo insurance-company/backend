@@ -16,28 +16,28 @@ namespace InsuranceCompany.Library.Core.Service
         {
             _unitOfWork = unitOfWork;
         }
-        public Page<Nesreca> GetAllByUserId(int userId, int pageNumber, int pageSize)
+        public Page<Accident> GetAllByUserId(int userId, int pageNumber, int pageSize)
         {
-            List<Nesreca> accidents = _unitOfWork.NesrecaRepository.GetAllByUserId(userId);
-            Page<Nesreca> page = new Page<Nesreca>();
+            List<Accident> accidents = _unitOfWork.AccidentRepository.GetAllByUserId(userId);
+            Page<Accident> page = new Page<Accident>();
             page.TotalCount = accidents.Count;
             page.Data = accidents.Skip(pageNumber * pageSize).Take(pageSize).ToList();
             return page;
         }
 
-        public Page<Nesreca> GetAllUnvalidated(int pageNumber, int pageSize)
+        public Page<Accident> GetAllUnvalidated(int pageNumber, int pageSize)
         {
-            List<Nesreca> accidents = _unitOfWork.NesrecaRepository.GetAllUnvalidated();
-            Page<Nesreca> page = new Page<Nesreca>();
+            List<Accident> accidents = _unitOfWork.AccidentRepository.GetAllUnvalidated();
+            Page<Accident> page = new Page<Accident>();
             page.TotalCount = accidents.Count;
             page.Data = accidents.Skip(pageNumber * pageSize).Take(pageSize).ToList();
             return page;
         }
 
-        public Nesreca Create(Nesreca accident)
+        public Accident Create(Accident accident)
         {
-            accident.Status = Model.Enum.StatusNesrece.CEKANAVALIDACIJU;
-            return _unitOfWork.NesrecaRepository.Create(accident);
+            accident.Status = Model.Enum.AccidentStatus.WAITING;
+            return _unitOfWork.AccidentRepository.Create(accident);
         }
 
     }

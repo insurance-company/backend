@@ -16,9 +16,14 @@ namespace InsuranceCompany.Library.Core.Service
         {
             _unitOfWork = unitOfWork;
         }
-        public List<PaketPomoci> GetAll()
+        public List<AidPackage> GetAll()
         {
-            return _unitOfWork.PaketPomociRepository.GetAll();
+            return _unitOfWork.AidPackageRepository.GetAll();
+        }
+
+        public AidPackage FindById(int id)
+        {
+            return _unitOfWork.AidPackageRepository.FindById(id);
         }
     }
 }

@@ -6,11 +6,12 @@ namespace InsuranceCompany.Api.DTO
     {
         public string Email { get; set; }
         public string Password { get; set; }
-        public string Ime { get; set; }
-        public string Prezime { get; set; }
-        public string JMBG { get; set; }
-        public string BrojTelefona { get; set; }
-        public string Adresa { get; set; }
-        public Pol Pol { get; set; }
+        public Role Role { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string UniqueMasterCitizenNumber { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Address { get; set; }
+        public Gender Gender { get; set; }
     }
 }

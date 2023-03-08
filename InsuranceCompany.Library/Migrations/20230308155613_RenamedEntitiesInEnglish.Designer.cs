@@ -3,6 +3,7 @@ using System;
 using InsuranceCompany.Library.Settings;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace InsuranceCompany.Library.Migrations
 {
     [DbContext(typeof(InsuranceCompanyDbContext))]
-    partial class InsuranceCompanyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230308155613_RenamedEntitiesInEnglish")]
+    partial class RenamedEntitiesInEnglish
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -202,6 +205,33 @@ namespace InsuranceCompany.Library.Migrations
                     b.ToTable("Cars");
                 });
 
+            modelBuilder.Entity("InsuranceCompany.Library.Core.Model.Policy", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AidPackageId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("boolean");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AidPackageId");
+
+                    b.ToTable("Policies");
+                });
+
             modelBuilder.Entity("InsuranceCompany.Library.Core.Model.SignedPolicy", b =>
                 {
                     b.Property<int>("Id")
@@ -210,10 +240,7 @@ namespace InsuranceCompany.Library.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("AgentId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("AidPackageId")
+                    b.Property<int>("AgentId")
                         .HasColumnType("integer");
 
                     b.Property<int>("CarId")
@@ -231,13 +258,16 @@ namespace InsuranceCompany.Library.Migrations
                     b.Property<bool>("Deleted")
                         .HasColumnType("boolean");
 
+                    b.Property<int>("PolicyId")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AgentId");
 
-                    b.HasIndex("AidPackageId");
-
                     b.HasIndex("CarId");
+
+                    b.HasIndex("PolicyId");
 
                     b.ToTable("SignedPolicies");
                 });
@@ -442,15 +472,22 @@ namespace InsuranceCompany.Library.Migrations
                     b.Navigation("Owner");
                 });
 
+            modelBuilder.Entity("InsuranceCompany.Library.Core.Model.Policy", b =>
+                {
+                    b.HasOne("InsuranceCompany.Library.Core.Model.AidPackage", "AidPackage")
+                        .WithMany()
+                        .HasForeignKey("AidPackageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AidPackage");
+                });
+
             modelBuilder.Entity("InsuranceCompany.Library.Core.Model.SignedPolicy", b =>
                 {
                     b.HasOne("InsuranceCompany.Library.Core.Model.Agent", "Agent")
                         .WithMany()
-                        .HasForeignKey("AgentId");
-
-                    b.HasOne("InsuranceCompany.Library.Core.Model.AidPackage", "AidPackage")
-                        .WithMany()
-                        .HasForeignKey("AidPackageId")
+                        .HasForeignKey("AgentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -460,11 +497,17 @@ namespace InsuranceCompany.Library.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("InsuranceCompany.Library.Core.Model.Policy", "Policy")
+                        .WithMany()
+                        .HasForeignKey("PolicyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Agent");
 
-                    b.Navigation("AidPackage");
-
                     b.Navigation("Car");
+
+                    b.Navigation("Policy");
                 });
 
             modelBuilder.Entity("InsuranceCompany.Library.Core.Model.TowTruck", b =>

@@ -6,27 +6,27 @@ namespace InsuranceCompany.Api.Mappers
 {
     public class AccidentMapper
     {
-        public static NesrecaDTO EntityToEntityDto(Nesreca accident)
+        public static AccidentDTO EntityToEntityDto(Accident accident)
         {
-            NesrecaDTO dto = new NesrecaDTO();
+            AccidentDTO dto = new AccidentDTO();
 
-            dto.Opis = accident.Opis;
-            dto.Datum = accident.Datum;
-            dto.AutoId = accident.Id;
-            if (accident.Sleper != null) dto.SleperId = accident.Sleper.Id;
+            dto.Description = accident.Description;
+            dto.Date = accident.Date;
+            dto.CarId = accident.Id;
+            if (accident.TowTruck != null) dto.TowTruckId = accident.TowTruck.Id;
             dto.Status = accident.Status;
 
             return dto;
         }
 
-        public static Nesreca EntityDTOToEntity(NesrecaDTO dto, Auto auto, Sleper sleper)
+        public static Accident EntityDTOToEntity(AccidentDTO dto, Car car, TowTruck towTruck)
         {
-            Nesreca nesreca = new Nesreca();
+            Accident nesreca = new Accident();
 
-            nesreca.Opis = dto.Opis;
-            nesreca.Datum = dto.Datum;
-            nesreca.Auto = auto;
-            nesreca.Sleper = sleper;
+            nesreca.Description = dto.Description;
+            nesreca.Date = dto.Date;
+            nesreca.Car = car;
+            nesreca.TowTruck = towTruck;
             nesreca.Status= dto.Status;
 
             return nesreca;

@@ -9,7 +9,8 @@ namespace InsuranceCompany.Library.Core.Repository.Core
 {
     public interface ISignedPolicyRepository
     {
-        List<PotpisanaPolisa> GetAllByAgentId(int agentId);
-        List<PotpisanaPolisa> GetAllByBuyerId(int buyerId);
+        List<SignedPolicy> GetAllByAgentId(int agentId);
+        List<SignedPolicy> GetAllByBuyerId(int buyerId);
+        SignedPolicy Create(SignedPolicy policy);
     }
 }

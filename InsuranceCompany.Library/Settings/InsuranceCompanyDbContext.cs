@@ -20,27 +20,26 @@ namespace InsuranceCompany.Library.Settings
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         }
 
-        public DbSet<Agencija> Agencija { get; set; }
-        public DbSet<Agent> Agenti { get; set; }
-        public DbSet<Auto> Auti { get; set; }
-        public DbSet<Filijala> Filijale { get; set; }
-        public DbSet<Menadzer> Menadzeri { get; set; }
-        public DbSet<Nesreca> Nesrece { get; set; }
-        public DbSet<Polisa> Polise { get; set; }
-        public DbSet<PotpisanaPolisa> PotpisanePolise {get; set;}
-        public DbSet<Radnik> Radnici { get; set; }
-        public DbSet<PaketPomoci> PaketiPomoci { get; set; }
-        public DbSet<Sleper> Sleperi { get; set; }
-        public DbSet<SlepSluzba> SlepSluzbe { get; set;}
+        public DbSet<Agency> Agencies { get; set; }
+        public DbSet<Agent> Agents { get; set; }
+        public DbSet<Car> Cars { get; set; }
+        public DbSet<Branch> Branches { get; set; }
+        public DbSet<Manager> Managers { get; set; }
+        public DbSet<Accident> Accidents { get; set; }
+        public DbSet<SignedPolicy> SignedPolicies {get; set;}
+        public DbSet<Worker> Workers { get; set; }
+        public DbSet<AidPackage> AidPackages { get; set; }
+        public DbSet<TowTruck> TowTrucks { get; set; }
+        public DbSet<TowingService> TowingServices { get; set;}
         public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.UseSerialColumns();
             modelBuilder.Entity<User>().ToTable("Users");
-            modelBuilder.Entity<Radnik>().ToTable("Radnici");
-            modelBuilder.Entity<Agent>().ToTable("Agenti");
-            modelBuilder.Entity<Menadzer>().ToTable("Menadzeri");
+            modelBuilder.Entity<Worker>().ToTable("Workers");
+            modelBuilder.Entity<Agent>().ToTable("Agents");
+            modelBuilder.Entity<Manager>().ToTable("Managers");
         }
 
         public override int SaveChanges()

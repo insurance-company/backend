@@ -9,7 +9,7 @@ namespace InsuranceCompany.Library.Core.Repository.Core
 {
     public interface ICarRepository
     {
-        Auto FindById(int id);
-        List<Auto> FindAllByOwnerId(int id);
+        Car FindById(int id);
+        List<Car> FindAllByOwnerId(int id);
     }
 }

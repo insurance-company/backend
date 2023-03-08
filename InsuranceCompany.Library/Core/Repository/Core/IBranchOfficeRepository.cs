@@ -9,6 +9,6 @@ namespace InsuranceCompany.Library.Core.Repository.Core
 {
     public interface IBranchOfficeRepository
     {
-        List<Filijala> GetAll();
+        List<Branch> GetAll();
     }
 }

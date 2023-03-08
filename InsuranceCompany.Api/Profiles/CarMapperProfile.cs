@@ -4,12 +4,12 @@ using InsuranceCompany.Library.Core.Model;
 
 namespace InsuranceCompany.Api.Profiles
 {
-    public class AutoMapperProfile : Profile
+    public class CarMapperProfile : Profile
     {
-        public AutoMapperProfile()
+        public CarMapperProfile()
         {
             CreateMap<User, UserDTO>().ReverseMap();
-            CreateMap<Nesreca, NesrecaDTO>().ReverseMap();
+            CreateMap<Accident, AccidentDTO>().ReverseMap();
         }
 
     }

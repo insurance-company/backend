@@ -16,9 +16,14 @@ namespace InsuranceCompany.Library.Core.Repository
         {
             _context = context;
         }
-        public List<PaketPomoci> GetAll()
+        public List<AidPackage> GetAll()
         {
-            return _context.PaketiPomoci.Where(x => !x.Deleted).ToList();
+            return _context.AidPackages.Where(x => !x.Deleted).ToList();
+        }
+
+        public AidPackage FindById(int id)
+        {
+            return _context.AidPackages.FirstOrDefault(x => x.Id == id);
         }
     }
 }

@@ -9,6 +9,6 @@ namespace InsuranceCompany.Library.Core.Service.Core
 {
     public interface IBranchOfficeService
     {
-        Page<Filijala> GetAll(int pageNumber, int pageSize);
+        Page<Branch> GetAll(int pageNumber, int pageSize);
     }
 }

@@ -17,21 +17,21 @@ namespace InsuranceCompany.Library.Core.Repository
         {
             _context = context;
         }
-        public List<Nesreca> GetAllByUserId(int userId)
+        public List<Accident> GetAllByUserId(int userId)
         {
-            return _context.Nesrece.Include(x=>x.Auto).Include(x => x.Auto.Vlasnik)
-                    .Where(x => !x.Deleted && x.Auto.Vlasnik.Id == userId).ToList();
+            return _context.Accidents.Include(x=>x.Car).Include(x => x.Car.Owner)
+                    .Where(x => !x.Deleted && x.Car.Owner.Id == userId).ToList();
         }
 
-        public List<Nesreca> GetAllUnvalidated()
+        public List<Accident> GetAllUnvalidated()
         {
-            return _context.Nesrece.Include(x => x.Auto).Include(x => x.Auto.Vlasnik)
-                    .Where(x => !x.Deleted && x.Status == Model.Enum.StatusNesrece.CEKANAVALIDACIJU).ToList();
+            return _context.Accidents.Include(x => x.Car).Include(x => x.Car.Owner)
+                    .Where(x => !x.Deleted && x.Status == Model.Enum.AccidentStatus.WAITING).ToList();
         }
 
-        public Nesreca Create(Nesreca accident)
+        public Accident Create(Accident accident)
         {
-            _context.Nesrece.Add(accident);
+            _context.Accidents.Add(accident);
             _context.SaveChanges();
             return accident;
         }

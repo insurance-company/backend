@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace InsuranceCompany.Library.Core.Model
 {
-    public class PaketPomoci : Entity
+    public class AidPackage : Entity
     {
-        public int TrajanjeUMesecima { get; set; }
-        public double Cena { get; set; }
-        public string Tip { get; set; }
-        public double Pokrice { get; set; }
+        public int DurationInMonths { get; set; }
+        public double Price { get; set; }
+        public string Description { get; set; }
+        public double Cover { get; set; }
 
     }
 }

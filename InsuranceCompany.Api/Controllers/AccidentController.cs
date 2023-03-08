@@ -21,21 +21,21 @@ namespace InsuranceCompany.Api.Controllers
             _carService = carService;
         }
         [HttpGet("getAllByUserId/{id}/{pageNumber}/{pageSize}")]
-        public ActionResult<Page<Nesreca>> GetAll(int id, int pageNumber, int pageSize)
+        public ActionResult<Page<Accident>> GetAll(int id, int pageNumber, int pageSize)
         {
             return _nesrecaService.GetAllByUserId(id, pageNumber, pageSize);
         }
 
         [HttpGet("getAllUnvalidated/{pageNumber}/{pageSize}")]
-        public ActionResult<Page<Nesreca>> GetAllUnvalidated(int pageNumber, int pageSize)
+        public ActionResult<Page<Accident>> GetAllUnvalidated(int pageNumber, int pageSize)
         {
             return _nesrecaService.GetAllUnvalidated(pageNumber, pageSize);
         }
 
         [HttpPost("createAccident")]
-        public ActionResult<NesrecaDTO> Create([FromBody] NesrecaDTO accident)
+        public ActionResult<AccidentDTO> Create([FromBody] AccidentDTO accident)
         {
-            Nesreca createdAccident = _nesrecaService.Create(AccidentMapper.EntityDTOToEntity(accident, _carService.FindById(accident.AutoId), null));
+            Accident createdAccident = _nesrecaService.Create(AccidentMapper.EntityDTOToEntity(accident, _carService.FindById(accident.CarId), null));
             return AccidentMapper.EntityToEntityDto(createdAccident);
         }
     }

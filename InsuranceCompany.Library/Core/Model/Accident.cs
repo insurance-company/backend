@@ -8,11 +8,13 @@ using System.Threading.Tasks;
 
 namespace InsuranceCompany.Library.Core.Model
 {
-    public class Radnik : User
+    public class Accident : Entity
     {
-        public TipRadnika Tip { get; set; }
+        public string Description { get; set; }
+        public DateTime Date { get; set; }
+        public Car Car { get; set; }
         [AllowNull]
-        public Radnik Sef { get; set; }
-
+        public TowTruck? TowTruck { get; set; }
+        public AccidentStatus Status { get; set; }
     }
 }

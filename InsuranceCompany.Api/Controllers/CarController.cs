@@ -18,7 +18,7 @@ namespace InsuranceCompany.Api.Controllers
         }
 
         [HttpGet("getAllByOwnerId/{id}")]
-        public ActionResult<List<Auto>> GetAllByOwnerId(int id)
+        public ActionResult<List<Car>> GetAllByOwnerId(int id)
         {
             return _carService.FindAllByOwnerId(id);
         }

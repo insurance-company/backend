@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace InsuranceCompany.Library.Core.Model.Enum
 {
-    public enum TipRadnika
+    public enum Role
     {
-        MENADZER, 
-        AGENT
+        CUSTOMER,
+        MANAGER, 
+        AGENT,
+        ADMIN
     }
 }

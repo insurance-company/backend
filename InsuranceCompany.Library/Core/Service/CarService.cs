@@ -17,12 +17,12 @@ namespace InsuranceCompany.Library.Core.Service
         {
             _unitOfWork = unitOfWork;
         }
-        public Auto FindById(int id)
+        public Car FindById(int id)
         {
             return _unitOfWork.CarRepository.FindById(id);
         }
 
-        public List<Auto> FindAllByOwnerId(int id)
+        public List<Car> FindAllByOwnerId(int id)
         {
             return _unitOfWork.CarRepository.FindAllByOwnerId(id);
         }

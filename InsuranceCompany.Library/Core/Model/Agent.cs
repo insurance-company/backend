@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace InsuranceCompany.Library.Core.Model
 {
-    public class Agent : Radnik
+    public class Agent : Worker
     {
-        public string BrojLicence { get; set; }
+        public string LicenceNumber { get; set; }
     }
 }

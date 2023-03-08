@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace InsuranceCompany.Library.Core.Model.Enum
 {
-    public enum StatusNesrece
+    public enum Gender
     {
-        VALIDNA,
-        NEVALIDNA, 
-        CEKANAVALIDACIJU
+        MALE,
+        FEMALE
     }
 }

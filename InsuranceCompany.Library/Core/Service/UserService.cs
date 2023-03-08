@@ -33,10 +33,10 @@ namespace InsuranceCompany.Library.Core.Service
             return _unitOfWork.UserRepository.FindByEmail(email);
         }
 
-        public User Register(User user)
+        public User RegisterCustomer(User user)
         {
             user.Password = PasswordHasher.HashPassword(user.Password);
-            user.Role = "User";
+            user.Role = Model.Enum.Role.CUSTOMER.ToString();
             return _unitOfWork.UserRepository.Create(user);
         }
 

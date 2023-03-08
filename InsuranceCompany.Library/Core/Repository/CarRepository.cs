@@ -16,14 +16,14 @@ namespace InsuranceCompany.Library.Core.Repository
         {
             _context = context;
         }
-        public Auto FindById(int id)
+        public Car FindById(int id)
         {
-            return _context.Auti.Find(id);
+            return _context.Cars.Find(id);
         }
 
-        public List<Auto> FindAllByOwnerId(int id)
+        public List<Car> FindAllByOwnerId(int id)
         {
-            return _context.Auti.Where(x => !x.Deleted && x.Vlasnik.Id == id).ToList();
+            return _context.Cars.Where(x => !x.Deleted && x.Owner.Id == id).ToList();
         }
     }
 }

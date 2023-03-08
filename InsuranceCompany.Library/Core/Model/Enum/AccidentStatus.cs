@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace InsuranceCompany.Library.Core.Model.Enum
 {
-    public enum Pol
+    public enum AccidentStatus
     {
-        MUSKO,
-        ZENSKO
+        VALIDN,
+        INVALID, 
+        WAITING
     }
 }

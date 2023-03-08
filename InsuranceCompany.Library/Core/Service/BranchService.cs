@@ -9,19 +9,19 @@ using System.Threading.Tasks;
 
 namespace InsuranceCompany.Library.Core.Service
 {
-    public class BranchOfficeService : IBranchOfficeService
+    public class BranchService : IBranchOfficeService
     {
         protected readonly IUnitOfWork _unitOfWork;
-        public BranchOfficeService(IUnitOfWork unitOfWork)
+        public BranchService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
-        public Page<Filijala> GetAll(int pageNumber, int pageSize)
+        public Page<Branch> GetAll(int pageNumber, int pageSize)
         {
-            List<Filijala> filijale = _unitOfWork.FilijalaRepository.GetAll();
-            Page<Filijala> page = new Page<Filijala>();
-            page.TotalCount = filijale.Count;
-            page.Data = filijale.Skip(pageNumber * pageSize).Take(pageSize).ToList();
+            List<Branch> branches = _unitOfWork.BranchRepository.GetAll();
+            Page<Branch> page = new Page<Branch>();
+            page.TotalCount = branches.Count;
+            page.Data = branches.Skip(pageNumber * pageSize).Take(pageSize).ToList();
             return page;
         }
     }

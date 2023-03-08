@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace InsuranceCompany.Library.Core.Model
 {
-    public class Auto : Entity
+    public class Car : Entity
     {
-        public string RegistarskiBroj { get; set; }
-        public int Godiste { get; set; }
+        public string RegisterNumber { get; set; }
+        public int Years { get; set; }
         public string Model { get; set; }
-        public string Marka { get; set; }
-        public User Vlasnik {get; set; }
+        public string Brand { get; set; }
+        public User Owner {get; set; }
 
     }
 }

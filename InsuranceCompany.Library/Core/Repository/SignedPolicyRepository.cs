@@ -17,16 +17,23 @@ namespace InsuranceCompany.Library.Core.Repository
         {
             _context = context;
         }
-        public List<PotpisanaPolisa> GetAllByAgentId(int agentId)
+        public List<SignedPolicy> GetAllByAgentId(int agentId)
         {
-            return _context.PotpisanePolise.Include(x => x.Polisa).Include(x => x.Agent).Include(x => x.Auto.Vlasnik).Include(x => x.Polisa.PaketPomoci)
+            return _context.SignedPolicies.Include(x => x.AidPackage).Include(x => x.Agent).Include(x => x.Car.Owner)
                     .Where(x => !x.Deleted && x.Agent.Id == agentId).ToList();
         }
 
-        public List<PotpisanaPolisa> GetAllByBuyerId(int buyerId)
+        public List<SignedPolicy> GetAllByBuyerId(int buyerId)
         {
-            return _context.PotpisanePolise.Include(x => x.Polisa).Include(x => x.Agent).Include(x => x.Auto.Vlasnik).Include(x => x.Polisa.PaketPomoci)
-                    .Where(x => !x.Deleted && x.Auto.Vlasnik.Id == buyerId).ToList();
+            return _context.SignedPolicies.Include(x => x.AidPackage).Include(x => x.Agent).Include(x => x.Car.Owner)
+                    .Where(x => !x.Deleted && x.Car.Owner.Id == buyerId).ToList();
+        }
+
+        public SignedPolicy Create(SignedPolicy policy)
+        {
+            _context.SignedPolicies.Add(policy);
+            _context.SaveChanges();
+            return policy;
         }
     }
 }

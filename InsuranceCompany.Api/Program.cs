@@ -18,7 +18,7 @@ builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.Re
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAidPackageService, AidPackageService>();
-builder.Services.AddScoped<IBranchOfficeService, BranchOfficeService>();
+builder.Services.AddScoped<IBranchOfficeService, BranchService>();
 builder.Services.AddScoped<IAccidentService, AccidentService>();
 builder.Services.AddScoped<ISignedPolicyService, SignedPolicyService>();
 builder.Services.AddScoped<ICarService, CarService>();
@@ -30,7 +30,7 @@ builder.Services.AddDbContext<InsuranceCompanyDbContext>(o => o.UseNpgsql(builde
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
+builder.Services.AddAutoMapper(typeof(CarMapperProfile));
 builder.Services.AddCors(o =>
 {
     o.AddPolicy("Policy", builder =>

@@ -9,16 +9,16 @@ using System.Threading.Tasks;
 
 namespace InsuranceCompany.Library.Core.Repository
 {
-    public class BranchOfficeRepository : IBranchOfficeRepository
+    public class BranchRepository : IBranchOfficeRepository
     {
         private readonly InsuranceCompanyDbContext _context;
-        public BranchOfficeRepository(InsuranceCompanyDbContext context)
+        public BranchRepository(InsuranceCompanyDbContext context)
         {
             _context = context;
         }
-        public List<Filijala> GetAll()
+        public List<Branch> GetAll()
         {
-            return _context.Filijale.Where(x => !x.Deleted).ToList();
+            return _context.Branches.Where(x => !x.Deleted).ToList();
         }
     }
 }

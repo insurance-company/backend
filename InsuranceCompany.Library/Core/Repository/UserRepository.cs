@@ -19,7 +19,7 @@ namespace InsuranceCompany.Library.Core.Repository
         }
         public List<User> GetAllBuyers()
         {
-            return _context.Users.Where(x => !x.Deleted && x.Role == "User").ToList();
+            return _context.Users.Where(x => !x.Deleted && x.Role == Model.Enum.Role.CUSTOMER.ToString()).ToList();
         }
 
         public User FindByEmail(string email)
@@ -37,5 +37,6 @@ namespace InsuranceCompany.Library.Core.Repository
         {
             return _context.Users.FirstOrDefault(x => x.Id == id);
         }
+
     }
 }

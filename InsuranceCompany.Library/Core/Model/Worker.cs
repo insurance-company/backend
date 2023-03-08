@@ -8,12 +8,10 @@ using System.Threading.Tasks;
 
 namespace InsuranceCompany.Library.Core.Model
 {
-    public class Nesreca : Entity
+    public class Worker : User
     {
-        public string Opis { get; set; }
-        public DateTime Datum { get; set; }
-        public Auto Auto { get; set; }
-        public Sleper? Sleper { get; set; }
-        public StatusNesrece Status { get; set; }
+        [AllowNull]
+        public Worker? Boss { get; set; }
+
     }
 }

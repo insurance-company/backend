@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace InsuranceCompany.Library.Core.Model
 {
-    public class Filijala : Entity
+    public class TowingService : Entity
     {
-        public Agencija Agencija { get; set; }
-        public string Adresa { get; set; }
+        public string Address { get; set; }
+        public Branch Branch { get; set; }
 
     }
 }

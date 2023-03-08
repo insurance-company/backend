@@ -9,8 +9,8 @@ namespace InsuranceCompany.Library.Core.Service.Core
 {
     public interface IAccidentService
     {
-        Page<Nesreca> GetAllByUserId(int userId, int pageNumber, int pageSize);
-        Page<Nesreca> GetAllUnvalidated(int pageNumber, int pageSize);
-        Nesreca Create(Nesreca accident);
+        Page<Accident> GetAllByUserId(int userId, int pageNumber, int pageSize);
+        Page<Accident> GetAllUnvalidated(int pageNumber, int pageSize);
+        Accident Create(Accident accident);
     }
 }
