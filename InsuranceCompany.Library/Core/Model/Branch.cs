@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace InsuranceCompany.Library.Core.Model
 {
-    public class Agent : Worker
+    public class Branch : Entity
     {
-        public string LicenceNumber { get; set; }
+        public Agency Agency { get; set; }
+        public string Address { get; set; }
+
     }
 }

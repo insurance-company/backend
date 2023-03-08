@@ -3,6 +3,7 @@ using System;
 using InsuranceCompany.Library.Settings;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace InsuranceCompany.Library.Migrations
 {
     [DbContext(typeof(InsuranceCompanyDbContext))]
-    partial class InsuranceCompanyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230226164813_MovedDatumToPotpisanaPolisaFromPolisa")]
+    partial class MovedDatumToPotpisanaPolisaFromPolisa
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,49 +25,7 @@ namespace InsuranceCompany.Library.Migrations
 
             NpgsqlModelBuilderExtensions.UseSerialColumns(modelBuilder);
 
-            modelBuilder.Entity("InsuranceCompany.Library.Core.Model.Accident", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CarId")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime>("DateUpdated")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<bool>("Deleted")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("TowTruckId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CarId");
-
-                    b.HasIndex("TowTruckId");
-
-                    b.ToTable("Accidents");
-                });
-
-            modelBuilder.Entity("InsuranceCompany.Library.Core.Model.Agency", b =>
+            modelBuilder.Entity("InsuranceCompany.Library.Core.Model.Agencija", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -81,7 +42,7 @@ namespace InsuranceCompany.Library.Migrations
                     b.Property<bool>("Deleted")
                         .HasColumnType("boolean");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Naziv")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -91,19 +52,16 @@ namespace InsuranceCompany.Library.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Agencies");
+                    b.ToTable("Agencija");
                 });
 
-            modelBuilder.Entity("InsuranceCompany.Library.Core.Model.AidPackage", b =>
+            modelBuilder.Entity("InsuranceCompany.Library.Core.Model.Auto", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
-
-                    b.Property<double>("Cover")
-                        .HasColumnType("double precision");
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("timestamp without time zone");
@@ -114,95 +72,32 @@ namespace InsuranceCompany.Library.Migrations
                     b.Property<bool>("Deleted")
                         .HasColumnType("boolean");
 
-                    b.Property<string>("Description")
+                    b.Property<int>("Godiste")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Marka")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<int>("DurationInMonths")
-                        .HasColumnType("integer");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("double precision");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AidPackages");
-                });
-
-            modelBuilder.Entity("InsuranceCompany.Library.Core.Model.Branch", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("AgencyId")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime>("DateUpdated")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<bool>("Deleted")
-                        .HasColumnType("boolean");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AgencyId");
-
-                    b.ToTable("Branches");
-                });
-
-            modelBuilder.Entity("InsuranceCompany.Library.Core.Model.Car", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Brand")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime>("DateUpdated")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<bool>("Deleted")
-                        .HasColumnType("boolean");
 
                     b.Property<string>("Model")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("OwnerId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("RegisterNumber")
+                    b.Property<string>("RegistarskiBroj")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("Years")
+                    b.Property<int>("VlasnikId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OwnerId");
+                    b.HasIndex("VlasnikId");
 
-                    b.ToTable("Cars");
+                    b.ToTable("Auti");
                 });
 
-            modelBuilder.Entity("InsuranceCompany.Library.Core.Model.SignedPolicy", b =>
+            modelBuilder.Entity("InsuranceCompany.Library.Core.Model.Filijala", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -210,17 +105,12 @@ namespace InsuranceCompany.Library.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("AgentId")
-                        .HasColumnType("integer");
+                    b.Property<string>("Adresa")
+                        .IsRequired()
+                        .HasColumnType("text");
 
-                    b.Property<int>("AidPackageId")
+                    b.Property<int>("AgencijaId")
                         .HasColumnType("integer");
-
-                    b.Property<int>("CarId")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("timestamp without time zone");
@@ -230,19 +120,159 @@ namespace InsuranceCompany.Library.Migrations
 
                     b.Property<bool>("Deleted")
                         .HasColumnType("boolean");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AgencijaId");
+
+                    b.ToTable("Filijale");
+                });
+
+            modelBuilder.Entity("InsuranceCompany.Library.Core.Model.Nesreca", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AutoId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime>("Datum")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Opis")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("SleperId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AutoId");
+
+                    b.HasIndex("SleperId");
+
+                    b.ToTable("Nesrece");
+                });
+
+            modelBuilder.Entity("InsuranceCompany.Library.Core.Model.PaketPomoci", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
+
+                    b.Property<double>("Cena")
+                        .HasColumnType("double precision");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<double>("Pokrice")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Tip")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("TrajanjeUMesecima")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PaketiPomoci");
+                });
+
+            modelBuilder.Entity("InsuranceCompany.Library.Core.Model.Polisa", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("PaketPomociId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PaketPomociId");
+
+                    b.ToTable("Polise");
+                });
+
+            modelBuilder.Entity("InsuranceCompany.Library.Core.Model.PotpisanaPolisa", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AgentId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("AutoId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime>("Datum")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("PolisaId")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AgentId");
 
-                    b.HasIndex("AidPackageId");
+                    b.HasIndex("AutoId");
 
-                    b.HasIndex("CarId");
+                    b.HasIndex("PolisaId");
 
-                    b.ToTable("SignedPolicies");
+                    b.ToTable("PotpisanePolise");
                 });
 
-            modelBuilder.Entity("InsuranceCompany.Library.Core.Model.TowTruck", b =>
+            modelBuilder.Entity("InsuranceCompany.Library.Core.Model.SlepSluzba", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -250,48 +280,36 @@ namespace InsuranceCompany.Library.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime>("DateUpdated")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<bool>("Deleted")
-                        .HasColumnType("boolean");
-
-                    b.Property<double>("Length")
-                        .HasColumnType("double precision");
-
-                    b.Property<int>("TowingServiceId")
-                        .HasColumnType("integer");
-
-                    b.Property<double>("TransportCapacity")
-                        .HasColumnType("double precision");
-
-                    b.Property<double>("Width")
-                        .HasColumnType("double precision");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TowingServiceId");
-
-                    b.ToTable("TowTrucks");
-                });
-
-            modelBuilder.Entity("InsuranceCompany.Library.Core.Model.TowingService", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Address")
+                    b.Property<string>("Adresa")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("BranchId")
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("FilijalaId")
                         .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FilijalaId");
+
+                    b.ToTable("SlepSluzbe");
+                });
+
+            modelBuilder.Entity("InsuranceCompany.Library.Core.Model.Sleper", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("timestamp without time zone");
@@ -302,11 +320,23 @@ namespace InsuranceCompany.Library.Migrations
                     b.Property<bool>("Deleted")
                         .HasColumnType("boolean");
 
+                    b.Property<double>("Duzina")
+                        .HasColumnType("double precision");
+
+                    b.Property<double>("Nosivost")
+                        .HasColumnType("double precision");
+
+                    b.Property<double>("Sirina")
+                        .HasColumnType("double precision");
+
+                    b.Property<int>("SlepSluzbaId")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("BranchId");
+                    b.HasIndex("SlepSluzbaId");
 
-                    b.ToTable("TowingServices");
+                    b.ToTable("Sleperi");
                 });
 
             modelBuilder.Entity("InsuranceCompany.Library.Core.Model.User", b =>
@@ -317,7 +347,11 @@ namespace InsuranceCompany.Library.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Address")
+                    b.Property<string>("Adresa")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("BrojTelefona")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -334,14 +368,11 @@ namespace InsuranceCompany.Library.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("FirstName")
+                    b.Property<string>("Ime")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("Gender")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("LastName")
+                    b.Property<string>("JMBG")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -349,15 +380,14 @@ namespace InsuranceCompany.Library.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("PhoneNumber")
+                    b.Property<int>("Pol")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Prezime")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("UniqueMasterCitizenNumber")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -368,166 +398,186 @@ namespace InsuranceCompany.Library.Migrations
                     b.UseTptMappingStrategy();
                 });
 
-            modelBuilder.Entity("InsuranceCompany.Library.Core.Model.Worker", b =>
+            modelBuilder.Entity("InsuranceCompany.Library.Core.Model.Radnik", b =>
                 {
                     b.HasBaseType("InsuranceCompany.Library.Core.Model.User");
 
-                    b.Property<int?>("BossId")
+                    b.Property<int>("SefId")
                         .HasColumnType("integer");
 
-                    b.HasIndex("BossId");
+                    b.Property<int>("Tip")
+                        .HasColumnType("integer");
 
-                    b.ToTable("Workers", (string)null);
+                    b.HasIndex("SefId");
+
+                    b.ToTable("Radnici", (string)null);
                 });
 
             modelBuilder.Entity("InsuranceCompany.Library.Core.Model.Agent", b =>
                 {
-                    b.HasBaseType("InsuranceCompany.Library.Core.Model.Worker");
+                    b.HasBaseType("InsuranceCompany.Library.Core.Model.Radnik");
 
-                    b.Property<string>("LicenceNumber")
+                    b.Property<string>("BrojLicence")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.ToTable("Agents", (string)null);
+                    b.ToTable("Agenti", (string)null);
                 });
 
-            modelBuilder.Entity("InsuranceCompany.Library.Core.Model.Manager", b =>
+            modelBuilder.Entity("InsuranceCompany.Library.Core.Model.Menadzer", b =>
                 {
-                    b.HasBaseType("InsuranceCompany.Library.Core.Model.Worker");
+                    b.HasBaseType("InsuranceCompany.Library.Core.Model.Radnik");
 
-                    b.Property<int>("ManagesTheBranchId")
+                    b.Property<int>("RukovodiFilijalomId")
                         .HasColumnType("integer");
 
-                    b.HasIndex("ManagesTheBranchId");
+                    b.HasIndex("RukovodiFilijalomId");
 
-                    b.ToTable("Managers", (string)null);
+                    b.ToTable("Menadzeri", (string)null);
                 });
 
-            modelBuilder.Entity("InsuranceCompany.Library.Core.Model.Accident", b =>
+            modelBuilder.Entity("InsuranceCompany.Library.Core.Model.Auto", b =>
                 {
-                    b.HasOne("InsuranceCompany.Library.Core.Model.Car", "Car")
+                    b.HasOne("InsuranceCompany.Library.Core.Model.User", "Vlasnik")
                         .WithMany()
-                        .HasForeignKey("CarId")
+                        .HasForeignKey("VlasnikId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("InsuranceCompany.Library.Core.Model.TowTruck", "TowTruck")
-                        .WithMany()
-                        .HasForeignKey("TowTruckId");
-
-                    b.Navigation("Car");
-
-                    b.Navigation("TowTruck");
+                    b.Navigation("Vlasnik");
                 });
 
-            modelBuilder.Entity("InsuranceCompany.Library.Core.Model.Branch", b =>
+            modelBuilder.Entity("InsuranceCompany.Library.Core.Model.Filijala", b =>
                 {
-                    b.HasOne("InsuranceCompany.Library.Core.Model.Agency", "Agency")
+                    b.HasOne("InsuranceCompany.Library.Core.Model.Agencija", "Agencija")
                         .WithMany()
-                        .HasForeignKey("AgencyId")
+                        .HasForeignKey("AgencijaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Agency");
+                    b.Navigation("Agencija");
                 });
 
-            modelBuilder.Entity("InsuranceCompany.Library.Core.Model.Car", b =>
+            modelBuilder.Entity("InsuranceCompany.Library.Core.Model.Nesreca", b =>
                 {
-                    b.HasOne("InsuranceCompany.Library.Core.Model.User", "Owner")
+                    b.HasOne("InsuranceCompany.Library.Core.Model.Auto", "Auto")
                         .WithMany()
-                        .HasForeignKey("OwnerId")
+                        .HasForeignKey("AutoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Owner");
+                    b.HasOne("InsuranceCompany.Library.Core.Model.Sleper", "Sleper")
+                        .WithMany()
+                        .HasForeignKey("SleperId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Auto");
+
+                    b.Navigation("Sleper");
                 });
 
-            modelBuilder.Entity("InsuranceCompany.Library.Core.Model.SignedPolicy", b =>
+            modelBuilder.Entity("InsuranceCompany.Library.Core.Model.Polisa", b =>
+                {
+                    b.HasOne("InsuranceCompany.Library.Core.Model.PaketPomoci", "PaketPomoci")
+                        .WithMany()
+                        .HasForeignKey("PaketPomociId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PaketPomoci");
+                });
+
+            modelBuilder.Entity("InsuranceCompany.Library.Core.Model.PotpisanaPolisa", b =>
                 {
                     b.HasOne("InsuranceCompany.Library.Core.Model.Agent", "Agent")
                         .WithMany()
-                        .HasForeignKey("AgentId");
-
-                    b.HasOne("InsuranceCompany.Library.Core.Model.AidPackage", "AidPackage")
-                        .WithMany()
-                        .HasForeignKey("AidPackageId")
+                        .HasForeignKey("AgentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("InsuranceCompany.Library.Core.Model.Car", "Car")
+                    b.HasOne("InsuranceCompany.Library.Core.Model.Auto", "Auto")
                         .WithMany()
-                        .HasForeignKey("CarId")
+                        .HasForeignKey("AutoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("InsuranceCompany.Library.Core.Model.Polisa", "Polisa")
+                        .WithMany()
+                        .HasForeignKey("PolisaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Agent");
 
-                    b.Navigation("AidPackage");
+                    b.Navigation("Auto");
 
-                    b.Navigation("Car");
+                    b.Navigation("Polisa");
                 });
 
-            modelBuilder.Entity("InsuranceCompany.Library.Core.Model.TowTruck", b =>
+            modelBuilder.Entity("InsuranceCompany.Library.Core.Model.SlepSluzba", b =>
                 {
-                    b.HasOne("InsuranceCompany.Library.Core.Model.TowingService", "TowingService")
+                    b.HasOne("InsuranceCompany.Library.Core.Model.Filijala", "Filijala")
                         .WithMany()
-                        .HasForeignKey("TowingServiceId")
+                        .HasForeignKey("FilijalaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("TowingService");
+                    b.Navigation("Filijala");
                 });
 
-            modelBuilder.Entity("InsuranceCompany.Library.Core.Model.TowingService", b =>
+            modelBuilder.Entity("InsuranceCompany.Library.Core.Model.Sleper", b =>
                 {
-                    b.HasOne("InsuranceCompany.Library.Core.Model.Branch", "Branch")
+                    b.HasOne("InsuranceCompany.Library.Core.Model.SlepSluzba", "SlepSluzba")
                         .WithMany()
-                        .HasForeignKey("BranchId")
+                        .HasForeignKey("SlepSluzbaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Branch");
+                    b.Navigation("SlepSluzba");
                 });
 
-            modelBuilder.Entity("InsuranceCompany.Library.Core.Model.Worker", b =>
+            modelBuilder.Entity("InsuranceCompany.Library.Core.Model.Radnik", b =>
                 {
-                    b.HasOne("InsuranceCompany.Library.Core.Model.Worker", "Boss")
-                        .WithMany()
-                        .HasForeignKey("BossId");
-
                     b.HasOne("InsuranceCompany.Library.Core.Model.User", null)
                         .WithOne()
-                        .HasForeignKey("InsuranceCompany.Library.Core.Model.Worker", "Id")
+                        .HasForeignKey("InsuranceCompany.Library.Core.Model.Radnik", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Boss");
+                    b.HasOne("InsuranceCompany.Library.Core.Model.Radnik", "Sef")
+                        .WithMany()
+                        .HasForeignKey("SefId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Sef");
                 });
 
             modelBuilder.Entity("InsuranceCompany.Library.Core.Model.Agent", b =>
                 {
-                    b.HasOne("InsuranceCompany.Library.Core.Model.Worker", null)
+                    b.HasOne("InsuranceCompany.Library.Core.Model.Radnik", null)
                         .WithOne()
                         .HasForeignKey("InsuranceCompany.Library.Core.Model.Agent", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("InsuranceCompany.Library.Core.Model.Manager", b =>
+            modelBuilder.Entity("InsuranceCompany.Library.Core.Model.Menadzer", b =>
                 {
-                    b.HasOne("InsuranceCompany.Library.Core.Model.Worker", null)
+                    b.HasOne("InsuranceCompany.Library.Core.Model.Radnik", null)
                         .WithOne()
-                        .HasForeignKey("InsuranceCompany.Library.Core.Model.Manager", "Id")
+                        .HasForeignKey("InsuranceCompany.Library.Core.Model.Menadzer", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("InsuranceCompany.Library.Core.Model.Branch", "ManagesTheBranch")
+                    b.HasOne("InsuranceCompany.Library.Core.Model.Filijala", "RukovodiFilijalom")
                         .WithMany()
-                        .HasForeignKey("ManagesTheBranchId")
+                        .HasForeignKey("RukovodiFilijalomId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ManagesTheBranch");
+                    b.Navigation("RukovodiFilijalom");
                 });
 #pragma warning restore 612, 618
         }

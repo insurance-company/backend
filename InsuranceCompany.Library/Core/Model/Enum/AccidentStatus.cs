@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InsuranceCompany.Library.Core.Model
+namespace InsuranceCompany.Library.Core.Model.Enum
 {
-    public class Agent : Worker
+    public enum AccidentStatus
     {
-        public string LicenceNumber { get; set; }
+        VALIDN,
+        INVALID, 
+        WAITING
     }
 }

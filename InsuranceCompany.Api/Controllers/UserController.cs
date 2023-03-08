@@ -28,14 +28,14 @@ namespace InsuranceCompany.Api.Controllers
             if (userObj == null) return BadRequest();
 
             var user = _userService.FindByEmail(userObj.Email);
-            if (user == null) return NotFound("User not found");
+            if (user == null) return NotFound("Nepostojeci korisnik");
 
-            if (!PasswordHasher.VerifyPassword(userObj.Password, user.Password)) return BadRequest("Password is incorrect!");
+            if (!PasswordHasher.VerifyPassword(userObj.Password, user.Password)) return BadRequest("Netacna lozinka!");
 
             return Ok(new
             {
                 Token = JwtToken.CreateJwtToken(user),
-                Message = "Login Success"
+                Message = "Uspesna prijava!"
             });
         }
 
@@ -44,19 +44,20 @@ namespace InsuranceCompany.Api.Controllers
         {
             
             if (userObjDTO == null) return BadRequest();
-            if (_userService.FindByEmail(userObjDTO.Email) != null) return BadRequest("Email already in use");
-            _userService.Register(_mapper.Map<User>(userObjDTO));
+            if (_userService.FindByEmail(userObjDTO.Email) != null) return BadRequest("Email je vec iskoriscen");
+            _userService.RegisterCustomer(_mapper.Map<User>(userObjDTO));
             return Ok();
         }
 
 
-        //[Authorize]
+        [Authorize(Roles = "MANAGER, AGENT")]
         [HttpGet("getAllBuyers/{pageNumber}/{pageSize}")]
         public ActionResult<Page<User>> GetAllBuyers(int pageNumber, int pageSize)
         {
            return _userService.GetAllBuyers(pageNumber, pageSize);
         }
 
+        [Authorize(Roles = "MANAGER, AGENT, CUSTOMER, ADMIN")]
         [HttpGet("getById/{id}")]
         public ActionResult<User> FindById(int id)
         {

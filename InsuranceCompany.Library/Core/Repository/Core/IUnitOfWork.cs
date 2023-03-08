@@ -12,9 +12,11 @@ namespace InsuranceCompany.Library.Core.Repository.Core
         new void Dispose();
 
         public IUserRepository UserRepository { get; }
-        public IPaketPomociRepository PaketPomociRepository { get; }
-        public IFilijalaRepository FilijalaRepository { get; }
-        public INesrecaRepository NesrecaRepository { get; }
+        public IAidPackageRepository AidPackageRepository { get; }
+        public IBranchOfficeRepository BranchRepository { get; }
+        public IAccidentRepository AccidentRepository { get; }
+        public ISignedPolicyRepository SignedPolicyRepository { get; }
+        public ICarRepository CarRepository { get; }
 
     }
 }

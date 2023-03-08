@@ -7,11 +7,9 @@ using System.Threading.Tasks;
 
 namespace InsuranceCompany.Library.Core.Service.Core
 {
-    public interface IUserService
+    public interface ICarService
     {
-        Page<User> GetAllBuyers(int pageNumber, int pageSize);
-        User FindByEmail(string email);
-        User RegisterCustomer(User user);
-        User FindById(int id);
+        Car FindById(int id);
+        List<Car> FindAllByOwnerId(int id);
     }
 }
