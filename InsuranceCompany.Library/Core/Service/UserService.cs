@@ -40,9 +40,21 @@ namespace InsuranceCompany.Library.Core.Service
             return _unitOfWork.UserRepository.Create(user);
         }
 
+        public Manager RegisterManager(Manager manager)
+        {
+            manager.Password = PasswordHasher.HashPassword(manager.Password);
+            manager.Role = Model.Enum.Role.MANAGER.ToString();
+            return _unitOfWork.UserRepository.CreateManager(manager);
+        }
+
         public User FindById(int id)
         {
             return _unitOfWork.UserRepository.FindById(id);
+        }
+
+        public Manager FindManagerById(int id)
+        {
+            return _unitOfWork.UserRepository.FindManagerById(id);
         }
     }
 }

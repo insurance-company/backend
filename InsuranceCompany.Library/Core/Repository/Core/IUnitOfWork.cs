@@ -13,7 +13,7 @@ namespace InsuranceCompany.Library.Core.Repository.Core
 
         public IUserRepository UserRepository { get; }
         public IAidPackageRepository AidPackageRepository { get; }
-        public IBranchOfficeRepository BranchRepository { get; }
+        public IBranchRepository BranchRepository { get; }
         public IAccidentRepository AccidentRepository { get; }
         public ISignedPolicyRepository SignedPolicyRepository { get; }
         public ICarRepository CarRepository { get; }

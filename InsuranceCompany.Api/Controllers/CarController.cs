@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using InsuranceCompany.Library.Core.Model;
 using InsuranceCompany.Library.Core.Service.Core;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InsuranceCompany.Api.Controllers
@@ -17,6 +18,7 @@ namespace InsuranceCompany.Api.Controllers
             _carService = carService;
         }
 
+        [Authorize(Roles = "CUSTOMER")]
         [HttpGet("getAllByOwnerId/{id}")]
         public ActionResult<List<Car>> GetAllByOwnerId(int id)
         {

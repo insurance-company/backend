@@ -12,6 +12,8 @@ namespace InsuranceCompany.Library.Core.Service.Core
         Page<User> GetAllBuyers(int pageNumber, int pageSize);
         User FindByEmail(string email);
         User RegisterCustomer(User user);
+        Manager RegisterManager(Manager user);
         User FindById(int id);
+        Manager FindManagerById(int id);
     }
 }

@@ -3,6 +3,7 @@ using InsuranceCompany.Api.DTO;
 using InsuranceCompany.Api.Mappers;
 using InsuranceCompany.Library.Core.Model;
 using InsuranceCompany.Library.Core.Service.Core;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InsuranceCompany.Api.Controllers
@@ -20,18 +21,22 @@ namespace InsuranceCompany.Api.Controllers
             _nesrecaService = nesrecaService;
             _carService = carService;
         }
+
+        [Authorize(Roles = "CUSTOMER")]
         [HttpGet("getAllByUserId/{id}/{pageNumber}/{pageSize}")]
         public ActionResult<Page<Accident>> GetAll(int id, int pageNumber, int pageSize)
         {
             return _nesrecaService.GetAllByUserId(id, pageNumber, pageSize);
         }
 
+        [Authorize(Roles = "MANAGER")]
         [HttpGet("getAllUnvalidated/{pageNumber}/{pageSize}")]
         public ActionResult<Page<Accident>> GetAllUnvalidated(int pageNumber, int pageSize)
         {
             return _nesrecaService.GetAllUnvalidated(pageNumber, pageSize);
         }
 
+        [Authorize(Roles = "CUSTOMER")]
         [HttpPost("createAccident")]
         public ActionResult<AccidentDTO> Create([FromBody] AccidentDTO accident)
         {

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using InsuranceCompany.Api.DTO;
+using InsuranceCompany.Api.Mappers;
 using InsuranceCompany.Library.Core.Model;
 using InsuranceCompany.Library.Core.Service.Core;
 using InsuranceCompany.Library.Helpers;
@@ -16,10 +17,12 @@ namespace InsuranceCompany.Api.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IUserService _userService;
-        public UserController(IMapper mapper, IUserService userService)
+        private readonly IBranchService _branchService;
+        public UserController(IMapper mapper, IUserService userService, IBranchService branchService)
         {
             _mapper = mapper;
             _userService = userService;
+            _branchService = branchService;
         }
 
         [HttpPost("authenticate")]
@@ -49,6 +52,17 @@ namespace InsuranceCompany.Api.Controllers
             return Ok();
         }
 
+        //[Authorize(Roles = "ADMIN")]
+        [HttpPost("registerManager")]
+        public IActionResult RegisterManager([FromBody] ManagerDTO managerDTO)
+        {
+
+            if (managerDTO == null) return BadRequest();
+            if (_userService.FindByEmail(managerDTO.Email) != null) return BadRequest("Email je vec iskoriscen");
+            _userService.RegisterManager(ManagerMapper.EntityDTOToEntity(managerDTO, _userService.FindManagerById(managerDTO.BossId), _branchService.FindById(managerDTO.ManagesTheBranchId)));
+            return Ok();
+        }
+
 
         [Authorize(Roles = "MANAGER, AGENT")]
         [HttpGet("getAllBuyers/{pageNumber}/{pageSize}")]
@@ -59,9 +73,10 @@ namespace InsuranceCompany.Api.Controllers
 
         [Authorize(Roles = "MANAGER, AGENT, CUSTOMER, ADMIN")]
         [HttpGet("getById/{id}")]
-        public ActionResult<User> FindById(int id)
+        public ActionResult<UserDTO> FindById(int id)
         {
-            return _userService.FindById(id);
+            User user = _userService.FindById(id);
+            return UserMapper.EntityToEntityDto(user);
         }
     }
 }

@@ -18,7 +18,7 @@ builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.Re
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAidPackageService, AidPackageService>();
-builder.Services.AddScoped<IBranchOfficeService, BranchService>();
+builder.Services.AddScoped<IBranchService, BranchService>();
 builder.Services.AddScoped<IAccidentService, AccidentService>();
 builder.Services.AddScoped<ISignedPolicyService, SignedPolicyService>();
 builder.Services.AddScoped<ICarService, CarService>();

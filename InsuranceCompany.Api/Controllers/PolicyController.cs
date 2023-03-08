@@ -4,6 +4,7 @@ using InsuranceCompany.Api.Mappers;
 using InsuranceCompany.Library.Core.Model;
 using InsuranceCompany.Library.Core.Service;
 using InsuranceCompany.Library.Core.Service.Core;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InsuranceCompany.Api.Controllers
@@ -25,18 +26,21 @@ namespace InsuranceCompany.Api.Controllers
             _carService = carService;
         }
 
+        [Authorize(Roles = "AGENT")]
         [HttpGet("getAllByAgentId/{agentId}/{pageNumber}/{pageSize}")]
         public ActionResult<Page<SignedPolicy>> GetAllByAgentId(int agentId, int pageNumber, int pageSize)
         {
             return _signedPolicyService.GetAllByAgentId(agentId, pageNumber, pageSize);
         }
 
+        [Authorize(Roles = "CUSTOMER")]
         [HttpGet("getAllByBuyerId/{buyerId}/{pageNumber}/{pageSize}")]
         public ActionResult<Page<SignedPolicy>> GetAllByBuyerId(int buyerId, int pageNumber, int pageSize)
         {
             return _signedPolicyService.GetAllByBuyerId(buyerId, pageNumber, pageSize);
         }
 
+        [Authorize(Roles = "CUSTOMER")]
         [HttpPost("buyPolicy")]
         public ActionResult<SignedPolicy> BuyPolicy(SignedPolicyDTO policy)
         {

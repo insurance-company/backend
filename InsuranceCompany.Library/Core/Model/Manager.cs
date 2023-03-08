@@ -9,5 +9,6 @@ namespace InsuranceCompany.Library.Core.Model
     public class Manager : Worker
     {
         public Branch ManagesTheBranch { get; set; }
+
     }
 }

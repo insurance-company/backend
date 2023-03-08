@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace InsuranceCompany.Library.Core.Repository.Core
 {
-    public interface IBranchOfficeRepository
+    public interface IBranchRepository
     {
         List<Branch> GetAll();
+        Branch FindById(int id);
     }
 }

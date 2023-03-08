@@ -10,8 +10,8 @@ namespace InsuranceCompany.Api.Controllers
     public class BranchController : ControllerBase
     {
         private readonly IMapper _mapper;
-        private readonly IBranchOfficeService _filijalaService;
-        public BranchController(IMapper mapper, IBranchOfficeService filijalaService)
+        private readonly IBranchService _filijalaService;
+        public BranchController(IMapper mapper, IBranchService filijalaService)
         {
             _mapper = mapper;
             _filijalaService = filijalaService;

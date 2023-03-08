@@ -33,9 +33,21 @@ namespace InsuranceCompany.Library.Core.Repository
             return user;
         }
 
+        public Manager CreateManager(Manager manager)
+        {
+            _context.Managers.AddAsync(manager);
+            _context.SaveChanges();
+            return manager;
+        }
+
         public User FindById(int id)
         {
             return _context.Users.FirstOrDefault(x => x.Id == id);
+        }
+
+        public Manager FindManagerById(int id)
+        {
+            return _context.Managers.FirstOrDefault(x => x.Id == id);
         }
 
     }

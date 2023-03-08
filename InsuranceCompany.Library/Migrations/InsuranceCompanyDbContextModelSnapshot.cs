@@ -61,7 +61,7 @@ namespace InsuranceCompany.Library.Migrations
 
                     b.HasIndex("TowTruckId");
 
-                    b.ToTable("Accidents");
+                    b.ToTable("Accidents", (string)null);
                 });
 
             modelBuilder.Entity("InsuranceCompany.Library.Core.Model.Agency", b =>
@@ -91,7 +91,7 @@ namespace InsuranceCompany.Library.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Agencies");
+                    b.ToTable("Agencies", (string)null);
                 });
 
             modelBuilder.Entity("InsuranceCompany.Library.Core.Model.AidPackage", b =>
@@ -126,7 +126,7 @@ namespace InsuranceCompany.Library.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AidPackages");
+                    b.ToTable("AidPackages", (string)null);
                 });
 
             modelBuilder.Entity("InsuranceCompany.Library.Core.Model.Branch", b =>
@@ -157,7 +157,7 @@ namespace InsuranceCompany.Library.Migrations
 
                     b.HasIndex("AgencyId");
 
-                    b.ToTable("Branches");
+                    b.ToTable("Branches", (string)null);
                 });
 
             modelBuilder.Entity("InsuranceCompany.Library.Core.Model.Car", b =>
@@ -199,7 +199,7 @@ namespace InsuranceCompany.Library.Migrations
 
                     b.HasIndex("OwnerId");
 
-                    b.ToTable("Cars");
+                    b.ToTable("Cars", (string)null);
                 });
 
             modelBuilder.Entity("InsuranceCompany.Library.Core.Model.SignedPolicy", b =>
@@ -239,7 +239,7 @@ namespace InsuranceCompany.Library.Migrations
 
                     b.HasIndex("CarId");
 
-                    b.ToTable("SignedPolicies");
+                    b.ToTable("SignedPolicies", (string)null);
                 });
 
             modelBuilder.Entity("InsuranceCompany.Library.Core.Model.TowTruck", b =>
@@ -275,7 +275,7 @@ namespace InsuranceCompany.Library.Migrations
 
                     b.HasIndex("TowingServiceId");
 
-                    b.ToTable("TowTrucks");
+                    b.ToTable("TowTrucks", (string)null);
                 });
 
             modelBuilder.Entity("InsuranceCompany.Library.Core.Model.TowingService", b =>
@@ -306,7 +306,7 @@ namespace InsuranceCompany.Library.Migrations
 
                     b.HasIndex("BranchId");
 
-                    b.ToTable("TowingServices");
+                    b.ToTable("TowingServices", (string)null);
                 });
 
             modelBuilder.Entity("InsuranceCompany.Library.Core.Model.User", b =>
