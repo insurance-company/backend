@@ -28,6 +28,11 @@ namespace InsuranceCompany.Library.Core.Service
             return page;
         }
 
+        public List<Worker> GetAllWorkers()
+        {
+            return _unitOfWork.UserRepository.GetAllWorkers();
+        }
+
         public User FindByEmail(string email)
         {
             return _unitOfWork.UserRepository.FindByEmail(email);
@@ -40,9 +45,29 @@ namespace InsuranceCompany.Library.Core.Service
             return _unitOfWork.UserRepository.Create(user);
         }
 
+        public Manager RegisterManager(Manager manager)
+        {
+            manager.Password = PasswordHasher.HashPassword(manager.Password);
+            manager.Role = Model.Enum.Role.MANAGER.ToString();
+            manager.WorksInBranch = manager.ManagesTheBranch;
+            return _unitOfWork.UserRepository.CreateManager(manager);
+        }
+
+        public Agent RegisterAgent(Agent agent)
+        {
+            agent.Password = PasswordHasher.HashPassword(agent.Password);
+            agent.Role = Model.Enum.Role.AGENT.ToString();
+            return _unitOfWork.UserRepository.CreateAgent(agent);
+        }
+
         public User FindById(int id)
         {
             return _unitOfWork.UserRepository.FindById(id);
+        }
+
+        public Manager FindManagerById(int id)
+        {
+            return _unitOfWork.UserRepository.FindManagerById(id);
         }
     }
 }

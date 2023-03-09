@@ -19,5 +19,25 @@ namespace InsuranceCompany.Library.Core.Model
         public string Address { get; set; }
         public Gender Gender { get; set; }
 
+        public User() { }
+
+        private User(string email, string password, string role, string firstName, string lastName, string uniqueMasterCitizenNumber, string phoneNumber, string address, Gender gender)
+        {
+            Email = email;
+            Password = password;
+            Role = role;
+            FirstName = firstName;
+            LastName = lastName;
+            UniqueMasterCitizenNumber = uniqueMasterCitizenNumber;
+            PhoneNumber = phoneNumber;
+            Address = address;
+            Gender = gender;
+        }
+
+        public static User Create(string email, string password, string role, string firstName, string lastName, string uniqueMasterCitizenNumber, string phoneNumber, string address, Gender gender)
+        {
+            return new User(email, password, role, firstName, lastName, uniqueMasterCitizenNumber, phoneNumber, address, gender);
+        }
+
     }
 }

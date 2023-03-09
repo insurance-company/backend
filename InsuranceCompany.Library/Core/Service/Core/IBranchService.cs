@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace InsuranceCompany.Library.Core.Service.Core
 {
-    public interface IBranchOfficeService
+    public interface IBranchService
     {
         Page<Branch> GetAll(int pageNumber, int pageSize);
+        List<Branch> GetAllWithoutPagination();
+        Branch FindById(int id);
     }
 }

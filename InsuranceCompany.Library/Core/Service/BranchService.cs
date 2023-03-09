@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace InsuranceCompany.Library.Core.Service
 {
-    public class BranchService : IBranchOfficeService
+    public class BranchService : IBranchService
     {
         protected readonly IUnitOfWork _unitOfWork;
         public BranchService(IUnitOfWork unitOfWork)
@@ -23,6 +23,16 @@ namespace InsuranceCompany.Library.Core.Service
             page.TotalCount = branches.Count;
             page.Data = branches.Skip(pageNumber * pageSize).Take(pageSize).ToList();
             return page;
+        }
+
+        public List<Branch> GetAllWithoutPagination()
+        {
+            return _unitOfWork.BranchRepository.GetAll();
+        }
+
+        public Branch FindById(int id)
+        {
+            return _unitOfWork.BranchRepository.FindById(id);
         }
     }
 }

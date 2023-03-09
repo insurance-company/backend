@@ -22,20 +22,44 @@ namespace InsuranceCompany.Library.Core.Repository
             return _context.Users.Where(x => !x.Deleted && x.Role == Model.Enum.Role.CUSTOMER.ToString()).ToList();
         }
 
+        public List<Worker> GetAllWorkers()
+        {
+            return _context.Workers.Where(x => !x.Deleted).ToList();
+        }
+
         public User FindByEmail(string email)
         {
             return _context.Users.FirstOrDefault(x => x.Email == email);
         }
         public User Create(User user)
         {
-            _context.Users.AddAsync(user);
+            _context.Users.Add(user);
             _context.SaveChanges();
             return user;
+        }
+
+        public Manager CreateManager(Manager manager)
+        {
+            _context.Managers.Add(manager);
+            _context.SaveChanges();
+            return manager;
+        }
+
+        public Agent CreateAgent(Agent agent)
+        {
+            _context.Agents.Add(agent);
+            _context.SaveChanges();
+            return agent;
         }
 
         public User FindById(int id)
         {
             return _context.Users.FirstOrDefault(x => x.Id == id);
+        }
+
+        public Manager FindManagerById(int id)
+        {
+            return _context.Managers.Include(x=> x.WorksInBranch).Include(x=>x.ManagesTheBranch).FirstOrDefault(x => x.Id == id);
         }
 
     }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace InsuranceCompany.Library.Core.Repository
 {
-    public class BranchRepository : IBranchOfficeRepository
+    public class BranchRepository : IBranchRepository
     {
         private readonly InsuranceCompanyDbContext _context;
         public BranchRepository(InsuranceCompanyDbContext context)
@@ -19,6 +19,10 @@ namespace InsuranceCompany.Library.Core.Repository
         public List<Branch> GetAll()
         {
             return _context.Branches.Where(x => !x.Deleted).ToList();
+        }
+        public Branch FindById(int id)
+        {
+            return _context.Branches.FirstOrDefault(x => x.Id == id);
         }
     }
 }
