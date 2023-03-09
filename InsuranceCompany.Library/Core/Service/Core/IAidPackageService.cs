@@ -11,5 +11,8 @@ namespace InsuranceCompany.Library.Core.Service.Core
     {
         List<AidPackage> GetAll();
         AidPackage FindById(int id);
+        AidPackage Create(AidPackage package);
+        AidPackage Update(AidPackage package);
+        AidPackage Remove(int id);
     }
 }

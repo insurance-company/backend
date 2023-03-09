@@ -25,5 +25,23 @@ namespace InsuranceCompany.Library.Core.Repository
         {
             return _context.AidPackages.FirstOrDefault(x => x.Id == id);
         }
+
+        public AidPackage Create(AidPackage aidPackage)
+        {
+            _context.AidPackages.Add(aidPackage);
+            return aidPackage;
+        }
+
+        public AidPackage Update(AidPackage aidPackage)
+        {
+            _context.AidPackages.Update(aidPackage);
+            return aidPackage;
+        }
+
+        public AidPackage Remove(AidPackage aidPackage)
+        {
+            _context.AidPackages.Remove(aidPackage);
+            return aidPackage;
+        }
     }
 }

@@ -25,5 +25,47 @@ namespace InsuranceCompany.Library.Core.Service
         {
             return _unitOfWork.AidPackageRepository.FindById(id);
         }
+        public AidPackage Create(AidPackage package)
+        {
+            try
+            {
+                _unitOfWork.AidPackageRepository.Create(package);
+                _unitOfWork.Save();
+                return package;
+            } 
+            catch
+            {
+                throw new Exception();
+            }
+        }
+
+        public AidPackage Update(AidPackage package)
+        {
+            try
+            {
+                _unitOfWork.AidPackageRepository.Update(package);
+                _unitOfWork.Save();
+                return package;
+            }
+            catch
+            {
+                throw new Exception();
+            }
+        }
+
+        public AidPackage Remove(int id)
+        {
+            try
+            {
+                AidPackage package = FindById(id);
+                _unitOfWork.AidPackageRepository.Remove(package);
+                _unitOfWork.Save();
+                return package;
+            }
+            catch
+            {
+                throw new Exception();
+            }
+        }
     }
 }
