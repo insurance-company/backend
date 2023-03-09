@@ -12,6 +12,7 @@ namespace InsuranceCompany.Library.Core.Model
     {
         [AllowNull]
         public Worker? Boss { get; set; }
+        public Branch WorksInBranch { get; set; }
 
     }
 }

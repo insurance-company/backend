@@ -10,16 +10,22 @@ namespace InsuranceCompany.Api.Controllers
     public class BranchController : ControllerBase
     {
         private readonly IMapper _mapper;
-        private readonly IBranchService _filijalaService;
-        public BranchController(IMapper mapper, IBranchService filijalaService)
+        private readonly IBranchService _branchService;
+        public BranchController(IMapper mapper, IBranchService branchService)
         {
             _mapper = mapper;
-            _filijalaService = filijalaService;
+            _branchService = branchService;
         }
         [HttpGet("getAll/{pageNumber}/{pageSize}")]
         public ActionResult<Page<Branch>> GetAll(int pageNumber, int pageSize)
         {
-            return _filijalaService.GetAll(pageNumber, pageSize);
+            return _branchService.GetAll(pageNumber, pageSize);
+        }
+
+        [HttpGet("getAllWithoutPagination")]
+        public ActionResult<List<Branch>> GetAllWithoutPagination(int pageNumber, int pageSize)
+        {
+            return _branchService.GetAllWithoutPagination();
         }
     }
 }

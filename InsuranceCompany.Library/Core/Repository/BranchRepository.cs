@@ -24,6 +24,5 @@ namespace InsuranceCompany.Library.Core.Repository
         {
             return _context.Branches.FirstOrDefault(x => x.Id == id);
         }
-
     }
 }

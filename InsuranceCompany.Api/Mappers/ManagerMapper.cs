@@ -1,5 +1,6 @@
 ﻿using InsuranceCompany.Api.DTO;
 using InsuranceCompany.Library.Core.Model;
+using InsuranceCompany.Library.Core.Model.Enum;
 
 namespace InsuranceCompany.Api.Mappers
 {
@@ -11,7 +12,7 @@ namespace InsuranceCompany.Api.Mappers
 
             dto.Email = manager.Email;
             dto.Password = "";
-            dto.Role = manager.Role;
+            dto.Role = Enum.Parse<Role>(manager.Role);
             dto.FirstName = manager.FirstName;
             dto.LastName = manager.LastName;
             dto.UniqueMasterCitizenNumber = manager.UniqueMasterCitizenNumber;
@@ -30,7 +31,7 @@ namespace InsuranceCompany.Api.Mappers
 
             manager.Email = dto.Email;
             manager.Password = dto.Password;
-            manager.Role = dto.Role;
+            manager.Role = dto.Role.ToString();
             manager.FirstName= dto.FirstName;
             manager.LastName = dto.LastName;
             manager.UniqueMasterCitizenNumber= dto.UniqueMasterCitizenNumber;

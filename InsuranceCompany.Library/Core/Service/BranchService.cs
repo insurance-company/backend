@@ -25,6 +25,11 @@ namespace InsuranceCompany.Library.Core.Service
             return page;
         }
 
+        public List<Branch> GetAllWithoutPagination()
+        {
+            return _unitOfWork.BranchRepository.GetAll();
+        }
+
         public Branch FindById(int id)
         {
             return _unitOfWork.BranchRepository.FindById(id);

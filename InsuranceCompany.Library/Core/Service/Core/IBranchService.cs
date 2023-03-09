@@ -10,6 +10,7 @@ namespace InsuranceCompany.Library.Core.Service.Core
     public interface IBranchService
     {
         Page<Branch> GetAll(int pageNumber, int pageSize);
+        List<Branch> GetAllWithoutPagination();
         Branch FindById(int id);
     }
 }

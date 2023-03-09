@@ -1,5 +1,6 @@
 ﻿using InsuranceCompany.Api.DTO;
 using InsuranceCompany.Library.Core.Model;
+using InsuranceCompany.Library.Core.Model.Enum;
 
 namespace InsuranceCompany.Api.Mappers
 {
@@ -11,7 +12,7 @@ namespace InsuranceCompany.Api.Mappers
 
             dto.Email = user.Email;
             dto.Password = "";
-            dto.Role = user.Role;
+            dto.Role =  Enum.Parse<Role>(user.Role);
             dto.FirstName = user.FirstName; 
             dto.LastName = user.LastName;
             dto.UniqueMasterCitizenNumber = user.UniqueMasterCitizenNumber;
@@ -24,7 +25,7 @@ namespace InsuranceCompany.Api.Mappers
 
         public static User EntityDTOToEntity(UserDTO dto)
         {
-            User user = User.Create(dto.Email, dto.Password, dto.Role, dto.FirstName, dto.LastName, dto.UniqueMasterCitizenNumber, dto.PhoneNumber, dto.Address, dto.Gender);
+            User user = User.Create(dto.Email, dto.Password, dto.Role.ToString(), dto.FirstName, dto.LastName, dto.UniqueMasterCitizenNumber, dto.PhoneNumber, dto.Address, dto.Gender);
 
             return user;
         }

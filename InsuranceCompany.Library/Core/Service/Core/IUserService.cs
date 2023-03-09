@@ -10,9 +10,11 @@ namespace InsuranceCompany.Library.Core.Service.Core
     public interface IUserService
     {
         Page<User> GetAllBuyers(int pageNumber, int pageSize);
+        List<Worker> GetAllWorkers();
         User FindByEmail(string email);
         User RegisterCustomer(User user);
         Manager RegisterManager(Manager user);
+        Agent RegisterAgent(Agent agent);
         User FindById(int id);
         Manager FindManagerById(int id);
     }
