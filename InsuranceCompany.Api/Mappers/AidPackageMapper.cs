@@ -20,7 +20,7 @@ namespace InsuranceCompany.Api.Mappers
 
         public static AidPackage EntityDTOToEntity(AidPackageDTO dto)
         {
-            return AidPackage.Create(dto.DurationInMonths, dto.Price, dto.Description, dto.Cover);
+            return AidPackage.Create(dto.Id, dto.DurationInMonths, dto.Price, dto.Description, dto.Cover);
         }
     }
 }

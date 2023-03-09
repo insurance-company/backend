@@ -16,7 +16,7 @@ namespace InsuranceCompany.Library.Core.Model
 
         public AidPackage() {}
 
-        private AidPackage(int durationInMonths, double price, string description, double cover)
+        private AidPackage(int id, int durationInMonths, double price, string description, double cover) : base(id)
         {
             DurationInMonths = durationInMonths;
             Price = price;
@@ -24,9 +24,9 @@ namespace InsuranceCompany.Library.Core.Model
             Cover = cover;
         }
 
-        public static AidPackage Create(int durationInMonths, double price, string description, double cover)
+        public static AidPackage Create(int id, int durationInMonths, double price, string description, double cover)
         {
-            return new AidPackage(durationInMonths, price, description, cover);
+            return new AidPackage(id, durationInMonths, price, description, cover);
         }
     }
 }
