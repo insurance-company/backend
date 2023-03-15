@@ -43,5 +43,11 @@ namespace InsuranceCompany.Api.Controllers
         {
             return Ok(_userService.GetAllWorkers());
         }
+
+        [HttpGet("getAllAgents")]
+        public ActionResult<List<Agent>> GetAllAgents()
+        {
+            return Ok(_userService.GetAllAgents());
+        }
     }
 }

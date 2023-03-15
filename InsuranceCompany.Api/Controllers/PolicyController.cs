@@ -44,7 +44,7 @@ namespace InsuranceCompany.Api.Controllers
         [HttpPost("buyPolicy")]
         public ActionResult<SignedPolicy> BuyPolicy(SignedPolicyDTO policy)
         {
-               return _signedPolicyService.BuyPolicy(SignedPolicyMapper.EntityDTOToEntity(policy, _aidPackageService.FindById(policy.CarId), null, _carService.FindById(policy.CarId)));
+               return _signedPolicyService.BuyPolicy(SignedPolicyMapper.EntityDTOToEntity(policy, _aidPackageService.FindById(policy.AidPackageId), null, _carService.FindById(policy.CarId)));
         }
     }
 }

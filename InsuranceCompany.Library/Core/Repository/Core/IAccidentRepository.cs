@@ -9,6 +9,7 @@ namespace InsuranceCompany.Library.Core.Repository.Core
 {
     public interface IAccidentRepository
     {
+        List<Accident> GetAll();
         List<Accident> GetAllByUserId(int userId);
         List<Accident> GetAllUnvalidated();
         Accident Create(Accident accident);

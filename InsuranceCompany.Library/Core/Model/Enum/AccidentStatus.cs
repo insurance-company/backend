@@ -8,7 +8,7 @@ namespace InsuranceCompany.Library.Core.Model.Enum
 {
     public enum AccidentStatus
     {
-        VALIDN,
+        VALID,
         INVALID, 
         WAITING
     }
