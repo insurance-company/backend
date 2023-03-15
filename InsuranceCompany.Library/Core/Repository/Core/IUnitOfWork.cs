@@ -15,7 +15,7 @@ namespace InsuranceCompany.Library.Core.Repository.Core
         public IAidPackageRepository AidPackageRepository { get; }
         public IBranchRepository BranchRepository { get; }
         public IAccidentRepository AccidentRepository { get; }
-        public ISignedPolicyRepository SignedPolicyRepository { get; }
+        public IPolicyRepository PolicyRepository { get; }
         public ICarRepository CarRepository { get; }
 
     }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace InsuranceCompany.Library.Core.Repository.Core
 {
-    public interface ISignedPolicyRepository
+    public interface IPolicyRepository
     {
         List<SignedPolicy> GetAllByAgentId(int agentId);
         List<SignedPolicy> GetAllByBuyerId(int buyerId);

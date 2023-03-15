@@ -9,16 +9,16 @@ using System.Threading.Tasks;
 
 namespace InsuranceCompany.Library.Core.Service
 {
-    public class SignedPolicyService : Core.ISignedPolicyService
+    public class PolicyService : Core.IPolicyService
     {
         protected readonly IUnitOfWork _unitOfWork;
-        public SignedPolicyService(IUnitOfWork unitOfWork)
+        public PolicyService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
         public Page<SignedPolicy> GetAllByAgentId(int agentId, int pageNumber, int pageSize)
         {
-            List<SignedPolicy> signedPolicies = _unitOfWork.SignedPolicyRepository.GetAllByAgentId(agentId);
+            List<SignedPolicy> signedPolicies = _unitOfWork.PolicyRepository.GetAllByAgentId(agentId);
             Page<SignedPolicy> page = new Page<SignedPolicy>();
             page.TotalCount = signedPolicies.Count;
             page.Data = signedPolicies.Skip(pageNumber * pageSize).Take(pageSize).ToList();
@@ -27,7 +27,7 @@ namespace InsuranceCompany.Library.Core.Service
 
         public Page<SignedPolicy> GetAllByBuyerId(int buyerId, int pageNumber, int pageSize)
         {
-            List<SignedPolicy> signedPolicies = _unitOfWork.SignedPolicyRepository.GetAllByBuyerId(buyerId);
+            List<SignedPolicy> signedPolicies = _unitOfWork.PolicyRepository.GetAllByBuyerId(buyerId);
             Page<SignedPolicy> page = new Page<SignedPolicy>();
             page.TotalCount = signedPolicies.Count;
             page.Data = signedPolicies.Skip(pageNumber * pageSize).Take(pageSize).ToList();
@@ -36,7 +36,16 @@ namespace InsuranceCompany.Library.Core.Service
 
         public SignedPolicy BuyPolicy(SignedPolicy policy)
         {
-            return _unitOfWork.SignedPolicyRepository.Create(policy);
+            return _unitOfWork.PolicyRepository.Create(policy);
+        }
+
+        public Page<SignedPolicy> GetAllUnsigned(int pageNumber, int pageSize)
+        {
+            List<SignedPolicy> unsignedPolicies = _unitOfWork.PolicyRepository.GetAllUnsigned();
+            Page<SignedPolicy> page = new Page<SignedPolicy>();
+            page.TotalCount = unsignedPolicies.Count;
+            page.Data = unsignedPolicies.Skip(pageNumber * pageSize).Take(pageSize).ToList();
+            return page;
         }
     }
 }

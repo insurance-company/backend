@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace InsuranceCompany.Library.Core.Service.Core
 {
-    public interface ISignedPolicyService
+    public interface IPolicyService
     {
         Page<SignedPolicy> GetAllByAgentId(int agentId, int pageNumber, int pageSize);
         Page<SignedPolicy> GetAllByBuyerId(int buyerId, int pageNumber, int pageSize);
         SignedPolicy BuyPolicy(SignedPolicy policy);
+        Page<SignedPolicy> GetAllUnsigned(int pageNumber, int pageSize);
     }
 }

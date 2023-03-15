@@ -22,7 +22,7 @@ namespace InsuranceCompany.Library.Core.Repository
             AidPackageRepository = new AidPackageRepository(_context);
             BranchRepository = new BranchRepository(_context);
             AccidentRepository = new AccidentRepository(_context);
-            SignedPolicyRepository = new SignedPolicyRepository(_context);
+            PolicyRepository = new PolicyRepository(_context);
             CarRepository = new CarRepository(_context);
         }
 
@@ -30,7 +30,7 @@ namespace InsuranceCompany.Library.Core.Repository
         public IAidPackageRepository AidPackageRepository { get; set; }
         public IBranchRepository BranchRepository { get; set; }
         public IAccidentRepository AccidentRepository { get; set; }
-        public ISignedPolicyRepository SignedPolicyRepository { get; set; }
+        public IPolicyRepository PolicyRepository { get; set; }
         public ICarRepository CarRepository { get; set; }
 
         public void Dispose()

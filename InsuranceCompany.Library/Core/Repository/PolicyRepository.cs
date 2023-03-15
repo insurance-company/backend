@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace InsuranceCompany.Library.Core.Repository
 {
-    public class SignedPolicyRepository : ISignedPolicyRepository
+    public class PolicyRepository : IPolicyRepository
     {
         private readonly InsuranceCompanyDbContext _context;
-        public SignedPolicyRepository(InsuranceCompanyDbContext context)
+        public PolicyRepository(InsuranceCompanyDbContext context)
         {
             _context = context;
         }
@@ -34,6 +34,11 @@ namespace InsuranceCompany.Library.Core.Repository
             _context.SignedPolicies.Add(policy);
             _context.SaveChanges();
             return policy;
+        }
+
+        public List<SignedPolicy> GetAllUnsigned()
+        {
+            return _context.SignedPolicies.Include(x => x.AidPackage).Include(x => x.Agent).Include(x => x.Car.Owner).Where(x => !x.Deleted && x.Agent == null).ToList();
         }
     }
 }
