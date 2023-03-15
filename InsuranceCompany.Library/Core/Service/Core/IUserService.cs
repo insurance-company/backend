@@ -11,6 +11,7 @@ namespace InsuranceCompany.Library.Core.Service.Core
     {
         Page<User> GetAllBuyers(int pageNumber, int pageSize);
         List<Worker> GetAllWorkers();
+        List<Agent> GetAllAgents();
         User FindByEmail(string email);
         User RegisterCustomer(User user);
         Manager RegisterManager(Manager user);

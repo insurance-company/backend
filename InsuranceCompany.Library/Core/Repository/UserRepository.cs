@@ -27,6 +27,11 @@ namespace InsuranceCompany.Library.Core.Repository
             return _context.Workers.Where(x => !x.Deleted).ToList();
         }
 
+        public List<Agent> GetAllAgents()
+        {
+            return _context.Agents.Where(x => !x.Deleted).ToList();
+        }
+
         public User FindByEmail(string email)
         {
             return _context.Users.FirstOrDefault(x => x.Email == email);

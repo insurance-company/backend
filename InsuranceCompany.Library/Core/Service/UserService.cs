@@ -33,6 +33,11 @@ namespace InsuranceCompany.Library.Core.Service
             return _unitOfWork.UserRepository.GetAllWorkers();
         }
 
+        public List<Agent> GetAllAgents()
+        {
+            return _unitOfWork.UserRepository.GetAllAgents();
+        }
+
         public User FindByEmail(string email)
         {
             return _unitOfWork.UserRepository.FindByEmail(email);

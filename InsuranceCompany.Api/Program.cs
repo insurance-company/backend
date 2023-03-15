@@ -22,6 +22,7 @@ builder.Services.AddScoped<IBranchService, BranchService>();
 builder.Services.AddScoped<IAccidentService, AccidentService>();
 builder.Services.AddScoped<ISignedPolicyService, SignedPolicyService>();
 builder.Services.AddScoped<ICarService, CarService>();
+builder.Services.AddScoped<IStatisticsService, StatisticsService>();
 
 builder.Services.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme).AddCertificate();
 

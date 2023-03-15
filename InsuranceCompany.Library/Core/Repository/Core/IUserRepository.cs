@@ -11,6 +11,7 @@ namespace InsuranceCompany.Library.Core.Repository.Core
     {
         List<User> GetAllBuyers();
         List<Worker> GetAllWorkers();
+        List<Agent> GetAllAgents();
         User FindByEmail(string email);
         User Create(User user);
         Manager CreateManager(Manager manager);
