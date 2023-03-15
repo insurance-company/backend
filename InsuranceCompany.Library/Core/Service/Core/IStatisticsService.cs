@@ -10,5 +10,6 @@ namespace InsuranceCompany.Library.Core.Service.Core
     {
         List<int> GetNumberOfAgentSignedPoliciesPerMonth(int agentId, int year);
         List<int> GetNumberOfAccidentsPerMonth(int year);
+        List<int> GetNumberOfEachAccidentStatus();
     }
 }

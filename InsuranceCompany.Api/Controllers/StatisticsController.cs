@@ -29,5 +29,14 @@ namespace InsuranceCompany.Api.Controllers
         {
             return _statService.GetNumberOfAccidentsPerMonth(year);
         }
+
+        [Authorize(Roles = "MANAGER")]
+        [HttpGet("GetNumberOfEachAccidentStatus")]
+        public ActionResult<List<int>> GetNumberOfEachAccidentStatus()
+        {
+            return _statService.GetNumberOfEachAccidentStatus();
+        }
+
+
     }
 }
