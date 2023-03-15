@@ -9,5 +9,6 @@ namespace InsuranceCompany.Library.Core.Service.Core
     public interface IStatisticsService
     {
         List<int> GetNumberOfAgentSignedPoliciesPerMonth(int agentId, int year);
+        List<int> GetNumberOfAccidentsPerMonth(int year);
     }
 }

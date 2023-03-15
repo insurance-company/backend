@@ -17,6 +17,12 @@ namespace InsuranceCompany.Library.Core.Repository
         {
             _context = context;
         }
+
+        public List<Accident> GetAll()
+        {
+            return _context.Accidents.Include(x => x.Car).Include(x => x.Car.Owner).Where(x => !x.Deleted).ToList();
+        }
+
         public List<Accident> GetAllByUserId(int userId)
         {
             return _context.Accidents.Include(x=>x.Car).Include(x => x.Car.Owner)
