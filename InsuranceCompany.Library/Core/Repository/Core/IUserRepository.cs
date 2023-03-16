@@ -18,6 +18,7 @@ namespace InsuranceCompany.Library.Core.Repository.Core
         Agent CreateAgent(Agent agent);
         User FindById(int id);
         Manager FindManagerById(int id);
+        Agent FindAgentById(int id);
 
     }
 }

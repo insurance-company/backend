@@ -67,5 +67,10 @@ namespace InsuranceCompany.Library.Core.Repository
             return _context.Managers.Include(x=> x.WorksInBranch).Include(x=>x.ManagesTheBranch).FirstOrDefault(x => x.Id == id);
         }
 
+        public Agent FindAgentById(int id)
+        {
+            return _context.Agents.Include(x => x.WorksInBranch).FirstOrDefault(x => x.Id == id);
+        }
+
     }
 }

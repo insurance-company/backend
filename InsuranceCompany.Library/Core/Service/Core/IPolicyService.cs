@@ -13,5 +13,6 @@ namespace InsuranceCompany.Library.Core.Service.Core
         Page<SignedPolicy> GetAllByBuyerId(int buyerId, int pageNumber, int pageSize);
         SignedPolicy BuyPolicy(SignedPolicy policy);
         Page<SignedPolicy> GetAllUnsigned(int pageNumber, int pageSize);
+        void SignOrDecline(int policyId, bool sign, int agentId);
     }
 }

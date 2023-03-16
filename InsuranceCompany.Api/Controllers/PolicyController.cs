@@ -4,8 +4,10 @@ using InsuranceCompany.Api.Mappers;
 using InsuranceCompany.Library.Core.Model;
 using InsuranceCompany.Library.Core.Service;
 using InsuranceCompany.Library.Core.Service.Core;
+using InsuranceCompany.Library.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MimeKit.Cryptography;
 
 namespace InsuranceCompany.Api.Controllers
 {
@@ -14,13 +16,11 @@ namespace InsuranceCompany.Api.Controllers
     [Route("api/[controller]")]
     public class PolicyController : ControllerBase
     {
-        private readonly IMapper _mapper;
         private readonly IPolicyService _policyService;
         private readonly IAidPackageService _aidPackageService;
         private readonly ICarService _carService;
-        public PolicyController(IMapper mapper, IPolicyService signedPolicyService, IAidPackageService aidPackageService, ICarService carService)
+        public PolicyController(IPolicyService signedPolicyService, IAidPackageService aidPackageService, ICarService carService)
         {
-            _mapper = mapper;
             _policyService = signedPolicyService;
             _aidPackageService = aidPackageService;
             _carService = carService;
@@ -48,10 +48,21 @@ namespace InsuranceCompany.Api.Controllers
         }
 
         [Authorize(Roles = "AGENT")]
-        [HttpGet("getAllUnsigned")]
+        [HttpGet("getAllUnsigned/{pageNumber}/{pageSize}")]
         public ActionResult<Page<SignedPolicy>> GetAllUnsigned(int pageNumber, int pageSize)
         {
             return _policyService.GetAllUnsigned(pageNumber, pageSize);
+        }
+
+        [Authorize(Roles = "AGENT")]
+        [HttpPut("SignOrDecline")]
+        public ActionResult SignOrDecline(bool sign, int policyId)
+        {
+            int agentId = int.Parse(User.FindFirst("id").Value.ToString());
+            Console.WriteLine(agentId);
+            Console.WriteLine("EEE");   
+            _policyService.SignOrDecline(policyId, sign, agentId);
+            return Ok();
         }
         
     }

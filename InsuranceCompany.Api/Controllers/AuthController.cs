@@ -69,7 +69,7 @@ namespace InsuranceCompany.Api.Controllers
 
             if (agentDTO == null) return BadRequest();
             if (_userService.FindByEmail(agentDTO.Email) != null) return BadRequest("Email je vec iskoriscen");
-            int managerId = Int32.Parse(User.FindFirst("id").Value.ToString());
+            int managerId = int.Parse(User.FindFirst("id").Value.ToString());
             _userService.RegisterAgent(AgentMapper.EntityDTOToEntity(agentDTO, _userService.FindManagerById(agentDTO.BossId), _branchService.FindById(_userService.FindManagerById(managerId).ManagesTheBranch.Id)));
             return Ok();
         }

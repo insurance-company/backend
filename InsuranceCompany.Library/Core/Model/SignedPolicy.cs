@@ -15,7 +15,7 @@ namespace InsuranceCompany.Library.Core.Model
         public Agent? Agent { get; set; }
         public Car Car { get; set; }
 
-        private SignedPolicy() { }
+        public SignedPolicy() { }
         private SignedPolicy(DateTime dateOfSigning, AidPackage aidPackage, Agent? agent, Car car)
         {
             Date = dateOfSigning;
