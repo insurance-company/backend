@@ -12,5 +12,8 @@ namespace InsuranceCompany.Library.Core.Repository.Core
         List<SignedPolicy> GetAllByAgentId(int agentId);
         List<SignedPolicy> GetAllByBuyerId(int buyerId);
         SignedPolicy Create(SignedPolicy policy);
+        SignedPolicy Update(SignedPolicy policy);
+        List<SignedPolicy> GetAllUnsigned();
+        SignedPolicy FindById(int id);
     }
 }

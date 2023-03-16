@@ -18,7 +18,7 @@ namespace InsuranceCompany.Library.Core.Service
             List<int> retList = new();
             var allMonths = from month in Enumerable.Range(1, 12)
                             let key = new { Month = month }
-                            join appointment in _unitOfWork.SignedPolicyRepository.GetAllByAgentId(agentId).Where(a => a.Date.Year == year) on key
+                            join appointment in _unitOfWork.PolicyRepository.GetAllByAgentId(agentId).Where(a => a.Date.Year == year) on key
                             equals new { appointment.Date.Month } into g
                             select new { key, total = g.Count() };
             foreach (var element in allMonths)

@@ -1,6 +1,7 @@
 ﻿using InsuranceCompany.Library.Core.Model;
 using InsuranceCompany.Library.Core.Repository.Core;
 using InsuranceCompany.Library.Core.Service.Core;
+using InsuranceCompany.Library.Helpers.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,11 @@ namespace InsuranceCompany.Library.Core.Service
     public class PolicyService : Core.IPolicyService
     {
         protected readonly IUnitOfWork _unitOfWork;
-        public PolicyService(IUnitOfWork unitOfWork)
+        protected readonly IEmailService _emailService;
+        public PolicyService(IUnitOfWork unitOfWork, IEmailService emailService)
         {
             _unitOfWork = unitOfWork;
+            _emailService = emailService;
         }
         public Page<SignedPolicy> GetAllByAgentId(int agentId, int pageNumber, int pageSize)
         {
@@ -46,6 +49,34 @@ namespace InsuranceCompany.Library.Core.Service
             page.TotalCount = unsignedPolicies.Count;
             page.Data = unsignedPolicies.Skip(pageNumber * pageSize).Take(pageSize).ToList();
             return page;
+        }
+
+        public void SignOrDecline(int policyId, bool sign, int agentId)
+        {
+            try
+            {
+                SignedPolicy policy = _unitOfWork.PolicyRepository.FindById(policyId);
+                string text = "";
+                if (sign == true)
+                {
+                    policy.Agent = _unitOfWork.UserRepository.FindAgentById(agentId);
+                    policy.Date = DateTime.Now;
+                    text = "Postovanje, <br> Vasa polisa je potpisana! <br> Agent: " + policy.Agent.FirstName + " " + policy.Agent.LastName + ", Br Licence: " + policy.Agent.LicenceNumber;
+                }
+                else
+                {
+                    policy.Deleted = true;
+                    text = "Postovanje, <br> Vasa polisa je odbijena!";
+                }
+
+                _unitOfWork.PolicyRepository.Update(policy);
+                _unitOfWork.Save();
+                _emailService.SendEmail("STATUS POLISE", text, policy.Car.Owner.Email.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw new Exception();
+            }
         }
     }
 }

@@ -36,9 +36,20 @@ namespace InsuranceCompany.Library.Core.Repository
             return policy;
         }
 
+        public SignedPolicy Update(SignedPolicy policy)
+        {
+            _context.SignedPolicies.Update(policy);
+            return policy;
+        }
+
         public List<SignedPolicy> GetAllUnsigned()
         {
             return _context.SignedPolicies.Include(x => x.AidPackage).Include(x => x.Agent).Include(x => x.Car.Owner).Where(x => !x.Deleted && x.Agent == null).ToList();
+        }
+
+        public SignedPolicy FindById(int id)
+        {
+            return _context.SignedPolicies.Include(x=> x.Car.Owner).FirstOrDefault(x => x.Id == id);
         }
     }
 }
