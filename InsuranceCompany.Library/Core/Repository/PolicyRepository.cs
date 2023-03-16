@@ -4,6 +4,7 @@ using InsuranceCompany.Library.Settings;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,7 +50,7 @@ namespace InsuranceCompany.Library.Core.Repository
 
         public SignedPolicy FindById(int id)
         {
-            return _context.SignedPolicies.Include(x=> x.Car.Owner).FirstOrDefault(x => x.Id == id);
+            return _context.SignedPolicies.Include(x => x.Car.Owner).Include(x => x.AidPackage).Include(x => x.Agent).FirstOrDefault(x => x.Id == id);
         }
     }
 }
