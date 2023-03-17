@@ -15,6 +15,8 @@ namespace InsuranceCompany.Library.Core.Model
         public Car Car { get; set; }
         [AllowNull]
         public TowTruck? TowTruck { get; set; }
+        public DateTime TowingStartTime { get; set; }
+        public double TowingDuration { get; set; }
         public AccidentStatus Status { get; set; }
     }
 }

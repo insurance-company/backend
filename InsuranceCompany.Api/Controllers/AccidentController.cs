@@ -13,12 +13,12 @@ namespace InsuranceCompany.Api.Controllers
     public class AccidentController : ControllerBase
     {
         private readonly IMapper _mapper;
-        private readonly IAccidentService _nesrecaService;
+        private readonly IAccidentService _accidentService;
         private readonly ICarService _carService;
-        public AccidentController(IMapper mapper, IAccidentService nesrecaService, ICarService carService)
+        public AccidentController(IMapper mapper, IAccidentService accidentService, ICarService carService)
         {
             _mapper = mapper;
-            _nesrecaService = nesrecaService;
+            _accidentService = accidentService;
             _carService = carService;
         }
 
@@ -26,21 +26,21 @@ namespace InsuranceCompany.Api.Controllers
         [HttpGet("getAllByUserId/{id}/{pageNumber}/{pageSize}")]
         public ActionResult<Page<Accident>> GetAll(int id, int pageNumber, int pageSize)
         {
-            return _nesrecaService.GetAllByUserId(id, pageNumber, pageSize);
+            return _accidentService.GetAllByUserId(id, pageNumber, pageSize);
         }
 
         [Authorize(Roles = "MANAGER")]
         [HttpGet("getAllUnvalidated/{pageNumber}/{pageSize}")]
         public ActionResult<Page<Accident>> GetAllUnvalidated(int pageNumber, int pageSize)
         {
-            return _nesrecaService.GetAllUnvalidated(pageNumber, pageSize);
+            return _accidentService.GetAllUnvalidated(pageNumber, pageSize);
         }
 
         [Authorize(Roles = "CUSTOMER")]
         [HttpPost("createAccident")]
         public ActionResult<AccidentDTO> Create([FromBody] AccidentDTO accident)
         {
-            Accident createdAccident = _nesrecaService.Create(AccidentMapper.EntityDTOToEntity(accident, _carService.FindById(accident.CarId), null));
+            Accident createdAccident = _accidentService.Create(AccidentMapper.EntityDTOToEntity(accident, _carService.FindById(accident.CarId), null));
             return AccidentMapper.EntityToEntityDto(createdAccident);
         }
     }

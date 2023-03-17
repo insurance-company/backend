@@ -13,5 +13,6 @@ namespace InsuranceCompany.Library.Core.Repository.Core
         List<Accident> GetAllByUserId(int userId);
         List<Accident> GetAllUnvalidated();
         Accident Create(Accident accident);
+        Accident? FindByTowTruckIdTowingStartTimeAndDuration(int towTruckId, DateTime startTime, double duration);
     }
 }
