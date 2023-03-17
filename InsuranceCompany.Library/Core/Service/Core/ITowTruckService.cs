@@ -9,6 +9,7 @@ namespace InsuranceCompany.Library.Core.Service.Core
 {
     public interface ITowTruckService
     {
+        TowTruck? FindById(int id);
         List<TowTruck> GetAvailableTowTrucks(int branchId, DateTime startTime, double duration);
     }
 }

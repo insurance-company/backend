@@ -37,6 +37,12 @@ namespace InsuranceCompany.Library.Core.Repository
             return accident;
         }
 
+        public Accident Update(Accident accident)
+        {
+            _context.Accidents.Update(accident);
+            return accident;
+        }
+
         public Accident? FindByTowTruckIdTowingStartTimeAndDuration(int towTruckId, DateTime startTime, double duration)
         {
             DateTime endTime = startTime.AddHours(duration);
@@ -46,6 +52,11 @@ namespace InsuranceCompany.Library.Core.Repository
             (x.TowingStartTime > startTime && x.TowingStartTime < endTime) || 
             (x.TowingStartTime.AddHours(x.TowingDuration) > startTime && x.TowingStartTime.AddHours(x.TowingDuration) < endTime)
             ));
+        }
+
+        public Accident? FindById(int id)
+        {
+            return _context.Accidents.FirstOrDefault(x => x.Id == id);
         }
     }
 }

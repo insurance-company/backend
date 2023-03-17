@@ -6,6 +6,7 @@ namespace InsuranceCompany.Api.DTO
 {
     public class AccidentDTO
     {
+        public int Id { get; set; }
         public string Description { get; set; }
         public DateTime Date { get; set; }
         public int CarId { get; set; }

@@ -10,6 +10,7 @@ namespace InsuranceCompany.Api.Mappers
         {
             AccidentDTO dto = new AccidentDTO();
 
+            dto.Id = accident.Id;
             dto.Description = accident.Description;
             dto.Date = accident.Date;
             dto.CarId = accident.Id;
@@ -25,6 +26,7 @@ namespace InsuranceCompany.Api.Mappers
         {
             Accident accident = new Accident();
 
+            accident.Id = dto.Id;
             accident.Description = dto.Description;
             accident.Date = dto.Date;
             accident.Car = car;

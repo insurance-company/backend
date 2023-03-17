@@ -9,6 +9,7 @@ namespace InsuranceCompany.Library.Core.Repository.Core
 {
     public interface ITowTruckRepository
     {
+        TowTruck? FindById(int id);
         List<TowTruck> GetAllByTowingServiceId(int id);
     }
 }

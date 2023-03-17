@@ -12,5 +12,6 @@ namespace InsuranceCompany.Library.Core.Service.Core
         Page<Accident> GetAllByUserId(int userId, int pageNumber, int pageSize);
         Page<Accident> GetAllUnvalidated(int pageNumber, int pageSize);
         Accident Create(Accident accident);
+        Accident Update(Accident accident);
     }
 }

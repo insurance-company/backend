@@ -10,16 +10,20 @@ namespace InsuranceCompany.Api.Controllers
     public class TowTruckController : ControllerBase
     {
         private readonly ITowTruckService _towTruckService;
-        public TowTruckController(ITowTruckService towTruckService)
+        private readonly IUserService _userService;
+        public TowTruckController(ITowTruckService towTruckService, IUserService userService)
         {
             _towTruckService = towTruckService;
+            _userService = userService;
         }
 
-
+        [Authorize(Roles = "MANAGER")]
         [HttpGet("GetAvaliable")]
         public ActionResult<List<TowTruck>> GetAvaliable(DateTime startTime, double duration)
         {
-            return _towTruckService.GetAvailableTowTrucks(1, startTime, duration);
+            int managerId = int.Parse(User.FindFirst("id").Value.ToString());
+            int branchId = _userService.FindManagerById(managerId).ManagesTheBranch.Id;
+            return _towTruckService.GetAvailableTowTrucks(branchId, startTime, duration);
         }
     }
 }

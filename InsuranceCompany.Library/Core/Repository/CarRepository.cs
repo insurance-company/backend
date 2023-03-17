@@ -16,7 +16,7 @@ namespace InsuranceCompany.Library.Core.Repository
         {
             _context = context;
         }
-        public Car FindById(int id)
+        public Car? FindById(int id)
         {
             return _context.Cars.Find(id);
         }

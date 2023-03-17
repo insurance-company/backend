@@ -16,6 +16,11 @@ namespace InsuranceCompany.Library.Core.Service
         {
             _unitOfWork = unitOfWork;
         }
+
+        public TowTruck? FindById(int id)
+        {
+            return _unitOfWork.TowTruckRepository.FindById(id);
+        }
         public List<TowTruck> GetAvailableTowTrucks(int branchId, DateTime startTime, double duration)
         {
             //prvo nadjemo sve slep sluzbe koje pripadaju odredjenoj filijali
