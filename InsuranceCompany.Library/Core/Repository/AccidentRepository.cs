@@ -20,7 +20,7 @@ namespace InsuranceCompany.Library.Core.Repository
 
         public List<Accident> GetAllByUserId(int userId)
         {
-            return _context.Accidents.Include(x => x.Car).Include(x => x.Car.Owner)
+            return _context.Accidents.Include(x => x.Car).Include(x => x.Car.Owner).Include(x => x.TowTruck.TowingService)
                     .Where(x => !x.Deleted && x.Car.Owner.Id == userId).ToList();
         }
 

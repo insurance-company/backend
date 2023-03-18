@@ -1,4 +1,5 @@
-﻿using InsuranceCompany.Library.Core.Model;
+﻿using Aspose.Pdf;
+using InsuranceCompany.Library.Core.Model;
 using InsuranceCompany.Library.Core.Repository.Core;
 using InsuranceCompany.Library.Core.Service.Core;
 using System;
@@ -16,9 +17,13 @@ namespace InsuranceCompany.Library.Core.Service
         {
             _unitOfWork = unitOfWork;
         }
-        public List<AidPackage> GetAll()
+        public Page<AidPackage> GetAll(int pageNumber, int pageSize)
         {
-            return _unitOfWork.AidPackageRepository.GetAll();
+            List<AidPackage> packages = _unitOfWork.AidPackageRepository.GetAll();
+            Page<AidPackage> page = new Page<AidPackage>();
+            page.TotalCount = packages.Count;
+            page.Data = packages.Skip(pageNumber * pageSize).Take(pageSize).ToList();
+            return page;
         }
 
         public AidPackage FindById(int id)

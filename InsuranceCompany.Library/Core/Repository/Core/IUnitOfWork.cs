@@ -21,6 +21,6 @@ namespace InsuranceCompany.Library.Core.Repository.Core
         public ICarRepository CarRepository { get; }
         public ITowTruckRepository TowTruckRepository { get; }
         public ITowingServiceRepository TowingServiceRepository { get; }
-
+        public IAgencyRepository AgencyRepository { get; }
     }
 }

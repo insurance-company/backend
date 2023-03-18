@@ -28,6 +28,7 @@ namespace InsuranceCompany.Library.Core.Repository
             CarRepository = new CarRepository(_context);
             TowTruckRepository = new TowTruckRepository(_context);
             TowingServiceRepository = new TowingServiceRepository(_context);
+            AgencyRepository = new AgencyRepository(_context);
         }
 
         public IUserRepository UserRepository { get; set; }
@@ -40,6 +41,7 @@ namespace InsuranceCompany.Library.Core.Repository
         public ICarRepository CarRepository { get; set; }
         public ITowTruckRepository TowTruckRepository { get; set; }
         public ITowingServiceRepository TowingServiceRepository { get; set; }
+        public IAgencyRepository AgencyRepository { get; set; }
 
         public void Dispose()
         {

@@ -9,7 +9,7 @@ namespace InsuranceCompany.Library.Core.Service.Core
 {
     public interface IAidPackageService
     {
-        List<AidPackage> GetAll();
+        Page<AidPackage> GetAll(int pageNumber, int pageSize);
         AidPackage FindById(int id);
         AidPackage Create(AidPackage package);
         AidPackage Update(AidPackage package);
