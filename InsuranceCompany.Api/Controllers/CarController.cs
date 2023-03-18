@@ -24,10 +24,11 @@ namespace InsuranceCompany.Api.Controllers
         }
 
         [Authorize(Roles = "CUSTOMER")]
-        [HttpGet("getAllByOwnerId/{id}")]
-        public ActionResult<List<Car>> GetAllByOwnerId(int id)
+        [HttpGet("getAllByOwner")]
+        public ActionResult<List<Car>> GetAllByOwner()
         {
-            return _carService.FindAllByOwnerId(id);
+            int customerId = int.Parse(User.FindFirst("id").Value.ToString());
+            return _carService.FindAllByOwnerId(customerId);
         }
 
 
