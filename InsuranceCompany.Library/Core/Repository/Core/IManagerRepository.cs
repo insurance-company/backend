@@ -7,12 +7,9 @@ using System.Threading.Tasks;
 
 namespace InsuranceCompany.Library.Core.Repository.Core
 {
-    public interface IUserRepository
+    public interface IManagerRepository
     {
-        List<User> GetAllCustomers();
-        List<Worker> GetAllWorkers();
-        User FindByEmail(string email);
-        User Create(User user);
-        User FindById(int id);
+        Manager Create(Manager manager);
+        Manager? FindById(int id);
     }
 }

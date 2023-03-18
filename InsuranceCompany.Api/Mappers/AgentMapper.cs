@@ -28,22 +28,7 @@ namespace InsuranceCompany.Api.Mappers
 
         public static Agent EntityDTOToEntity(AgentDTO dto, Worker boss, Branch worksInBranch)
         {
-            Agent agent = new Agent();
-
-            agent.Email = dto.Email;
-            agent.Password = dto.Password;
-            agent.Role = dto.Role.ToString();
-            agent.FirstName = dto.FirstName;
-            agent.LastName = dto.LastName;
-            agent.UniqueMasterCitizenNumber = dto.UniqueMasterCitizenNumber;
-            agent.PhoneNumber = dto.PhoneNumber;
-            agent.Address = dto.Address;
-            agent.Gender = dto.Gender;
-            agent.Boss = boss;
-            agent.WorksInBranch = worksInBranch;
-            agent.LicenceNumber = dto.LicenceNumber;
-
-            return agent;
+            return Agent.Create(dto.LicenceNumber, boss, worksInBranch, dto.Email, dto.Password, dto.Role.ToString(), dto.FirstName, dto.LastName, dto.UniqueMasterCitizenNumber, dto.PhoneNumber, dto.Address, dto.Gender);
         }
     }
 }

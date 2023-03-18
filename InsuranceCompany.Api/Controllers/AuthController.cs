@@ -41,13 +41,17 @@ namespace InsuranceCompany.Api.Controllers
         }
 
         [HttpPost("register")]
-        public IActionResult RegisterUser([FromBody] UserDTO userObjDTO)
+        public ActionResult RegisterUser([FromBody] UserDTO userObjDTO)
         {
 
             if (userObjDTO == null) return BadRequest();
             if (_userService.FindByEmail(userObjDTO.Email) != null) return BadRequest("Email je vec iskoriscen");
-            _userService.RegisterCustomer(_mapper.Map<User>(userObjDTO));
-            return Ok();
+            User user = _userService.RegisterCustomer(_mapper.Map<User>(userObjDTO));
+            return Ok(new
+            {
+                Token = JwtToken.CreateJwtToken(user),
+                Message = "Uspesna prijava!"
+            });
         }
 
         [Authorize(Roles = "ADMIN")]

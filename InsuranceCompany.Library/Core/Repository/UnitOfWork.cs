@@ -19,6 +19,8 @@ namespace InsuranceCompany.Library.Core.Repository
             _context = context;
 
             UserRepository = new UserRepository(_context);
+            ManagerRepository = new ManagerRepository(_context);
+            AgentRepository = new AgentRepository(_context);
             AidPackageRepository = new AidPackageRepository(_context);
             BranchRepository = new BranchRepository(_context);
             AccidentRepository = new AccidentRepository(_context);
@@ -29,6 +31,8 @@ namespace InsuranceCompany.Library.Core.Repository
         }
 
         public IUserRepository UserRepository { get; set; }
+        public IManagerRepository ManagerRepository { get; set; }
+        public IAgentRepository AgentRepository { get; set; }
         public IAidPackageRepository AidPackageRepository { get; set; }
         public IBranchRepository BranchRepository { get; set; }
         public IAccidentRepository AccidentRepository { get; set; }

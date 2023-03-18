@@ -25,9 +25,9 @@ namespace InsuranceCompany.Api.Controllers
 
         [Authorize(Roles = "MANAGER, AGENT")]
         [HttpGet("getAllBuyers/{pageNumber}/{pageSize}")]
-        public ActionResult<Page<User>> GetAllBuyers(int pageNumber, int pageSize)
+        public ActionResult<Page<User>> GetAllCustomers(int pageNumber, int pageSize)
         {
-           return _userService.GetAllBuyers(pageNumber, pageSize);
+           return _userService.GetAllCustomers(pageNumber, pageSize);
         }
 
         [Authorize(Roles = "MANAGER, AGENT, CUSTOMER, ADMIN")]

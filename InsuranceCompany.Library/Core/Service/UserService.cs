@@ -1,4 +1,5 @@
 ﻿using InsuranceCompany.Library.Core.Model;
+using InsuranceCompany.Library.Core.Model.Enum;
 using InsuranceCompany.Library.Core.Repository.Core;
 using InsuranceCompany.Library.Core.Service.Core;
 using InsuranceCompany.Library.Helpers;
@@ -19,9 +20,9 @@ namespace InsuranceCompany.Library.Core.Service
         {
             _unitOfWork = unitOfWork;
         }
-        public Page<User> GetAllBuyers(int pageNumber, int pageSize)
+        public Page<User> GetAllCustomers(int pageNumber, int pageSize)
         {
-            List<User> users =  _unitOfWork.UserRepository.GetAllBuyers();
+            List<User> users =  _unitOfWork.UserRepository.GetAllCustomers();
             Page<User> page = new Page<User>();
             page.TotalCount = users.Count;
             page.Data = users.Skip(pageNumber * pageSize).Take(pageSize).ToList();
@@ -35,7 +36,7 @@ namespace InsuranceCompany.Library.Core.Service
 
         public List<Agent> GetAllAgents()
         {
-            return _unitOfWork.UserRepository.GetAllAgents();
+            return _unitOfWork.AgentRepository.GetAll();
         }
 
         public User FindByEmail(string email)
@@ -45,24 +46,21 @@ namespace InsuranceCompany.Library.Core.Service
 
         public User RegisterCustomer(User user)
         {
-            user.Password = PasswordHasher.HashPassword(user.Password);
-            user.Role = Model.Enum.Role.CUSTOMER.ToString();
+            user.Register(PasswordHasher.HashPassword(user.Password), Role.CUSTOMER);
             return _unitOfWork.UserRepository.Create(user);
         }
 
         public Manager RegisterManager(Manager manager)
         {
-            manager.Password = PasswordHasher.HashPassword(manager.Password);
-            manager.Role = Model.Enum.Role.MANAGER.ToString();
-            manager.WorksInBranch = manager.ManagesTheBranch;
-            return _unitOfWork.UserRepository.CreateManager(manager);
+            manager.Register(PasswordHasher.HashPassword(manager.Password), Role.MANAGER);
+            //fali works in branch dodaj na frontu
+            return _unitOfWork.ManagerRepository.Create(manager);
         }
 
         public Agent RegisterAgent(Agent agent)
         {
-            agent.Password = PasswordHasher.HashPassword(agent.Password);
-            agent.Role = Model.Enum.Role.AGENT.ToString();
-            return _unitOfWork.UserRepository.CreateAgent(agent);
+            agent.Register(PasswordHasher.HashPassword(agent.Password), Role.AGENT);
+            return _unitOfWork.AgentRepository.Create(agent);
         }
 
         public User FindById(int id)
@@ -72,7 +70,7 @@ namespace InsuranceCompany.Library.Core.Service
 
         public Manager FindManagerById(int id)
         {
-            return _unitOfWork.UserRepository.FindManagerById(id);
+            return _unitOfWork.ManagerRepository.FindById(id);
         }
     }
 }

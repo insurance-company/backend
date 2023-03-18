@@ -8,8 +8,8 @@ namespace InsuranceCompany.Library.Core.Model
 {
     public class Branch : Entity
     {
-        public Agency Agency { get; set; }
-        public string Address { get; set; }
+        public Agency Agency { get; private set; }
+        public string Address { get; private set; }
 
     }
 }

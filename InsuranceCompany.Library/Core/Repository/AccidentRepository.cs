@@ -33,7 +33,6 @@ namespace InsuranceCompany.Library.Core.Repository
         public Accident Create(Accident accident)
         {
             _context.Accidents.Add(accident);
-            _context.SaveChanges();
             return accident;
         }
 

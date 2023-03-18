@@ -23,15 +23,12 @@ namespace InsuranceCompany.Library.Core.Service
         }
         public List<TowTruck> GetAvailableTowTrucks(int branchId, DateTime startTime, double duration)
         {
-            //prvo nadjemo sve slep sluzbe koje pripadaju odredjenoj filijali
             List<TowingService> towingServices = _unitOfWork.TowingServiceRepository.GetAllByBranchId(branchId);
-            //zatim nadjemo sve slepere koji pripadaju tim slep sluzbama
             List<TowTruck> towTrucks = new();
             foreach (TowingService towingService in towingServices)
             {
                 towTrucks.AddRange(_unitOfWork.TowTruckRepository.GetAllByTowingServiceId(towingService.Id));
             }
-            //zatim vidimo koji su od njih slobodni
             List<TowTruck> availableTowTrucks = new();
             foreach (TowTruck towTruck in towTrucks)
             {

@@ -29,13 +29,13 @@ namespace InsuranceCompany.Library.Core.Service
         {
             try
             {
-                _unitOfWork.AidPackageRepository.Create(package);
+                AidPackage ret =_unitOfWork.AidPackageRepository.Create(package);
                 _unitOfWork.Save();
-                return package;
+                return ret;
             } 
-            catch
+            catch(Exception ex) 
             {
-                throw new Exception();
+                throw new Exception(ex.Message);
             }
         }
 
@@ -43,13 +43,13 @@ namespace InsuranceCompany.Library.Core.Service
         {
             try
             {
-                _unitOfWork.AidPackageRepository.Update(package);
+                AidPackage ret = _unitOfWork.AidPackageRepository.Update(package);
                 _unitOfWork.Save();
-                return package;
+                return ret;
             }
-            catch
+            catch (Exception ex)
             {
-                throw new Exception();
+                throw new Exception(ex.Message);
             }
         }
 
@@ -58,13 +58,13 @@ namespace InsuranceCompany.Library.Core.Service
             try
             {
                 AidPackage package = FindById(id);
-                _unitOfWork.AidPackageRepository.Remove(package);
+                AidPackage ret = _unitOfWork.AidPackageRepository.Remove(package);
                 _unitOfWork.Save();
-                return package;
+                return ret;
             }
-            catch
+            catch (Exception ex)
             {
-                throw new Exception();
+                throw new Exception(ex.Message);
             }
         }
     }

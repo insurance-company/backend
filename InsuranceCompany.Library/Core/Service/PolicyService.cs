@@ -59,8 +59,7 @@ namespace InsuranceCompany.Library.Core.Service
                 string text = "";
                 if (sign == true)
                 {
-                    policy.Agent = _unitOfWork.UserRepository.FindAgentById(agentId);
-                    policy.Date = DateTime.Now;
+                    policy.Sign(_unitOfWork.AgentRepository.FindById(agentId));
                     text = "Postovanje, <br> Vasa polisa je potpisana! <br> Agent: " + policy.Agent.FirstName + " " + policy.Agent.LastName + ", Br Licence: " + policy.Agent.LicenceNumber;
                 }
                 else
@@ -75,7 +74,7 @@ namespace InsuranceCompany.Library.Core.Service
             }
             catch (Exception ex)
             {
-                throw new Exception();
+                throw new Exception(ex.Message);
             }
         }
     }

@@ -8,11 +8,11 @@ namespace InsuranceCompany.Library.Core.Model
 {
     public class Car : Entity
     {
-        public string RegisterNumber { get; set; }
-        public int Years { get; set; }
-        public string Model { get; set; }
-        public string Brand { get; set; }
-        public User Owner {get; set; }
+        public string RegisterNumber { get; private set; }
+        public int Years { get; private set; }
+        public string Model { get; private set; }
+        public string Brand { get; private set; }
+        public User Owner {get; private set; }
 
     }
 }

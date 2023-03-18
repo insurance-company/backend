@@ -1,6 +1,7 @@
 ﻿using InsuranceCompany.Library.Core.Model.Enum;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,19 +10,20 @@ namespace InsuranceCompany.Library.Core.Model
 {
     public class User : Entity
     {
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string Role { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string UniqueMasterCitizenNumber { get; set; }
-        public string PhoneNumber { get; set; }
-        public string Address { get; set; }
-        public Gender Gender { get; set; }
+        public string Email { get; private set; }
+        public string Password { get; private set; }
+        public string Role { get; private set; }
+        public string FirstName { get; private set; }
+        public string LastName { get; private set; }
+        [StringLength(13)]
+        public string UniqueMasterCitizenNumber { get; private set; }
+        public string PhoneNumber { get; private set; }
+        public string Address { get; private set; }
+        public Gender Gender { get; private set; }
 
-        public User() { }
+        protected User() { }
 
-        private User(string email, string password, string role, string firstName, string lastName, string uniqueMasterCitizenNumber, string phoneNumber, string address, Gender gender)
+        protected User(string email, string password, string role, string firstName, string lastName, string uniqueMasterCitizenNumber, string phoneNumber, string address, Gender gender)
         {
             Email = email;
             Password = password;
@@ -37,6 +39,13 @@ namespace InsuranceCompany.Library.Core.Model
         public static User Create(string email, string password, string role, string firstName, string lastName, string uniqueMasterCitizenNumber, string phoneNumber, string address, Gender gender)
         {
             return new User(email, password, role, firstName, lastName, uniqueMasterCitizenNumber, phoneNumber, address, gender);
+        }
+
+        public void Register(string password, Model.Enum.Role role)
+        {
+            Password = password;
+            Role = role.ToString();
+
         }
 
     }
