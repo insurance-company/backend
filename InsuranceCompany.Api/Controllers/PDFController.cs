@@ -2,6 +2,7 @@
 using InsuranceCompany.Library.Core.Service.Core;
 using InsuranceCompany.Library.Helpers;
 using InsuranceCompany.Library.Helpers.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InsuranceCompany.Api.Controllers
@@ -15,6 +16,8 @@ namespace InsuranceCompany.Api.Controllers
         {
             _pdfService= pdfService;
         }
+
+        [Authorize(Roles = "AGENT")]
         [HttpGet("getPolicyPDF")]
         public IActionResult GetPolicyPDF(int id)
         {

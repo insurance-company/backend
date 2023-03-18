@@ -21,7 +21,7 @@ namespace InsuranceCompany.Library.Core.Repository
             return _context.AidPackages.Where(x => !x.Deleted).ToList();
         }
 
-        public AidPackage FindById(int id)
+        public AidPackage? FindById(int id)
         {
             return _context.AidPackages.FirstOrDefault(x => x.Id == id);
         }

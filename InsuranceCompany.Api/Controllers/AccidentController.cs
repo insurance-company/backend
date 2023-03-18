@@ -13,35 +13,45 @@ namespace InsuranceCompany.Api.Controllers
     public class AccidentController : ControllerBase
     {
         private readonly IMapper _mapper;
-        private readonly IAccidentService _nesrecaService;
+        private readonly IAccidentService _accidentService;
         private readonly ICarService _carService;
-        public AccidentController(IMapper mapper, IAccidentService nesrecaService, ICarService carService)
+        private readonly ITowTruckService _towTruckService;
+        public AccidentController(IMapper mapper, IAccidentService accidentService, ICarService carService, ITowTruckService towTruckService)
         {
             _mapper = mapper;
-            _nesrecaService = nesrecaService;
+            _accidentService = accidentService;
             _carService = carService;
+            _towTruckService = towTruckService;
         }
 
         [Authorize(Roles = "CUSTOMER")]
         [HttpGet("getAllByUserId/{id}/{pageNumber}/{pageSize}")]
         public ActionResult<Page<Accident>> GetAll(int id, int pageNumber, int pageSize)
         {
-            return _nesrecaService.GetAllByUserId(id, pageNumber, pageSize);
+            return _accidentService.GetAllByUserId(id, pageNumber, pageSize);
         }
 
         [Authorize(Roles = "MANAGER")]
         [HttpGet("getAllUnvalidated/{pageNumber}/{pageSize}")]
         public ActionResult<Page<Accident>> GetAllUnvalidated(int pageNumber, int pageSize)
         {
-            return _nesrecaService.GetAllUnvalidated(pageNumber, pageSize);
+            return _accidentService.GetAllUnvalidated(pageNumber, pageSize);
         }
 
         [Authorize(Roles = "CUSTOMER")]
-        [HttpPost("createAccident")]
+        [HttpPost("create")]
         public ActionResult<AccidentDTO> Create([FromBody] AccidentDTO accident)
         {
-            Accident createdAccident = _nesrecaService.Create(AccidentMapper.EntityDTOToEntity(accident, _carService.FindById(accident.CarId), null));
+            Accident createdAccident = _accidentService.Create(AccidentMapper.EntityDTOToEntity(accident, _carService.FindById(accident.CarId), null));
             return AccidentMapper.EntityToEntityDto(createdAccident);
+        }
+
+        [Authorize(Roles = "MANAGER")]
+        [HttpPut("validate")]
+        public ActionResult<AccidentDTO> ValidateAccident([FromBody] AccidentDTO dto)
+        {
+            Accident accident = _accidentService.Update(AccidentMapper.EntityDTOToEntity(dto, _carService.FindById(dto.CarId), _towTruckService.FindById(dto.TowTruckId)));
+            return Ok(AccidentMapper.EntityToEntityDto(accident));
         }
     }
 }

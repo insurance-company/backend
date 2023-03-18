@@ -14,6 +14,6 @@ namespace InsuranceCompany.Library.Core.Repository.Core
         SignedPolicy Create(SignedPolicy policy);
         SignedPolicy Update(SignedPolicy policy);
         List<SignedPolicy> GetAllUnsigned();
-        SignedPolicy FindById(int id);
+        SignedPolicy? FindById(int id);
     }
 }

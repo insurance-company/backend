@@ -1,11 +1,7 @@
 ﻿using InsuranceCompany.Library.Core.Model;
 using InsuranceCompany.Library.Core.Repository.Core;
 using InsuranceCompany.Library.Core.Service.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace InsuranceCompany.Library.Core.Service
 {
@@ -38,6 +34,25 @@ namespace InsuranceCompany.Library.Core.Service
         {
             accident.Status = Model.Enum.AccidentStatus.WAITING;
             return _unitOfWork.AccidentRepository.Create(accident);
+        }
+
+        public Accident Update(Accident acc)
+        {
+            try
+            {
+                Accident accident = _unitOfWork.AccidentRepository.FindById(acc.Id);
+                accident.Status = acc.Status;
+                accident.TowTruck = acc.TowTruck;
+                accident.TowingStartTime = accident.TowingStartTime;
+                accident.TowingDuration = accident.TowingDuration;
+                _unitOfWork.AccidentRepository.Update(accident);
+                _unitOfWork.Save();
+                return accident;
+            }
+            catch(Exception e)
+            {
+                throw new Exception();
+            }
         }
 
     }

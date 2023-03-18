@@ -2,11 +2,6 @@
 using InsuranceCompany.Library.Core.Repository.Core;
 using InsuranceCompany.Library.Settings;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InsuranceCompany.Library.Core.Repository
 {
@@ -25,7 +20,7 @@ namespace InsuranceCompany.Library.Core.Repository
 
         public List<Accident> GetAllByUserId(int userId)
         {
-            return _context.Accidents.Include(x=>x.Car).Include(x => x.Car.Owner)
+            return _context.Accidents.Include(x => x.Car).Include(x => x.Car.Owner)
                     .Where(x => !x.Deleted && x.Car.Owner.Id == userId).ToList();
         }
 
@@ -40,6 +35,28 @@ namespace InsuranceCompany.Library.Core.Repository
             _context.Accidents.Add(accident);
             _context.SaveChanges();
             return accident;
+        }
+
+        public Accident Update(Accident accident)
+        {
+            _context.Accidents.Update(accident);
+            return accident;
+        }
+
+        public Accident? FindByTowTruckIdTowingStartTimeAndDuration(int towTruckId, DateTime startTime, double duration)
+        {
+            DateTime endTime = startTime.AddHours(duration);
+
+            return _context.Accidents.FirstOrDefault(x => x.TowTruck.Id == towTruckId & (
+            (x.TowingStartTime >= startTime && x.TowingStartTime.AddHours(x.TowingDuration) <= endTime) ||
+            (x.TowingStartTime > startTime && x.TowingStartTime < endTime) || 
+            (x.TowingStartTime.AddHours(x.TowingDuration) > startTime && x.TowingStartTime.AddHours(x.TowingDuration) < endTime)
+            ));
+        }
+
+        public Accident? FindById(int id)
+        {
+            return _context.Accidents.FirstOrDefault(x => x.Id == id);
         }
     }
 }

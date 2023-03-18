@@ -3,6 +3,7 @@ using System;
 using InsuranceCompany.Library.Settings;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace InsuranceCompany.Library.Migrations
 {
     [DbContext(typeof(InsuranceCompanyDbContext))]
-    partial class InsuranceCompanyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230317132305_AddedTowingDurationFiledToAccidentEntity")]
+    partial class AddedTowingDurationFiledToAccidentEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,11 +58,11 @@ namespace InsuranceCompany.Library.Migrations
                     b.Property<int?>("TowTruckId")
                         .HasColumnType("integer");
 
+                    b.Property<DateTime>("TowingDateTime")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<double>("TowingDuration")
                         .HasColumnType("double precision");
-
-                    b.Property<DateTime>("TowingStartTime")
-                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
