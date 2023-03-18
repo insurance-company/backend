@@ -25,5 +25,23 @@ namespace InsuranceCompany.Library.Core.Repository
         {
             return _context.Cars.Where(x => !x.Deleted && x.Owner.Id == id).ToList();
         }
+
+        public Car Create(Car car)
+        {
+            _context.Cars.Add(car);
+            return car;
+        }
+
+        public Car Update(Car car)
+        {
+            _context.Cars.Update(car);
+            return car;
+        }
+
+        public Car Remove(Car car)
+        {
+            _context.Cars.Remove(car);
+            return car;
+        }
     }
 }

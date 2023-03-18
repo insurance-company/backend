@@ -11,5 +11,8 @@ namespace InsuranceCompany.Library.Core.Service.Core
     {
         Car FindById(int id);
         List<Car> FindAllByOwnerId(int id);
+        Car Create(Car car);
+        Car Update(Car car);
+        Car Remove(int id);
     }
 }
