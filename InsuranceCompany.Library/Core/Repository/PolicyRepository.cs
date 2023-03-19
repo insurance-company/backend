@@ -52,5 +52,11 @@ namespace InsuranceCompany.Library.Core.Repository
         {
             return _context.SignedPolicies.Include(x => x.Car.Owner).Include(x => x.AidPackage).Include(x => x.Agent).FirstOrDefault(x => x.Id == id);
         }
+
+        public List<SignedPolicy> GetAllValidByCustomer(int customerId)
+        {
+            DateTime now = DateTime.Now;
+            return _context.SignedPolicies.Include(x => x.AidPackage).Include(x => x.Agent).Include(x => x.Car.Owner).Where(x => !x.Deleted && x.Car.Owner.Id == customerId && x.Agent != null && x.Date.AddMonths(x.AidPackage.DurationInMonths) > now).ToList();
+        }
     }
 }

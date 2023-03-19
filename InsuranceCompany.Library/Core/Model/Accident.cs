@@ -13,7 +13,7 @@ namespace InsuranceCompany.Library.Core.Model
     {
         public string Description { get; private set; }
         public DateTime Date { get; private set; }
-        public Car Car { get; private set; }
+        public SignedPolicy Policy { get; private set; }
         [AllowNull]
         public TowTruck? TowTruck { get; private set; }
         public DateTime TowingStartTime { get; private set; }
@@ -22,20 +22,20 @@ namespace InsuranceCompany.Library.Core.Model
 
         private Accident() { }
 
-        public Accident(string description, DateTime date, Car car, TowTruck? towTruck, DateTime towingStartTime, double towingDuration, AccidentStatus status)
+        public Accident(string description, DateTime date, SignedPolicy policy, TowTruck? towTruck, DateTime towingStartTime, double towingDuration, AccidentStatus status)
         {
             Description = description;
             Date = date;
-            Car = car;
+            Policy = policy;
             TowTruck = towTruck;
             TowingStartTime = towingStartTime;
             TowingDuration = towingDuration;
             Status = status;
         }
 
-        public static Accident Create(string description, DateTime date, Car car, TowTruck? towTruck, DateTime towingStartTime, double towingDuration, AccidentStatus status)
+        public static Accident Create(string description, DateTime date, SignedPolicy policy, TowTruck? towTruck, DateTime towingStartTime, double towingDuration, AccidentStatus status)
         {
-            return new Accident(description, date, car, towTruck, towingStartTime, towingDuration, status);
+            return new Accident(description, date, policy, towTruck, towingStartTime, towingDuration, status);
         }
 
         public void Validate(AccidentStatus status, TowTruck? towTruck, DateTime towingStartTime, double towingDuration)

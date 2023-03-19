@@ -15,18 +15,18 @@ namespace InsuranceCompany.Library.Core.Repository
 
         public List<Accident> GetAll()
         {
-            return _context.Accidents.Include(x => x.Car).Include(x => x.Car.Owner).Where(x => !x.Deleted).ToList();
+            return _context.Accidents.Include(x => x.Policy.Car.Owner).Where(x => !x.Deleted).ToList();
         }
 
         public List<Accident> GetAllByUserId(int userId)
         {
-            return _context.Accidents.Include(x => x.Car).Include(x => x.Car.Owner).Include(x => x.TowTruck.TowingService)
-                    .Where(x => !x.Deleted && x.Car.Owner.Id == userId).ToList();
+            return _context.Accidents.Include(x => x.Policy.Car.Owner).Include(x => x.Policy.AidPackage).Include(x => x.TowTruck.TowingService)
+                    .Where(x => !x.Deleted && x.Policy.Car.Owner.Id == userId).ToList();
         }
 
         public List<Accident> GetAllUnvalidated()
         {
-            return _context.Accidents.Include(x => x.Car).Include(x => x.Car.Owner)
+            return _context.Accidents.Include(x => x.Policy.Car.Owner).Include(x => x.Policy.AidPackage)
                     .Where(x => !x.Deleted && x.Status == Model.Enum.AccidentStatus.WAITING).ToList();
         }
 
@@ -55,7 +55,7 @@ namespace InsuranceCompany.Library.Core.Repository
 
         public Accident? FindById(int id)
         {
-            return _context.Accidents.FirstOrDefault(x => x.Id == id);
+            return _context.Accidents.Include(x => x.Policy.AidPackage).Include(x => x.Policy.Car).FirstOrDefault(x => x.Id == id);
         }
     }
 }

@@ -15,7 +15,6 @@ namespace InsuranceCompany.Library.Core.Model
         public string Role { get; private set; }
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
-        [StringLength(13)]
         public string UniqueMasterCitizenNumber { get; private set; }
         public string PhoneNumber { get; private set; }
         public string Address { get; private set; }

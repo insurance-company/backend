@@ -15,5 +15,6 @@ namespace InsuranceCompany.Library.Core.Repository.Core
         SignedPolicy Update(SignedPolicy policy);
         List<SignedPolicy> GetAllUnsigned();
         SignedPolicy? FindById(int id);
+        List<SignedPolicy> GetAllValidByCustomer(int customerId);
     }
 }

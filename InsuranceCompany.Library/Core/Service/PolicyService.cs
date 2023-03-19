@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace InsuranceCompany.Library.Core.Service
 {
-    public class PolicyService : Core.IPolicyService
+    public class PolicyService : IPolicyService
     {
         protected readonly IUnitOfWork _unitOfWork;
         protected readonly IEmailService _emailService;
@@ -18,6 +18,11 @@ namespace InsuranceCompany.Library.Core.Service
         {
             _unitOfWork = unitOfWork;
             _emailService = emailService;
+        }
+
+        public SignedPolicy FindById(int id) 
+        {
+            return _unitOfWork.PolicyRepository.FindById(id);
         }
         public Page<SignedPolicy> GetAllByAgentId(int agentId, int pageNumber, int pageSize)
         {
@@ -76,6 +81,11 @@ namespace InsuranceCompany.Library.Core.Service
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+        public List<SignedPolicy> GetAllValidByCustomer(int customerId)
+        {
+            return _unitOfWork.PolicyRepository.GetAllValidByCustomer(customerId);
         }
     }
 }

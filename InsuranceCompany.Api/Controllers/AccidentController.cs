@@ -14,13 +14,13 @@ namespace InsuranceCompany.Api.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IAccidentService _accidentService;
-        private readonly ICarService _carService;
+        private readonly IPolicyService _policyService;
         private readonly ITowTruckService _towTruckService;
-        public AccidentController(IMapper mapper, IAccidentService accidentService, ICarService carService, ITowTruckService towTruckService)
+        public AccidentController(IMapper mapper, IAccidentService accidentService, IPolicyService policyService, ITowTruckService towTruckService)
         {
             _mapper = mapper;
             _accidentService = accidentService;
-            _carService = carService;
+            _policyService = policyService;
             _towTruckService = towTruckService;
         }
 
@@ -42,7 +42,7 @@ namespace InsuranceCompany.Api.Controllers
         [HttpPost("create")]
         public ActionResult<AccidentDTO> Create([FromBody] AccidentDTO accident)
         {
-            Accident createdAccident = _accidentService.Create(AccidentMapper.EntityDTOToEntity(accident, _carService.FindById(accident.CarId), null));
+            Accident createdAccident = _accidentService.Create(AccidentMapper.EntityDTOToEntity(accident, _policyService.FindById(accident.PolicyId), null));
             return AccidentMapper.EntityToEntityDto(createdAccident);
         }
 
@@ -50,7 +50,7 @@ namespace InsuranceCompany.Api.Controllers
         [HttpPut("validate")]
         public ActionResult<AccidentDTO> ValidateAccident([FromBody] AccidentDTO dto)
         {
-            Accident accident = _accidentService.Update(AccidentMapper.EntityDTOToEntity(dto, _carService.FindById(dto.CarId), _towTruckService.FindById(dto.TowTruckId)));
+            Accident accident = _accidentService.Update(AccidentMapper.EntityDTOToEntity(dto, _policyService.FindById(dto.PolicyId), _towTruckService.FindById(dto.TowTruckId)));
             return Ok(AccidentMapper.EntityToEntityDto(accident));
         }
     }
