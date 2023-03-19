@@ -12,6 +12,8 @@ namespace InsuranceCompany.Library.Core.Repository.Core
         new void Dispose();
 
         public IUserRepository UserRepository { get; }
+        public IManagerRepository ManagerRepository { get; }
+        public IAgentRepository AgentRepository { get; }
         public IAidPackageRepository AidPackageRepository { get; }
         public IBranchRepository BranchRepository { get; }
         public IAccidentRepository AccidentRepository { get; }
@@ -19,6 +21,6 @@ namespace InsuranceCompany.Library.Core.Repository.Core
         public ICarRepository CarRepository { get; }
         public ITowTruckRepository TowTruckRepository { get; }
         public ITowingServiceRepository TowingServiceRepository { get; }
-
+        public IAgencyRepository AgencyRepository { get; }
     }
 }

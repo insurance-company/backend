@@ -14,7 +14,7 @@ namespace InsuranceCompany.Library.Core.Model
         public string Description { get; private set; }
         public double Cover { get; private set; }
 
-        public AidPackage() {}
+        private AidPackage() {}
 
         private AidPackage(int id, int durationInMonths, double price, string description, double cover) : base(id)
         {

@@ -19,6 +19,8 @@ namespace InsuranceCompany.Library.Core.Repository
             _context = context;
 
             UserRepository = new UserRepository(_context);
+            ManagerRepository = new ManagerRepository(_context);
+            AgentRepository = new AgentRepository(_context);
             AidPackageRepository = new AidPackageRepository(_context);
             BranchRepository = new BranchRepository(_context);
             AccidentRepository = new AccidentRepository(_context);
@@ -26,9 +28,12 @@ namespace InsuranceCompany.Library.Core.Repository
             CarRepository = new CarRepository(_context);
             TowTruckRepository = new TowTruckRepository(_context);
             TowingServiceRepository = new TowingServiceRepository(_context);
+            AgencyRepository = new AgencyRepository(_context);
         }
 
         public IUserRepository UserRepository { get; set; }
+        public IManagerRepository ManagerRepository { get; set; }
+        public IAgentRepository AgentRepository { get; set; }
         public IAidPackageRepository AidPackageRepository { get; set; }
         public IBranchRepository BranchRepository { get; set; }
         public IAccidentRepository AccidentRepository { get; set; }
@@ -36,6 +41,7 @@ namespace InsuranceCompany.Library.Core.Repository
         public ICarRepository CarRepository { get; set; }
         public ITowTruckRepository TowTruckRepository { get; set; }
         public ITowingServiceRepository TowingServiceRepository { get; set; }
+        public IAgencyRepository AgencyRepository { get; set; }
 
         public void Dispose()
         {

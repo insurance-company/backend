@@ -9,8 +9,8 @@ namespace InsuranceCompany.Library.Core.Model
 {
     public class TowingService : Entity
     {
-        public string Address { get; set; }
-        public Branch Branch { get; set; }
+        public string Address { get; private set; }
+        public Branch Branch { get; private set; }
 
     }
 }

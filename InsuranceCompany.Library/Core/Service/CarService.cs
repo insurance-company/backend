@@ -26,5 +26,48 @@ namespace InsuranceCompany.Library.Core.Service
         {
             return _unitOfWork.CarRepository.FindAllByOwnerId(id);
         }
+
+        public Car Create(Car car)
+        {
+            try
+            {
+                Car ret = _unitOfWork.CarRepository.Create(car);
+                _unitOfWork.Save();
+                return ret;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public Car Update(Car car)
+        {
+            try
+            {
+                Car ret = _unitOfWork.CarRepository.Update(car);
+                _unitOfWork.Save();
+                return ret;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public Car Remove(int id)
+        {
+            try
+            {
+                Car car = FindById(id);
+                Car ret = _unitOfWork.CarRepository.Remove(car);
+                _unitOfWork.Save();
+                return ret;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

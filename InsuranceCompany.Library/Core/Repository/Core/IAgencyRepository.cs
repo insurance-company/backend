@@ -6,13 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace InsuranceCompany.Library.Core.Repository.Core
-{
-    public interface IUserRepository
+{ 
+    public interface IAgencyRepository
     {
-        List<User> GetAllCustomers();
-        List<Worker> GetAllWorkers();
-        User FindByEmail(string email);
-        User Create(User user);
-        User FindById(int id);
+        Agency? GetFirstOrDefault();
     }
 }

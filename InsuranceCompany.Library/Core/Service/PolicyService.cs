@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace InsuranceCompany.Library.Core.Service
 {
-    public class PolicyService : Core.IPolicyService
+    public class PolicyService : IPolicyService
     {
         protected readonly IUnitOfWork _unitOfWork;
         protected readonly IEmailService _emailService;
@@ -18,6 +18,11 @@ namespace InsuranceCompany.Library.Core.Service
         {
             _unitOfWork = unitOfWork;
             _emailService = emailService;
+        }
+
+        public SignedPolicy FindById(int id) 
+        {
+            return _unitOfWork.PolicyRepository.FindById(id);
         }
         public Page<SignedPolicy> GetAllByAgentId(int agentId, int pageNumber, int pageSize)
         {
@@ -59,8 +64,7 @@ namespace InsuranceCompany.Library.Core.Service
                 string text = "";
                 if (sign == true)
                 {
-                    policy.Agent = _unitOfWork.UserRepository.FindAgentById(agentId);
-                    policy.Date = DateTime.Now;
+                    policy.Sign(_unitOfWork.AgentRepository.FindById(agentId));
                     text = "Postovanje, <br> Vasa polisa je potpisana! <br> Agent: " + policy.Agent.FirstName + " " + policy.Agent.LastName + ", Br Licence: " + policy.Agent.LicenceNumber;
                 }
                 else
@@ -75,8 +79,13 @@ namespace InsuranceCompany.Library.Core.Service
             }
             catch (Exception ex)
             {
-                throw new Exception();
+                throw new Exception(ex.Message);
             }
+        }
+
+        public List<SignedPolicy> GetAllValidByCustomer(int customerId)
+        {
+            return _unitOfWork.PolicyRepository.GetAllValidByCustomer(customerId);
         }
     }
 }

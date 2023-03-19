@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,13 +11,39 @@ namespace InsuranceCompany.Library.Core.Model
 {
     public class Accident : Entity
     {
-        public string Description { get; set; }
-        public DateTime Date { get; set; }
-        public Car Car { get; set; }
+        public string Description { get; private set; }
+        public DateTime Date { get; private set; }
+        public SignedPolicy Policy { get; private set; }
         [AllowNull]
-        public TowTruck? TowTruck { get; set; }
-        public DateTime TowingStartTime { get; set; }
-        public double TowingDuration { get; set; }
-        public AccidentStatus Status { get; set; }
+        public TowTruck? TowTruck { get; private set; }
+        public DateTime TowingStartTime { get; private set; }
+        public double TowingDuration { get; private set; }
+        public AccidentStatus Status { get; private set; }
+
+        private Accident() { }
+
+        public Accident(string description, DateTime date, SignedPolicy policy, TowTruck? towTruck, DateTime towingStartTime, double towingDuration, AccidentStatus status)
+        {
+            Description = description;
+            Date = date;
+            Policy = policy;
+            TowTruck = towTruck;
+            TowingStartTime = towingStartTime;
+            TowingDuration = towingDuration;
+            Status = status;
+        }
+
+        public static Accident Create(string description, DateTime date, SignedPolicy policy, TowTruck? towTruck, DateTime towingStartTime, double towingDuration, AccidentStatus status)
+        {
+            return new Accident(description, date, policy, towTruck, towingStartTime, towingDuration, status);
+        }
+
+        public void Validate(AccidentStatus status, TowTruck? towTruck, DateTime towingStartTime, double towingDuration)
+        {
+            this.Status = status;
+            this.TowTruck = towTruck;
+            this.TowingStartTime = towingStartTime;
+            this.TowingDuration = towingDuration;
+        }
     }
 }

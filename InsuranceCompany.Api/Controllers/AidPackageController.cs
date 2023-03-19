@@ -18,10 +18,10 @@ namespace InsuranceCompany.Api.Controllers
         {
             _aidPackageService = aidPackageService;
         }
-        [HttpGet]
-        public ActionResult<List<AidPackage>> GetAll()
+        [HttpGet("getAll/{pageNumber}/{pageSize}")]
+        public ActionResult<Page<AidPackage>> GetAll(int pageNumber, int pageSize)
         {
-            return _aidPackageService.GetAll();
+            return _aidPackageService.GetAll(pageNumber, pageSize);
         }
 
         [Authorize(Roles = "ADMIN")]

@@ -8,10 +8,10 @@ namespace InsuranceCompany.Library.Core.Model
 {
     public class TowTruck : Entity
     {
-        public double Length { get; set; }
-        public double Width { get; set; }
-        public double TransportCapacity { get; set; }
-        public TowingService TowingService { get; set; }
+        public double Length { get; private set; }
+        public double Width { get; private set; }
+        public double TransportCapacity { get; private set; }
+        public TowingService TowingService { get; private set; }
 
     }
 }

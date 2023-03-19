@@ -64,6 +64,14 @@ namespace InsuranceCompany.Api.Controllers
             _policyService.SignOrDecline(policyId, sign, agentId);
             return Ok();
         }
-        
+
+        [Authorize(Roles = "CUSTOMER")]
+        [HttpGet("getAllValidByCustomer")]
+        public ActionResult<List<SignedPolicy>> GetAllValidByCustomer()
+        {
+            int customerId = int.Parse(User.FindFirst("id").Value.ToString());
+            return _policyService.GetAllValidByCustomer(customerId);
+        }
+
     }
 }

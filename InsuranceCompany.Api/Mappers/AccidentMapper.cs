@@ -13,7 +13,7 @@ namespace InsuranceCompany.Api.Mappers
             dto.Id = accident.Id;
             dto.Description = accident.Description;
             dto.Date = accident.Date;
-            dto.CarId = accident.Id;
+            dto.PolicyId = accident.Policy.Id;
             if (accident.TowTruck != null) dto.TowTruckId = accident.TowTruck.Id;
             dto.TowingStartTime = accident.TowingStartTime;
             dto.TowingDuration = accident.TowingDuration;
@@ -22,19 +22,10 @@ namespace InsuranceCompany.Api.Mappers
             return dto;
         }
 
-        public static Accident EntityDTOToEntity(AccidentDTO dto, Car car, TowTruck towTruck)
+        public static Accident EntityDTOToEntity(AccidentDTO dto, SignedPolicy policy, TowTruck towTruck)
         {
-            Accident accident = new Accident();
-
+            Accident accident = Accident.Create(dto.Description, dto.Date, policy, towTruck, dto.TowingStartTime, dto.TowingDuration, dto.Status);
             accident.Id = dto.Id;
-            accident.Description = dto.Description;
-            accident.Date = dto.Date;
-            accident.Car = car;
-            accident.TowTruck = towTruck;
-            accident.TowingStartTime = dto.TowingStartTime;
-            accident.TowingDuration = dto.TowingDuration;
-            accident.Status= dto.Status;
-
             return accident;
         }
 

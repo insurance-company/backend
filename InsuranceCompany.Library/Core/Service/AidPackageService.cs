@@ -1,4 +1,5 @@
-﻿using InsuranceCompany.Library.Core.Model;
+﻿using Aspose.Pdf;
+using InsuranceCompany.Library.Core.Model;
 using InsuranceCompany.Library.Core.Repository.Core;
 using InsuranceCompany.Library.Core.Service.Core;
 using System;
@@ -16,9 +17,13 @@ namespace InsuranceCompany.Library.Core.Service
         {
             _unitOfWork = unitOfWork;
         }
-        public List<AidPackage> GetAll()
+        public Page<AidPackage> GetAll(int pageNumber, int pageSize)
         {
-            return _unitOfWork.AidPackageRepository.GetAll();
+            List<AidPackage> packages = _unitOfWork.AidPackageRepository.GetAll();
+            Page<AidPackage> page = new Page<AidPackage>();
+            page.TotalCount = packages.Count;
+            page.Data = packages.Skip(pageNumber * pageSize).Take(pageSize).ToList();
+            return page;
         }
 
         public AidPackage FindById(int id)
@@ -29,13 +34,13 @@ namespace InsuranceCompany.Library.Core.Service
         {
             try
             {
-                _unitOfWork.AidPackageRepository.Create(package);
+                AidPackage ret =_unitOfWork.AidPackageRepository.Create(package);
                 _unitOfWork.Save();
-                return package;
+                return ret;
             } 
-            catch
+            catch(Exception ex) 
             {
-                throw new Exception();
+                throw new Exception(ex.Message);
             }
         }
 
@@ -43,13 +48,13 @@ namespace InsuranceCompany.Library.Core.Service
         {
             try
             {
-                _unitOfWork.AidPackageRepository.Update(package);
+                AidPackage ret = _unitOfWork.AidPackageRepository.Update(package);
                 _unitOfWork.Save();
-                return package;
+                return ret;
             }
-            catch
+            catch (Exception ex)
             {
-                throw new Exception();
+                throw new Exception(ex.Message);
             }
         }
 
@@ -58,13 +63,13 @@ namespace InsuranceCompany.Library.Core.Service
             try
             {
                 AidPackage package = FindById(id);
-                _unitOfWork.AidPackageRepository.Remove(package);
+                AidPackage ret = _unitOfWork.AidPackageRepository.Remove(package);
                 _unitOfWork.Save();
-                return package;
+                return ret;
             }
-            catch
+            catch (Exception ex)
             {
-                throw new Exception();
+                throw new Exception(ex.Message);
             }
         }
     }

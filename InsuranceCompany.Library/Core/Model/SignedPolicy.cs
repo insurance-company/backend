@@ -9,13 +9,13 @@ namespace InsuranceCompany.Library.Core.Model
 {
     public class SignedPolicy : Entity
     {
-        public DateTime Date { get; set; }
-        public AidPackage AidPackage { get; set; }
+        public DateTime Date { get; private set; }
+        public AidPackage AidPackage { get; private set; }
         [AllowNull]
-        public Agent? Agent { get; set; }
-        public Car Car { get; set; }
+        public Agent? Agent { get; private set; }
+        public Car Car { get; private set; }
 
-        public SignedPolicy() { }
+        private SignedPolicy() { }
         private SignedPolicy(DateTime dateOfSigning, AidPackage aidPackage, Agent? agent, Car car)
         {
             Date = dateOfSigning;
@@ -27,6 +27,12 @@ namespace InsuranceCompany.Library.Core.Model
         public static SignedPolicy Create(DateTime date, AidPackage aidPackage, Agent agent, Car car)
         {
             return new SignedPolicy(date, aidPackage, agent, car);
+        }
+
+        public void Sign(Agent agent)
+        {
+            Agent = agent;
+            Date = DateTime.Now;
         }
     }
 }

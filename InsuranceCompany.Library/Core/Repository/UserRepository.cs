@@ -17,7 +17,7 @@ namespace InsuranceCompany.Library.Core.Repository
         {
             _context = context;
         }
-        public List<User> GetAllBuyers()
+        public List<User> GetAllCustomers()
         {
             return _context.Users.Where(x => !x.Deleted && x.Role == Model.Enum.Role.CUSTOMER.ToString()).ToList();
         }
@@ -25,11 +25,6 @@ namespace InsuranceCompany.Library.Core.Repository
         public List<Worker> GetAllWorkers()
         {
             return _context.Workers.Where(x => !x.Deleted).ToList();
-        }
-
-        public List<Agent> GetAllAgents()
-        {
-            return _context.Agents.Where(x => !x.Deleted).ToList();
         }
 
         public User FindByEmail(string email)
@@ -43,33 +38,10 @@ namespace InsuranceCompany.Library.Core.Repository
             return user;
         }
 
-        public Manager CreateManager(Manager manager)
-        {
-            _context.Managers.Add(manager);
-            _context.SaveChanges();
-            return manager;
-        }
-
-        public Agent CreateAgent(Agent agent)
-        {
-            _context.Agents.Add(agent);
-            _context.SaveChanges();
-            return agent;
-        }
 
         public User FindById(int id)
         {
             return _context.Users.FirstOrDefault(x => x.Id == id);
-        }
-
-        public Manager FindManagerById(int id)
-        {
-            return _context.Managers.Include(x=> x.WorksInBranch).Include(x=>x.ManagesTheBranch).FirstOrDefault(x => x.Id == id);
-        }
-
-        public Agent FindAgentById(int id)
-        {
-            return _context.Agents.Include(x => x.WorksInBranch).FirstOrDefault(x => x.Id == id);
         }
 
     }

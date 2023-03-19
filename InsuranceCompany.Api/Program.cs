@@ -28,6 +28,7 @@ builder.Services.AddScoped<IStatisticsService, StatisticsService>();
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<IPDFExporterService, PDFExporterService>();
 builder.Services.AddScoped<ITowTruckService, TowTruckService>();
+builder.Services.AddScoped<IAgencyService, AgencyService>();
 
 builder.Services.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme).AddCertificate();
 

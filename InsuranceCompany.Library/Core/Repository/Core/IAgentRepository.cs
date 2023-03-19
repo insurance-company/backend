@@ -7,12 +7,10 @@ using System.Threading.Tasks;
 
 namespace InsuranceCompany.Library.Core.Repository.Core
 {
-    public interface IUserRepository
+    public interface IAgentRepository
     {
-        List<User> GetAllCustomers();
-        List<Worker> GetAllWorkers();
-        User FindByEmail(string email);
-        User Create(User user);
-        User FindById(int id);
+        List<Agent> GetAll();
+        Agent Create(Agent agent);
+        Agent? FindById(int id);
     }
 }

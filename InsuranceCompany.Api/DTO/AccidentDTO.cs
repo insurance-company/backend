@@ -9,7 +9,7 @@ namespace InsuranceCompany.Api.DTO
         public int Id { get; set; }
         public string Description { get; set; }
         public DateTime Date { get; set; }
-        public int CarId { get; set; }
+        public int PolicyId { get; set; }
         public int TowTruckId { get; set; }
         public DateTime TowingStartTime { get; set; }
         public double TowingDuration { get; set; }
