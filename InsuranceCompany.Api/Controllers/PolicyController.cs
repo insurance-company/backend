@@ -42,9 +42,9 @@ namespace InsuranceCompany.Api.Controllers
 
         [Authorize(Roles = "CUSTOMER")]
         [HttpPost("buyPolicy")]
-        public ActionResult<Policy> BuyPolicy(SignedPolicyDTO policy)
+        public ActionResult<Policy> BuyPolicy(PolicyDTO policy)
         {
-               return _policyService.BuyPolicy(SignedPolicyMapper.EntityDTOToEntity(policy, _aidPackageService.FindById(policy.AidPackageId), null, _carService.FindById(policy.CarId)));
+               return _policyService.BuyPolicy(PolicyMapper.EntityDTOToEntity(policy, _aidPackageService.FindById(policy.AidPackageId), null, _carService.FindById(policy.CarId)));
         }
 
         [Authorize(Roles = "AGENT")]
@@ -56,12 +56,10 @@ namespace InsuranceCompany.Api.Controllers
 
         [Authorize(Roles = "AGENT")]
         [HttpPut("SignOrDecline")]
-        public ActionResult SignOrDecline(bool sign, int policyId)
+        public ActionResult SignOrDecline(bool sign, int aidPackageId, int carId)
         {
             int agentId = int.Parse(User.FindFirst("id").Value.ToString());
-            Console.WriteLine(agentId);
-            Console.WriteLine("EEE");   
-            _policyService.SignOrDecline(policyId, sign, agentId);
+            _policyService.SignOrDecline(aidPackageId, carId, sign, agentId);
             return Ok();
         }
 

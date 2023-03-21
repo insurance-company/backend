@@ -19,9 +19,9 @@ namespace InsuranceCompany.Api.Controllers
 
         [Authorize(Roles = "AGENT")]
         [HttpGet("getPolicyPDF")]
-        public IActionResult GetPolicyPDF(int id)
+        public IActionResult GetPolicyPDF(int aidPackageId, int carId)
         {
-            return _pdfService.GeneratePolicyPDF(id);
+            return _pdfService.GeneratePolicyPDF(aidPackageId, carId);
         }
     }
 }

@@ -40,14 +40,14 @@ namespace InsuranceCompany.Library.Helpers
             return field;
         }
 
-        public FileContentResult GeneratePolicyPDF(int id)
+        public FileContentResult GeneratePolicyPDF(int aidPackageId, int carId)
         {
             var document = new Aspose.Pdf.Document
             {
                 PageInfo = new PageInfo { Margin = new MarginInfo(28, 28, 28, 40)}
             };
             var pdfPage = document.Pages.Add();
-            Policy policy = _unitOfWork.PolicyRepository.FindById(id);
+            Policy policy = _unitOfWork.PolicyRepository.FindById(aidPackageId, carId);
 
             TextBoxField field = CreateField(document, "Automobil: ", 0, 0);
             document.Form.Add(field, 1);

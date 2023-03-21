@@ -9,6 +9,6 @@ namespace InsuranceCompany.Library.Helpers.Interfaces
 {
     public interface IPDFExporterService
     {
-        FileContentResult GeneratePolicyPDF(int id);
+        FileContentResult GeneratePolicyPDF(int aidPackageId, int carId);
     }
 }

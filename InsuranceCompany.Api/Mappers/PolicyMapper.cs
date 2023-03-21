@@ -4,11 +4,11 @@ using InsuranceCompany.Library.Core.Model.Enum;
 
 namespace InsuranceCompany.Api.Mappers
 {
-    public class SignedPolicyMapper
+    public class PolicyMapper
     {
-        public static SignedPolicyDTO EntityToEntityDto(Policy signedPolicy)
+        public static PolicyDTO EntityToEntityDto(Policy signedPolicy)
         {
-            SignedPolicyDTO dto = new SignedPolicyDTO();
+            PolicyDTO dto = new PolicyDTO();
 
             dto.Date = signedPolicy.Date;
             dto.AidPackageId = signedPolicy.AidPackage.Id;
@@ -18,7 +18,7 @@ namespace InsuranceCompany.Api.Mappers
             return dto;
         }
 
-        public static Policy EntityDTOToEntity(SignedPolicyDTO dto, AidPackage aidPackage,Agent agent, Car car)
+        public static Policy EntityDTOToEntity(PolicyDTO dto, AidPackage aidPackage,Agent agent, Car car)
         {
             Policy signedPolicy = Policy.Create(dto.Date, aidPackage, agent, car);
 

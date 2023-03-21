@@ -26,7 +26,7 @@ namespace InsuranceCompany.Library.Settings
         public DbSet<Branch> Branches { get; set; }
         public DbSet<Manager> Managers { get; set; }
         public DbSet<Accident> Accidents { get; set; }
-        public DbSet<Policy> SignedPolicies {get; set;}
+        public DbSet<Policy> Policies {get; set;}
         public DbSet<Worker> Workers { get; set; }
         public DbSet<AidPackage> AidPackages { get; set; }
         public DbSet<TowTruck> TowTrucks { get; set; }
@@ -40,6 +40,9 @@ namespace InsuranceCompany.Library.Settings
             modelBuilder.Entity<Worker>().ToTable("Workers");
             modelBuilder.Entity<Agent>().ToTable("Agents");
             modelBuilder.Entity<Manager>().ToTable("Managers");
+
+            modelBuilder.Entity<Policy>().HasKey(o => new {o.AidPackageId, o.CarId});
+            //modelBuilder.Entity<Policy>().Has
         }
 
         public override int SaveChanges()

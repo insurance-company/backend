@@ -44,7 +44,7 @@ namespace InsuranceCompany.Api.Controllers
         [HttpPost("create")]
         public ActionResult<AccidentDTO> Create([FromBody] AccidentDTO accident)
         {
-            Accident createdAccident = _accidentService.Create(AccidentMapper.EntityDTOToEntity(accident, _policyService.FindById(accident.PolicyId), null));
+            Accident createdAccident = _accidentService.Create(AccidentMapper.EntityDTOToEntity(accident, _policyService.FindById(accident.PolicyAidPackageId, accident.PolicyCarId), null));
             return AccidentMapper.EntityToEntityDto(createdAccident);
         }
 
@@ -54,7 +54,7 @@ namespace InsuranceCompany.Api.Controllers
         {
             int managerId = int.Parse(User.FindFirst("id").Value.ToString());
             Manager manager = _userService.FindManagerById(managerId);
-            Accident accident = _accidentService.Validate(AccidentMapper.EntityDTOToEntity(dto, _policyService.FindById(dto.PolicyId), _towTruckService.FindById(dto.TowTruckId)), manager);
+            Accident accident = _accidentService.Validate(AccidentMapper.EntityDTOToEntity(dto, _policyService.FindById(dto.PolicyAidPackageId, dto.PolicyCarId), _towTruckService.FindById(dto.TowTruckId)), manager);
             return Ok(AccidentMapper.EntityToEntityDto(accident));
         }
     }

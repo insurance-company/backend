@@ -13,9 +13,11 @@ namespace InsuranceCompany.Library.Core.Service
     {
 
         protected readonly IUnitOfWork _unitOfWork;
-        public CarService(IUnitOfWork unitOfWork)
+        protected readonly IPolicyService _policyService;
+        public CarService(IUnitOfWork unitOfWork, IPolicyService policyService)
         {
             _unitOfWork = unitOfWork;
+            _policyService = policyService;
         }
         public Car FindById(int id)
         {
@@ -25,6 +27,20 @@ namespace InsuranceCompany.Library.Core.Service
         public List<Car> FindAllByOwnerId(int id)
         {
             return _unitOfWork.CarRepository.FindAllByOwnerId(id);
+        }
+
+        public List<Car> GetAllAvaliableToPurchaseAidPackage(int customerId, int aidPackageId)
+        {
+            List<Car> allCustomerCars = FindAllByOwnerId(customerId);
+
+            List<Car> availableCars = new();
+            foreach (Car car in allCustomerCars)
+            {
+                if (_policyService.FindById(aidPackageId, car.Id) == null) availableCars.Add(car);
+            }
+
+            return availableCars;
+            
         }
 
         public Car Create(Car car)
@@ -69,5 +85,6 @@ namespace InsuranceCompany.Library.Core.Service
                 throw new Exception(ex.Message);
             }
         }
+
     }
 }

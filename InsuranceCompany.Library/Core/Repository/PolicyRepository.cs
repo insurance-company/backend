@@ -20,43 +20,43 @@ namespace InsuranceCompany.Library.Core.Repository
         }
         public List<Policy> GetAllByAgentId(int agentId)
         {
-            return _context.SignedPolicies.Include(x => x.AidPackage).Include(x => x.Agent).Include(x => x.Car.Owner)
+            return _context.Policies.Include(x => x.AidPackage).Include(x => x.Agent).Include(x => x.Car.Owner)
                     .Where(x => !x.Deleted && x.Agent.Id == agentId).ToList();
         }
 
         public List<Policy> GetAllByBuyerId(int buyerId)
         {
-            return _context.SignedPolicies.Include(x => x.AidPackage).Include(x => x.Agent).Include(x => x.Car.Owner)
+            return _context.Policies.Include(x => x.AidPackage).Include(x => x.Agent).Include(x => x.Car.Owner)
                     .Where(x => !x.Deleted && x.Car.Owner.Id == buyerId).ToList();
         }
 
         public Policy Create(Policy policy)
         {
-            _context.SignedPolicies.Add(policy);
+            _context.Policies.Add(policy);
             _context.SaveChanges();
             return policy;
         }
 
         public Policy Update(Policy policy)
         {
-            _context.SignedPolicies.Update(policy);
+            _context.Policies.Update(policy);
             return policy;
         }
 
         public List<Policy> GetAllUnsigned()
         {
-            return _context.SignedPolicies.Include(x => x.AidPackage).Include(x => x.Agent).Include(x => x.Car.Owner).Where(x => !x.Deleted && x.Agent == null).ToList();
+            return _context.Policies.Include(x => x.AidPackage).Include(x => x.Agent).Include(x => x.Car.Owner).Where(x => !x.Deleted && x.Agent == null).ToList();
         }
 
-        public Policy? FindById(int id)
+        public Policy? FindById(int aidPackageid, int carId)
         {
-            return _context.SignedPolicies.Include(x => x.Car.Owner).Include(x => x.AidPackage).Include(x => x.Agent).FirstOrDefault(x => x.Id == id);
+            return _context.Policies.Include(x => x.Car.Owner).Include(x => x.AidPackage).Include(x => x.Agent).FirstOrDefault(x => x.AidPackageId == aidPackageid && x.CarId == carId);
         }
 
         public List<Policy> GetAllValidByCustomer(int customerId)
         {
             DateTime now = DateTime.Now;
-            return _context.SignedPolicies.Include(x => x.AidPackage).Include(x => x.Agent).Include(x => x.Car.Owner).Where(x => !x.Deleted && x.Car.Owner.Id == customerId && x.Agent != null && x.Date.AddMonths(x.AidPackage.DurationInMonths) > now).ToList();
+            return _context.Policies.Include(x => x.AidPackage).Include(x => x.Agent).Include(x => x.Car.Owner).Where(x => !x.Deleted && x.Car.Owner.Id == customerId && x.Agent != null && x.Date.AddMonths(x.AidPackage.DurationInMonths) > now).ToList();
         }
     }
 }

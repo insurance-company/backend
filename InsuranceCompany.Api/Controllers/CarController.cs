@@ -33,6 +33,16 @@ namespace InsuranceCompany.Api.Controllers
 
 
         [Authorize(Roles = "CUSTOMER")]
+        [HttpGet("getAllAvailableToPurchaseAidPackage")]
+        public ActionResult<List<Car>> GetAllPossibleToPurchaseAidPackage(int aidPackageId)
+        {
+            int customerId = int.Parse(User.FindFirst("id").Value.ToString());
+            return _carService.GetAllAvaliableToPurchaseAidPackage(customerId, aidPackageId);
+        }
+
+
+
+        [Authorize(Roles = "CUSTOMER")]
         [HttpPost("Create")]
         public ActionResult Create(CarDTO carDTO)
         {

@@ -13,7 +13,8 @@ namespace InsuranceCompany.Api.Mappers
             dto.Id = accident.Id;
             dto.Description = accident.Description;
             dto.Date = accident.Date;
-            dto.PolicyId = accident.Policy.Id;
+            dto.PolicyAidPackageId = accident.Policy.AidPackageId;
+            dto.PolicyCarId= accident.Policy.CarId;
             if (accident.TowTruck != null) dto.TowTruckId = accident.TowTruck.Id;
             dto.TowingStartTime = accident.TowingStartTime;
             dto.TowingDuration = accident.TowingDuration;

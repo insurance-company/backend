@@ -20,9 +20,9 @@ namespace InsuranceCompany.Library.Core.Service
             _emailService = emailService;
         }
 
-        public Policy FindById(int id) 
+        public Policy FindById(int aidPackageId, int carId) 
         {
-            return _unitOfWork.PolicyRepository.FindById(id);
+            return _unitOfWork.PolicyRepository.FindById(aidPackageId, carId);
         }
         public Page<Policy> GetAllByAgentId(int agentId, int pageNumber, int pageSize)
         {
@@ -56,11 +56,11 @@ namespace InsuranceCompany.Library.Core.Service
             return page;
         }
 
-        public void SignOrDecline(int policyId, bool sign, int agentId)
+        public void SignOrDecline(int aidPackageId, int carId, bool sign, int agentId)
         {
             try
             {
-                Policy policy = _unitOfWork.PolicyRepository.FindById(policyId);
+                Policy policy = _unitOfWork.PolicyRepository.FindById(aidPackageId, carId);
                 string text = "";
                 if (sign == true)
                 {
