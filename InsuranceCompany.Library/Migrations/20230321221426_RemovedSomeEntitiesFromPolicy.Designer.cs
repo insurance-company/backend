@@ -3,6 +3,7 @@ using System;
 using InsuranceCompany.Library.Settings;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace InsuranceCompany.Library.Migrations
 {
     [DbContext(typeof(InsuranceCompanyDbContext))]
-    partial class InsuranceCompanyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230321221426_RemovedSomeEntitiesFromPolicy")]
+    partial class RemovedSomeEntitiesFromPolicy
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -70,7 +73,7 @@ namespace InsuranceCompany.Library.Migrations
 
                     b.HasIndex("PolicyAidPackageId", "PolicyCarId");
 
-                    b.ToTable("Accidents", (string)null);
+                    b.ToTable("Accidents");
                 });
 
             modelBuilder.Entity("InsuranceCompany.Library.Core.Model.Address", b =>
@@ -108,7 +111,7 @@ namespace InsuranceCompany.Library.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Address", (string)null);
+                    b.ToTable("Address");
                 });
 
             modelBuilder.Entity("InsuranceCompany.Library.Core.Model.Agency", b =>
@@ -139,7 +142,7 @@ namespace InsuranceCompany.Library.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Agencies", (string)null);
+                    b.ToTable("Agencies");
                 });
 
             modelBuilder.Entity("InsuranceCompany.Library.Core.Model.AidPackage", b =>
@@ -174,7 +177,7 @@ namespace InsuranceCompany.Library.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AidPackages", (string)null);
+                    b.ToTable("AidPackages");
                 });
 
             modelBuilder.Entity("InsuranceCompany.Library.Core.Model.Branch", b =>
@@ -206,7 +209,7 @@ namespace InsuranceCompany.Library.Migrations
 
                     b.HasIndex("AgencyId");
 
-                    b.ToTable("Branches", (string)null);
+                    b.ToTable("Branches");
                 });
 
             modelBuilder.Entity("InsuranceCompany.Library.Core.Model.Car", b =>
@@ -248,7 +251,7 @@ namespace InsuranceCompany.Library.Migrations
 
                     b.HasIndex("OwnerId");
 
-                    b.ToTable("Cars", (string)null);
+                    b.ToTable("Cars");
                 });
 
             modelBuilder.Entity("InsuranceCompany.Library.Core.Model.Policy", b =>
@@ -274,7 +277,7 @@ namespace InsuranceCompany.Library.Migrations
 
                     b.HasIndex("CarId");
 
-                    b.ToTable("Policies", (string)null);
+                    b.ToTable("Policies");
                 });
 
             modelBuilder.Entity("InsuranceCompany.Library.Core.Model.TowTruck", b =>
@@ -310,7 +313,7 @@ namespace InsuranceCompany.Library.Migrations
 
                     b.HasIndex("TowingServiceId");
 
-                    b.ToTable("TowTrucks", (string)null);
+                    b.ToTable("TowTrucks");
                 });
 
             modelBuilder.Entity("InsuranceCompany.Library.Core.Model.TowingService", b =>
@@ -341,7 +344,7 @@ namespace InsuranceCompany.Library.Migrations
 
                     b.HasIndex("BranchId");
 
-                    b.ToTable("TowingServices", (string)null);
+                    b.ToTable("TowingServices");
                 });
 
             modelBuilder.Entity("InsuranceCompany.Library.Core.Model.User", b =>

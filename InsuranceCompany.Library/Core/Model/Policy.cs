@@ -19,9 +19,6 @@ namespace InsuranceCompany.Library.Core.Model
         public DateTime Date { get; private set; }
         [AllowNull]
         public Agent? Agent { get; private set; }
-        public DateTime DateCreated { get; set; }
-
-        public DateTime DateUpdated { get; set; }
 
         public bool Deleted { get; set; }
 
