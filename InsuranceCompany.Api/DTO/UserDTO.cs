@@ -1,4 +1,5 @@
-﻿using InsuranceCompany.Library.Core.Model.Enum;
+﻿using InsuranceCompany.Library.Core.Model;
+using InsuranceCompany.Library.Core.Model.Enum;
 
 namespace InsuranceCompany.Api.DTO
 {
@@ -11,7 +12,7 @@ namespace InsuranceCompany.Api.DTO
         public string LastName { get; set; }
         public string UniqueMasterCitizenNumber { get; set; }
         public string PhoneNumber { get; set; }
-        public string Address { get; set; }
+        public Address Address { get; set; }
         public Gender Gender { get; set; }
     }
 }

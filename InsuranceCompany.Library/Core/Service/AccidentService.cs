@@ -45,13 +45,15 @@ namespace InsuranceCompany.Library.Core.Service
             }
         }
 
-        public Accident Update(Accident acc)
+        public Accident Validate(Accident acc, Manager manager)
         {
             try
             {
                 Accident accident = _unitOfWork.AccidentRepository.FindById(acc.Id);
                 accident.Validate(acc.Status, acc.TowTruck, acc.TowingStartTime, acc.TowingDuration);
                 _unitOfWork.AccidentRepository.Update(accident);
+                manager.ValidatedAccident();
+                _unitOfWork.ManagerRepository.Update(manager);
                 _unitOfWork.Save();
                 return accident;
             }

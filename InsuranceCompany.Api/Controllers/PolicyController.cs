@@ -28,28 +28,28 @@ namespace InsuranceCompany.Api.Controllers
 
         [Authorize(Roles = "AGENT")]
         [HttpGet("getAllByAgentId/{agentId}/{pageNumber}/{pageSize}")]
-        public ActionResult<Page<SignedPolicy>> GetAllByAgentId(int agentId, int pageNumber, int pageSize)
+        public ActionResult<Page<Policy>> GetAllByAgentId(int agentId, int pageNumber, int pageSize)
         {
             return _policyService.GetAllByAgentId(agentId, pageNumber, pageSize);
         }
 
         [Authorize(Roles = "CUSTOMER")]
         [HttpGet("getAllByBuyerId/{buyerId}/{pageNumber}/{pageSize}")]
-        public ActionResult<Page<SignedPolicy>> GetAllByBuyerId(int buyerId, int pageNumber, int pageSize)
+        public ActionResult<Page<Policy>> GetAllByBuyerId(int buyerId, int pageNumber, int pageSize)
         {
             return _policyService.GetAllByBuyerId(buyerId, pageNumber, pageSize);
         }
 
         [Authorize(Roles = "CUSTOMER")]
         [HttpPost("buyPolicy")]
-        public ActionResult<SignedPolicy> BuyPolicy(SignedPolicyDTO policy)
+        public ActionResult<Policy> BuyPolicy(SignedPolicyDTO policy)
         {
                return _policyService.BuyPolicy(SignedPolicyMapper.EntityDTOToEntity(policy, _aidPackageService.FindById(policy.AidPackageId), null, _carService.FindById(policy.CarId)));
         }
 
         [Authorize(Roles = "AGENT")]
         [HttpGet("getAllUnsigned/{pageNumber}/{pageSize}")]
-        public ActionResult<Page<SignedPolicy>> GetAllUnsigned(int pageNumber, int pageSize)
+        public ActionResult<Page<Policy>> GetAllUnsigned(int pageNumber, int pageSize)
         {
             return _policyService.GetAllUnsigned(pageNumber, pageSize);
         }
@@ -67,7 +67,7 @@ namespace InsuranceCompany.Api.Controllers
 
         [Authorize(Roles = "CUSTOMER")]
         [HttpGet("getAllValidByCustomer")]
-        public ActionResult<List<SignedPolicy>> GetAllValidByCustomer()
+        public ActionResult<List<Policy>> GetAllValidByCustomer()
         {
             int customerId = int.Parse(User.FindFirst("id").Value.ToString());
             return _policyService.GetAllValidByCustomer(customerId);

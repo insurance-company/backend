@@ -15,7 +15,7 @@ namespace InsuranceCompany.Library.Core.Model
         public Branch WorksInBranch { get; private set; }
 
         protected Worker() { }
-        protected Worker(Worker boss, Branch worksInBranch, string email, string password, string role, string firstName, string lastName, string uniqueMasterCitizenNumber, string phoneNumber, string address, Gender gender) : base(email, password, role, firstName, lastName, uniqueMasterCitizenNumber, phoneNumber, address, gender) 
+        protected Worker(Worker boss, Branch worksInBranch, string email, string password, string role, string firstName, string lastName, string uniqueMasterCitizenNumber, string phoneNumber, Address address, Gender gender) : base(email, password, role, firstName, lastName, uniqueMasterCitizenNumber, phoneNumber, address, gender) 
         {
             Boss = boss;
             WorksInBranch = worksInBranch;

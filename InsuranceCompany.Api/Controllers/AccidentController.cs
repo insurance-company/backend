@@ -16,12 +16,14 @@ namespace InsuranceCompany.Api.Controllers
         private readonly IAccidentService _accidentService;
         private readonly IPolicyService _policyService;
         private readonly ITowTruckService _towTruckService;
-        public AccidentController(IMapper mapper, IAccidentService accidentService, IPolicyService policyService, ITowTruckService towTruckService)
+        private readonly IUserService _userService;
+        public AccidentController(IMapper mapper, IAccidentService accidentService, IPolicyService policyService, ITowTruckService towTruckService, IUserService userService)
         {
             _mapper = mapper;
             _accidentService = accidentService;
             _policyService = policyService;
             _towTruckService = towTruckService;
+            _userService = userService;
         }
 
         [Authorize(Roles = "CUSTOMER")]
@@ -50,7 +52,9 @@ namespace InsuranceCompany.Api.Controllers
         [HttpPut("validate")]
         public ActionResult<AccidentDTO> ValidateAccident([FromBody] AccidentDTO dto)
         {
-            Accident accident = _accidentService.Update(AccidentMapper.EntityDTOToEntity(dto, _policyService.FindById(dto.PolicyId), _towTruckService.FindById(dto.TowTruckId)));
+            int managerId = int.Parse(User.FindFirst("id").Value.ToString());
+            Manager manager = _userService.FindManagerById(managerId);
+            Accident accident = _accidentService.Validate(AccidentMapper.EntityDTOToEntity(dto, _policyService.FindById(dto.PolicyId), _towTruckService.FindById(dto.TowTruckId)), manager);
             return Ok(AccidentMapper.EntityToEntityDto(accident));
         }
     }

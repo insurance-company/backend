@@ -41,7 +41,7 @@ namespace InsuranceCompany.Library.Core.Repository
 
         public User FindById(int id)
         {
-            return _context.Users.FirstOrDefault(x => x.Id == id);
+            return _context.Users.Include(x => x.Address).FirstOrDefault(x => x.Id == id);
         }
 
     }

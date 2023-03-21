@@ -26,7 +26,7 @@ namespace InsuranceCompany.Library.Settings
         public DbSet<Branch> Branches { get; set; }
         public DbSet<Manager> Managers { get; set; }
         public DbSet<Accident> Accidents { get; set; }
-        public DbSet<SignedPolicy> SignedPolicies {get; set;}
+        public DbSet<Policy> SignedPolicies {get; set;}
         public DbSet<Worker> Workers { get; set; }
         public DbSet<AidPackage> AidPackages { get; set; }
         public DbSet<TowTruck> TowTrucks { get; set; }

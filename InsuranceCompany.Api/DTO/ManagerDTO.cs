@@ -4,6 +4,6 @@ namespace InsuranceCompany.Api.DTO
 {
     public class ManagerDTO : WorkerDTO
     {
-        public int ManagesTheBranchId { get; set; }
+        public int NumberOfValidatedAccidents { get; set; }
     }
 }

@@ -17,12 +17,12 @@ namespace InsuranceCompany.Library.Core.Model
         public string LastName { get; private set; }
         public string UniqueMasterCitizenNumber { get; private set; }
         public string PhoneNumber { get; private set; }
-        public string Address { get; private set; }
+        public Address Address { get; private set; }
         public Gender Gender { get; private set; }
 
         protected User() { }
 
-        protected User(string email, string password, string role, string firstName, string lastName, string uniqueMasterCitizenNumber, string phoneNumber, string address, Gender gender)
+        protected User(string email, string password, string role, string firstName, string lastName, string uniqueMasterCitizenNumber, string phoneNumber, Address address, Gender gender)
         {
             Email = email;
             Password = password;
@@ -35,7 +35,7 @@ namespace InsuranceCompany.Library.Core.Model
             Gender = gender;
         }
 
-        public static User Create(string email, string password, string role, string firstName, string lastName, string uniqueMasterCitizenNumber, string phoneNumber, string address, Gender gender)
+        public static User Create(string email, string password, string role, string firstName, string lastName, string uniqueMasterCitizenNumber, string phoneNumber, Address address, Gender gender)
         {
             return new User(email, password, role, firstName, lastName, uniqueMasterCitizenNumber, phoneNumber, address, gender);
         }

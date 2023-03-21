@@ -61,7 +61,7 @@ namespace InsuranceCompany.Api.Controllers
 
             if (managerDTO == null) return BadRequest();
             if (_userService.FindByEmail(managerDTO.Email) != null) return BadRequest("Email je vec iskoriscen");
-            _userService.RegisterManager(ManagerMapper.EntityDTOToEntity(managerDTO, _userService.FindManagerById(managerDTO.BossId), _branchService.FindById(managerDTO.ManagesTheBranchId)));
+            _userService.RegisterManager(ManagerMapper.EntityDTOToEntity(managerDTO, _userService.FindManagerById(managerDTO.BossId), _branchService.FindById(managerDTO.WorksInBranchId)));
             return Ok();
         }
 
@@ -74,7 +74,7 @@ namespace InsuranceCompany.Api.Controllers
             if (agentDTO == null) return BadRequest();
             if (_userService.FindByEmail(agentDTO.Email) != null) return BadRequest("Email je vec iskoriscen");
             int managerId = int.Parse(User.FindFirst("id").Value.ToString());
-            _userService.RegisterAgent(AgentMapper.EntityDTOToEntity(agentDTO, _userService.FindManagerById(agentDTO.BossId), _branchService.FindById(_userService.FindManagerById(managerId).ManagesTheBranch.Id)));
+            _userService.RegisterAgent(AgentMapper.EntityDTOToEntity(agentDTO, _userService.FindManagerById(agentDTO.BossId), _branchService.FindById(_userService.FindManagerById(managerId).WorksInBranch.Id)));
             return Ok();
         }
     }

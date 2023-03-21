@@ -12,5 +12,8 @@ namespace InsuranceCompany.Library.Core.Service.Core
         Page<Branch> GetAll(int pageNumber, int pageSize);
         List<Branch> GetAllWithoutPagination();
         Branch FindById(int id);
+        Branch Create(Branch branch);
+        Branch Update(Branch branch);
+        Branch Remove(int id);
     }
 }

@@ -25,9 +25,15 @@ namespace InsuranceCompany.Library.Core.Repository
             return manager;
         }
 
+        public Manager Update(Manager manager)
+        {
+            _context.Managers.Update(manager);
+            return manager;
+        }
+
         public Manager? FindById(int id)
         {
-            return _context.Managers.Include(x => x.WorksInBranch).Include(x => x.ManagesTheBranch).FirstOrDefault(x => x.Id == id);
+            return _context.Managers.Include(x => x.WorksInBranch).FirstOrDefault(x => x.Id == id);
         }
     }
 }

@@ -11,5 +11,8 @@ namespace InsuranceCompany.Library.Core.Repository.Core
     {
         List<Branch> GetAll();
         Branch FindById(int id);
+        Branch Create(Branch branch);
+        Branch Update(Branch branch);
+        Branch Remove(Branch branch);
     }
 }

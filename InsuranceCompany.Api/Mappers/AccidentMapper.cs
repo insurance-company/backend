@@ -22,7 +22,7 @@ namespace InsuranceCompany.Api.Mappers
             return dto;
         }
 
-        public static Accident EntityDTOToEntity(AccidentDTO dto, SignedPolicy policy, TowTruck towTruck)
+        public static Accident EntityDTOToEntity(AccidentDTO dto, Policy policy, TowTruck towTruck)
         {
             Accident accident = Accident.Create(dto.Description, dto.Date, policy, towTruck, dto.TowingStartTime, dto.TowingDuration, dto.Status);
             accident.Id = dto.Id;

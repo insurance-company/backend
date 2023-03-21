@@ -47,7 +47,7 @@ namespace InsuranceCompany.Library.Helpers
                 PageInfo = new PageInfo { Margin = new MarginInfo(28, 28, 28, 40)}
             };
             var pdfPage = document.Pages.Add();
-            SignedPolicy policy = _unitOfWork.PolicyRepository.FindById(id);
+            Policy policy = _unitOfWork.PolicyRepository.FindById(id);
 
             TextBoxField field = CreateField(document, "Automobil: ", 0, 0);
             document.Form.Add(field, 1);

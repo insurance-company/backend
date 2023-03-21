@@ -11,18 +11,23 @@ namespace InsuranceCompany.Library.Core.Model
 {
     public class Manager : Worker
     {
-        public Branch ManagesTheBranch { get; private set; }
+        public int NumberOfValidatedAccidents { get; private set; }
 
         private Manager() { }
 
-        private Manager(Branch managesTheBranch, Worker boss, Branch worksInBranch, string email, string password, string role, string firstName, string lastName, string uniqueMasterCitizenNumber, string phoneNumber, string address, Gender gender) : base(boss, worksInBranch, email, password, role, firstName, lastName, uniqueMasterCitizenNumber, phoneNumber, address, gender)
+        private Manager(int numberOfValidatedAccidents, Worker boss, Branch worksInBranch, string email, string password, string role, string firstName, string lastName, string uniqueMasterCitizenNumber, string phoneNumber, Address address, Gender gender) : base(boss, worksInBranch, email, password, role, firstName, lastName, uniqueMasterCitizenNumber, phoneNumber, address, gender)
         {
-            ManagesTheBranch = managesTheBranch;
+            NumberOfValidatedAccidents = numberOfValidatedAccidents;
         }
 
-        public static Manager Create(Branch managesTheBranch, Worker boss, Branch worksInBranch, string email, string password, string role, string firstName, string lastName, string uniqueMasterCitizenNumber, string phoneNumber, string address, Gender gender)
+        public static Manager Create(int numberOfValidatedAccidents, Worker boss, Branch worksInBranch, string email, string password, string role, string firstName, string lastName, string uniqueMasterCitizenNumber, string phoneNumber, Address address, Gender gender)
         {
-            return new Manager(managesTheBranch, boss, worksInBranch, email, password, role, firstName, lastName, uniqueMasterCitizenNumber, phoneNumber, address, gender);
+            return new Manager(numberOfValidatedAccidents, boss, worksInBranch, email, password, role, firstName, lastName, uniqueMasterCitizenNumber, phoneNumber, address, gender);
+        }
+
+        public void ValidatedAccident()
+        {
+            NumberOfValidatedAccidents++;
         }
     }
 }

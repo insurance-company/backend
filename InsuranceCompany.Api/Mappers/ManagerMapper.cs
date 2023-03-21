@@ -20,14 +20,14 @@ namespace InsuranceCompany.Api.Mappers
             dto.Address = manager.Address;
             dto.Gender = manager.Gender;
             if (manager.Boss != null)   dto.BossId = manager.Boss.Id;
-            dto.ManagesTheBranchId = manager.ManagesTheBranch.Id;
+            dto.WorksInBranchId = manager.WorksInBranch.Id;
 
             return dto;
         }
 
         public static Manager EntityDTOToEntity(ManagerDTO dto, Worker boss, Branch branch)
         {
-            Manager manager = Manager.Create(branch, boss, branch, dto.Email, dto.Password, dto.Role.ToString(), dto.FirstName, dto.LastName, dto.UniqueMasterCitizenNumber, dto.PhoneNumber, dto.Address, dto.Gender);
+            Manager manager = Manager.Create(dto.NumberOfValidatedAccidents, boss, branch, dto.Email, dto.Password, dto.Role.ToString(), dto.FirstName, dto.LastName, dto.UniqueMasterCitizenNumber, dto.PhoneNumber, dto.Address, dto.Gender);
             return manager;
         }
     }

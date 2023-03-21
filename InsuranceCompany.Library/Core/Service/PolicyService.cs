@@ -20,37 +20,37 @@ namespace InsuranceCompany.Library.Core.Service
             _emailService = emailService;
         }
 
-        public SignedPolicy FindById(int id) 
+        public Policy FindById(int id) 
         {
             return _unitOfWork.PolicyRepository.FindById(id);
         }
-        public Page<SignedPolicy> GetAllByAgentId(int agentId, int pageNumber, int pageSize)
+        public Page<Policy> GetAllByAgentId(int agentId, int pageNumber, int pageSize)
         {
-            List<SignedPolicy> signedPolicies = _unitOfWork.PolicyRepository.GetAllByAgentId(agentId);
-            Page<SignedPolicy> page = new Page<SignedPolicy>();
+            List<Policy> signedPolicies = _unitOfWork.PolicyRepository.GetAllByAgentId(agentId);
+            Page<Policy> page = new Page<Policy>();
             page.TotalCount = signedPolicies.Count;
             page.Data = signedPolicies.Skip(pageNumber * pageSize).Take(pageSize).ToList();
             return page;
         }
 
-        public Page<SignedPolicy> GetAllByBuyerId(int buyerId, int pageNumber, int pageSize)
+        public Page<Policy> GetAllByBuyerId(int buyerId, int pageNumber, int pageSize)
         {
-            List<SignedPolicy> signedPolicies = _unitOfWork.PolicyRepository.GetAllByBuyerId(buyerId);
-            Page<SignedPolicy> page = new Page<SignedPolicy>();
+            List<Policy> signedPolicies = _unitOfWork.PolicyRepository.GetAllByBuyerId(buyerId);
+            Page<Policy> page = new Page<Policy>();
             page.TotalCount = signedPolicies.Count;
             page.Data = signedPolicies.Skip(pageNumber * pageSize).Take(pageSize).ToList();
             return page;
         }
 
-        public SignedPolicy BuyPolicy(SignedPolicy policy)
+        public Policy BuyPolicy(Policy policy)
         {
             return _unitOfWork.PolicyRepository.Create(policy);
         }
 
-        public Page<SignedPolicy> GetAllUnsigned(int pageNumber, int pageSize)
+        public Page<Policy> GetAllUnsigned(int pageNumber, int pageSize)
         {
-            List<SignedPolicy> unsignedPolicies = _unitOfWork.PolicyRepository.GetAllUnsigned();
-            Page<SignedPolicy> page = new Page<SignedPolicy>();
+            List<Policy> unsignedPolicies = _unitOfWork.PolicyRepository.GetAllUnsigned();
+            Page<Policy> page = new Page<Policy>();
             page.TotalCount = unsignedPolicies.Count;
             page.Data = unsignedPolicies.Skip(pageNumber * pageSize).Take(pageSize).ToList();
             return page;
@@ -60,7 +60,7 @@ namespace InsuranceCompany.Library.Core.Service
         {
             try
             {
-                SignedPolicy policy = _unitOfWork.PolicyRepository.FindById(policyId);
+                Policy policy = _unitOfWork.PolicyRepository.FindById(policyId);
                 string text = "";
                 if (sign == true)
                 {
@@ -83,7 +83,7 @@ namespace InsuranceCompany.Library.Core.Service
             }
         }
 
-        public List<SignedPolicy> GetAllValidByCustomer(int customerId)
+        public List<Policy> GetAllValidByCustomer(int customerId)
         {
             return _unitOfWork.PolicyRepository.GetAllValidByCustomer(customerId);
         }

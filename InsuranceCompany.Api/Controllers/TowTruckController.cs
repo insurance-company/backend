@@ -22,7 +22,7 @@ namespace InsuranceCompany.Api.Controllers
         public ActionResult<List<TowTruck>> GetAvaliable(DateTime startTime, double duration)
         {
             int managerId = int.Parse(User.FindFirst("id").Value.ToString());
-            int branchId = _userService.FindManagerById(managerId).ManagesTheBranch.Id;
+            int branchId = _userService.FindManagerById(managerId).WorksInBranch.Id;
             return _towTruckService.GetAvailableTowTrucks(branchId, startTime, duration);
         }
     }

@@ -6,7 +6,7 @@ namespace InsuranceCompany.Api.Mappers
 {
     public class SignedPolicyMapper
     {
-        public static SignedPolicyDTO EntityToEntityDto(SignedPolicy signedPolicy)
+        public static SignedPolicyDTO EntityToEntityDto(Policy signedPolicy)
         {
             SignedPolicyDTO dto = new SignedPolicyDTO();
 
@@ -18,9 +18,9 @@ namespace InsuranceCompany.Api.Mappers
             return dto;
         }
 
-        public static SignedPolicy EntityDTOToEntity(SignedPolicyDTO dto, AidPackage aidPackage,Agent agent, Car car)
+        public static Policy EntityDTOToEntity(SignedPolicyDTO dto, AidPackage aidPackage,Agent agent, Car car)
         {
-            SignedPolicy signedPolicy = SignedPolicy.Create(dto.Date, aidPackage, agent, car);
+            Policy signedPolicy = Policy.Create(dto.Date, aidPackage, agent, car);
 
             return signedPolicy;
         }

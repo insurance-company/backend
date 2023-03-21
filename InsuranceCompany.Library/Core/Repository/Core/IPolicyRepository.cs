@@ -9,12 +9,12 @@ namespace InsuranceCompany.Library.Core.Repository.Core
 {
     public interface IPolicyRepository
     {
-        List<SignedPolicy> GetAllByAgentId(int agentId);
-        List<SignedPolicy> GetAllByBuyerId(int buyerId);
-        SignedPolicy Create(SignedPolicy policy);
-        SignedPolicy Update(SignedPolicy policy);
-        List<SignedPolicy> GetAllUnsigned();
-        SignedPolicy? FindById(int id);
-        List<SignedPolicy> GetAllValidByCustomer(int customerId);
+        List<Policy> GetAllByAgentId(int agentId);
+        List<Policy> GetAllByBuyerId(int buyerId);
+        Policy Create(Policy policy);
+        Policy Update(Policy policy);
+        List<Policy> GetAllUnsigned();
+        Policy? FindById(int id);
+        List<Policy> GetAllValidByCustomer(int customerId);
     }
 }

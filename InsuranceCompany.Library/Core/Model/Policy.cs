@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace InsuranceCompany.Library.Core.Model
 {
-    public class SignedPolicy : Entity
+    public class Policy : Entity
     {
         public DateTime Date { get; private set; }
         public AidPackage AidPackage { get; private set; }
@@ -15,8 +15,8 @@ namespace InsuranceCompany.Library.Core.Model
         public Agent? Agent { get; private set; }
         public Car Car { get; private set; }
 
-        private SignedPolicy() { }
-        private SignedPolicy(DateTime dateOfSigning, AidPackage aidPackage, Agent? agent, Car car)
+        private Policy() { }
+        private Policy(DateTime dateOfSigning, AidPackage aidPackage, Agent? agent, Car car)
         {
             Date = dateOfSigning;
             AidPackage = aidPackage;
@@ -24,9 +24,9 @@ namespace InsuranceCompany.Library.Core.Model
             Car = car;
         }
 
-        public static SignedPolicy Create(DateTime date, AidPackage aidPackage, Agent agent, Car car)
+        public static Policy Create(DateTime date, AidPackage aidPackage, Agent agent, Car car)
         {
-            return new SignedPolicy(date, aidPackage, agent, car);
+            return new Policy(date, aidPackage, agent, car);
         }
 
         public void Sign(Agent agent)

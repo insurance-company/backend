@@ -34,5 +34,43 @@ namespace InsuranceCompany.Library.Core.Service
         {
             return _unitOfWork.BranchRepository.FindById(id);
         }
+
+        public Branch Create(Branch branch)
+        {
+          
+                Branch ret = _unitOfWork.BranchRepository.Create(branch);
+                _unitOfWork.Save();
+                return ret;
+           
+        }
+
+        public Branch Update(Branch branch)
+        {
+            try
+            {
+                Branch ret = _unitOfWork.BranchRepository.Update(branch);
+                _unitOfWork.Save();
+                return ret;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public Branch Remove(int id)
+        {
+            try
+            {
+                Branch branch = FindById(id);
+                Branch ret = _unitOfWork.BranchRepository.Remove(branch);
+                _unitOfWork.Save();
+                return ret;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }
