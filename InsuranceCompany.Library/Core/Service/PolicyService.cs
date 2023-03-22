@@ -65,15 +65,16 @@ namespace InsuranceCompany.Library.Core.Service
                 if (sign == true)
                 {
                     policy.Sign(_unitOfWork.AgentRepository.FindById(agentId));
+                    _unitOfWork.PolicyRepository.Update(policy);
                     text = "Postovanje, <br> Vasa polisa je potpisana! <br> Agent: " + policy.Agent.FirstName + " " + policy.Agent.LastName + ", Br Licence: " + policy.Agent.LicenceNumber;
                 }
                 else
                 {
-                    policy.Deleted = true;
+                    //policy.Deleted = true;
+                    _unitOfWork.PolicyRepository.Remove(policy);
                     text = "Postovanje, <br> Vasa polisa je odbijena!";
                 }
 
-                _unitOfWork.PolicyRepository.Update(policy);
                 _unitOfWork.Save();
                 _emailService.SendEmail("STATUS POLISE", text, policy.Car.Owner.Email.ToString());
             }

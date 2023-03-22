@@ -50,13 +50,19 @@ namespace InsuranceCompany.Library.Core.Repository
 
         public Policy? FindById(int aidPackageid, int carId)
         {
-            return _context.Policies.Include(x => x.Car.Owner).Include(x => x.AidPackage).Include(x => x.Agent).FirstOrDefault(x => x.AidPackageId == aidPackageid && x.CarId == carId);
+            return _context.Policies.Include(x => x.Car.Owner).Include(x => x.AidPackage).Include(x => x.Agent).FirstOrDefault(x => x.AidPackageId == aidPackageid && x.CarId == carId && !x.Deleted);
         }
 
         public List<Policy> GetAllValidByCustomer(int customerId)
         {
             DateTime now = DateTime.Now;
             return _context.Policies.Include(x => x.AidPackage).Include(x => x.Agent).Include(x => x.Car.Owner).Where(x => !x.Deleted && x.Car.Owner.Id == customerId && x.Agent != null && x.Date.AddMonths(x.AidPackage.DurationInMonths) > now).ToList();
+        }
+
+        public Policy Remove(Policy policy)
+        {
+            _context.Policies.Remove(policy);
+            return policy;
         }
     }
 }

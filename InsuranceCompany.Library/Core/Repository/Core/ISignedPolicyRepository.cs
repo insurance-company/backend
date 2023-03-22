@@ -7,15 +7,10 @@ using System.Threading.Tasks;
 
 namespace InsuranceCompany.Library.Core.Repository.Core
 {
-    public interface IPolicyRepository
+    public interface ISignedPolicyRepository
     {
         List<Policy> GetAllByAgentId(int agentId);
         List<Policy> GetAllByBuyerId(int buyerId);
         Policy Create(Policy policy);
-        Policy Update(Policy policy);
-        List<Policy> GetAllUnsigned();
-        Policy? FindById(int aidPackageId, int carId);
-        List<Policy> GetAllValidByCustomer(int customerId);
-        Policy Remove(Policy policy);
     }
 }
