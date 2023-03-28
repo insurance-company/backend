@@ -63,7 +63,8 @@ namespace InsuranceCompany.Library.Core.Service
             try
             {
                 AidPackage package = FindById(id);
-                AidPackage ret = _unitOfWork.AidPackageRepository.Remove(package);
+                package.Deleted = true;
+                AidPackage ret = _unitOfWork.AidPackageRepository.Update(package);
                 _unitOfWork.Save();
                 return ret;
             }
