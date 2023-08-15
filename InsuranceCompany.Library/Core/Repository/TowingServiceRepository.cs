@@ -19,7 +19,7 @@ namespace InsuranceCompany.Library.Core.Repository
         }
         public List<TowingService> GetAllByBranchId(int branchId)
         {
-            return _context.TowingServices.Include(x => x.Branch).Where(x => !x.Deleted && x.Branch.Id == branchId).ToList();
+            return _context.TowingServices.Include(x => x.Branch).Include(x => x.Address).Where(x => !x.Deleted && x.Branch.Id == branchId).ToList();
         }
     }
 }

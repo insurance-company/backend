@@ -21,7 +21,7 @@ namespace InsuranceCompany.Library.Core.Repository
 
         public List<TowTruck> GetAllByTowingServiceId(int id)
         {
-            return _context.TowTrucks.Include(x => x.TowingService).Where(x => !x.Deleted && x.TowingService.Id == id).ToList();
+            return _context.TowTrucks.Include(x => x.TowingService.Address).Where(x => !x.Deleted && x.TowingService.Id == id).ToList();
         }
 
     }

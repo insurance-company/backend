@@ -32,6 +32,7 @@ namespace InsuranceCompany.Library.Settings
         public DbSet<TowTruck> TowTrucks { get; set; }
         public DbSet<TowingService> TowingServices { get; set;}
         public DbSet<User> Users { get; set; }
+        public DbSet<Address> Addresses { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

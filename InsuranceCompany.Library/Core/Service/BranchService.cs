@@ -63,7 +63,8 @@ namespace InsuranceCompany.Library.Core.Service
             try
             {
                 Branch branch = FindById(id);
-                Branch ret = _unitOfWork.BranchRepository.Remove(branch);
+                branch.Deleted = true;
+                Branch ret = _unitOfWork.BranchRepository.Update(branch);
                 _unitOfWork.Save();
                 return ret;
             }

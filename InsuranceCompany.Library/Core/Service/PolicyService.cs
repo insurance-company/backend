@@ -66,13 +66,20 @@ namespace InsuranceCompany.Library.Core.Service
                 {
                     policy.Sign(_unitOfWork.AgentRepository.FindById(agentId));
                     _unitOfWork.PolicyRepository.Update(policy);
-                    text = "Postovanje, <br> Vasa polisa je potpisana! <br> Agent: " + policy.Agent.FirstName + " " + policy.Agent.LastName + ", Br Licence: " + policy.Agent.LicenceNumber;
+                    text = "Postovanje, <br><br>Vaša polisa je potpisana! <br>Automobil: " + policy.Car.RegisterNumber + 
+                        "<br>Paket pomoći: " + policy.AidPackage.Description + 
+                        "<br>Agent: " + policy.Agent.FirstName + " " + policy.Agent.LastName + ", Br Licence: " + policy.Agent.LicenceNumber + 
+                        "<br><br>Srdačan pozdrav," +
+                        "<br>Agencija za osiguranje automobila TESLA.";
                 }
                 else
                 {
                     //policy.Deleted = true;
                     _unitOfWork.PolicyRepository.Remove(policy);
-                    text = "Postovanje, <br> Vasa polisa je odbijena!";
+                    text = "Postovanje, <br> <br>Vaša polisa je odbijena! <br>Automobil: " + policy.Car.RegisterNumber + 
+                        "<br>Paket pomoći: " + policy.AidPackage.Description +
+                        "<br><br>Srdačan pozdrav," +
+                        "<br>Agencija za osiguranje automobila TESLA.";
                 }
 
                 _unitOfWork.Save();
